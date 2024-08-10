@@ -1,5 +1,12 @@
 {
-    "files.exclude": {
-        "**/.*": true  // 隐藏所有以 . 开头的文件和文件夹
+    "files.associations": {
+        "vector": "cpp",
+        "__split_buffer": "cpp",
+        "deque": "cpp",
+        "string": "cpp"
     }
-}
+} // {
+//     "files.exclude": {
+//         "**/.*": true  // 隐藏所有以 . 开头的文件和文件夹
+//     }
+// }

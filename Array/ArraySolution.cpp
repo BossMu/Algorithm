@@ -32,7 +32,7 @@ int removeElement(vector<int>& nums, int val)
 
     while(iBegin <= iEnd)
     {
-        // 找到第一个非
+        // 左边找到第一个val
         while(iBegin <= iEnd && nums[iBegin] != val)
         {
             iBegin++;
@@ -76,3 +76,61 @@ int removeDuplicates(vector<int>& nums)
 
     return i + 1;  
 }
+
+int removeDuplicates2(vector<int>& nums) 
+{ 
+    int i = 2;
+    int j = 2;
+    int ilen = nums.size(); 
+
+    if(ilen <= 2)
+    {
+        return ilen;
+    }
+
+    for(j = 2; j < ilen; j++)
+    {
+        // i-当前被替换位置 j-下一个新元素
+        // i-2 == j 时表示中间的都是相同元素，直接跳过
+        if(nums[i-2] != nums[j])
+        {
+            nums[i] = nums[j];
+            i++;
+        }
+    }
+
+    return i;
+}
+
+int majorityElement(vector<int>& nums) 
+{
+    int iLen = nums.size();
+    if(iLen <= 0)
+    {
+        return -1;
+    }
+
+    int maxNum = nums[0];
+    int count = 1;
+
+    for(int i = 1; i < iLen; i++)
+    {
+        if(nums[i] == maxNum)
+        {
+            count++;
+        }
+        else
+        {
+            count--;
+        }
+
+        if(count <= 0)
+        {
+            maxNum = nums[i];
+            count = 1;
+        }
+    }
+
+    return maxNum;
+}
+
