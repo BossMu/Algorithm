@@ -29,5 +29,7 @@ void rotate(vector<int>& nums, int k) ;
 int maxProfit(vector<int>& prices);
 // 数组所有拉抬波段
 int maxProfitSum(vector<int>& prices);
-//数组跳跃
+// 数组跳跃
 bool canJump(vector<int>& nums);
+// 最少跳跃次数
+int jumpMinTimes(vector<int>& nums); 

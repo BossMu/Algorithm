@@ -204,3 +204,27 @@ bool canJump(vector<int>& nums)
     // 全部遍历完说明走到最后
     return true;
 }
+
+int jumpMinTimes(vector<int>& nums) 
+{
+    int iMax = 0;
+    int iTmpEnd = 0;
+    int iTimes = 0;
+    int sizeIndex = nums.size() - 1;
+
+    for(int i = 0;i <= sizeIndex; i++)
+    {       
+        // 走到本轮结束位置每次先+1 因此本轮能到终点至退出就好
+        if(iTmpEnd >= sizeIndex) break;
+
+        // 到达当前位置时次数才+1
+        iMax = max(iMax, i + nums[i]);
+        if(i == iTmpEnd)
+        {
+            iTimes++;
+            iTmpEnd = iMax;
+        }
+    }
+
+    return iTimes;
+}

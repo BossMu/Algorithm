@@ -73,6 +73,14 @@ void canJumpTest()
     printf("%d",ret);
 }
 
+void jumpMinTimesTest()
+{
+    vector<int> nums = {2,3,1,1,4};
+
+    int ret = jumpMinTimes(nums);
+    printf("%d",ret);
+}
+
 int main() {
     
     // removeElementTest();    //2
@@ -82,6 +90,8 @@ int main() {
     // rotateTest();        //6
     // maxProfitTest();        //7    
     // maxProfitSumTest();     //8   
-    canJumpTest();      //9
+    // canJumpTest();      //9
+    jumpMinTimesTest();     //10
+
 }
 

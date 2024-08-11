@@ -140,3 +140,18 @@ maxProfitSum
 
 canJump
 
+10、最小跳跃次数
+
+示例 1:
+输入: nums = [2,3,1,1,4]
+输出: 2
+解释: 跳到最后一个位置的最小跳跃数是 2。
+     从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。
+
+https://leetcode.cn/problems/jump-game-ii/description/?envType=study-plan-v2&envId=top-interview-150
+
+思路：贪心
+    每次记录本轮最远跳跃位置和所有元素的最远位置
+    次数+1：只有本次走到本轮最大位置更新次数+1，表示本轮能走的最远位置已经走完
+
+jumpMinTimes
