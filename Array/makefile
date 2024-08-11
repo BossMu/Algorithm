@@ -2,7 +2,7 @@
 CXX = g++
 
 # 编译选项
-CXXFLAGS = -g -Wall
+CXXFLAGS = -g -Wall -std=c++11
 
 # 目标可执行文件
 TARGET = test
@@ -39,4 +39,3 @@ $(OBJDIR)/%.o: %.cpp
 # 清理生成的文件
 clean:
 	rm -f $(OBJS) $(TARGET)
-

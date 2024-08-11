@@ -23,3 +23,11 @@ int removeDuplicates(vector<int>& nums);
 int removeDuplicates2(vector<int>& nums); 
 // 查找数组中的过半元素（一定有）
 int majorityElement(vector<int>& nums);
+// 顺时针移动元素
+void rotate(vector<int>& nums, int k) ;
+// 找数组最大拉抬波段
+int maxProfit(vector<int>& prices);
+// 数组所有拉抬波段
+int maxProfitSum(vector<int>& prices);
+//数组跳跃
+bool canJump(vector<int>& nums);

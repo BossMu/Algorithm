@@ -134,3 +134,73 @@ int majorityElement(vector<int>& nums)
     return maxNum;
 }
 
+void rotate(vector<int>& nums, int k) 
+{
+    auto reverse = [&](int i, int j)
+    {
+        while (i < j)
+        {
+            swap(nums[i++], nums[j--]);
+        }
+    };
+
+    int size = nums.size();
+    k %= size;
+    
+    reverse(0, size-1);
+    reverse(0, k-1);
+    reverse(k, size-1);
+}
+
+int maxProfit(vector<int>& prices)
+{
+    int iMinPrice = INT_MAX;
+    int iMaxRange = 0;
+
+    for(int price : prices)
+    {
+        iMinPrice = min(iMinPrice, price);
+        iMaxRange = max(iMaxRange,(price - iMinPrice));
+    }
+
+    return iMaxRange; 
+}
+
+int maxProfitSum(vector<int>& prices) 
+{
+    int iTodayRange = 0;
+    int sum = 0;
+    int size = prices.size();
+
+    if(size <= 1)
+    {
+        return 0;
+    }
+
+    for(int i = 1; i < size; i++)
+    {
+        iTodayRange = prices[i] - prices[i-1];
+        if(iTodayRange > 0)
+        {
+            sum += iTodayRange;
+        }
+    }
+
+    return sum;
+}
+
+bool canJump(vector<int>& nums) 
+{
+    int size = nums.size();
+    int iRoad = 0;
+
+    for(int i = 0; i < size; i++)
+    {
+        if(iRoad < i) return false;     // 当前的路已经追不上人了
+
+        iRoad = max(iRoad, i + nums[i]);
+    }
+
+    // 全部遍历完说明走到最后
+    return true;
+}
