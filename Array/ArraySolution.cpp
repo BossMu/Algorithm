@@ -228,3 +228,20 @@ int jumpMinTimes(vector<int>& nums)
 
     return iTimes;
 }
+
+int hIndex(vector<int>& citations) 
+{
+    int iRet = 0;
+    int size = citations.size();
+    std::sort(citations.begin(), citations.end());
+
+    for(int i = 0; i < size; i++)
+    {
+        if(citations[i] >= (size - i))
+        {
+            return size - i;
+        }
+    }
+
+    return iRet;
+}

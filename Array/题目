@@ -155,3 +155,37 @@ https://leetcode.cn/problems/jump-game-ii/description/?envType=study-plan-v2&env
     次数+1：只有本次走到本轮最大位置更新次数+1，表示本轮能走的最远位置已经走完
 
 jumpMinTimes
+
+11、最多有n个大于等于n的数
+示例 1：
+
+输入：citations = [3,0,6,1,5]
+输出：3 
+解释：给定数组表示研究者总共有 5 篇论文，每篇论文相应的被引用了 3, 0, 6, 1, 5 次。
+     由于研究者有 3 篇论文每篇 至少 被引用了 3 次，其余两篇论文每篇被引用 不多于 3 次，所以她的 h 指数是 3。
+
+思路：排序+遍历（没啥意思）
+先排序，找到值>=后面位置数量的下标
+
+hIndex
+
+12、实现random类
+实现RandomizedSet 类：
+RandomizedSet() 初始化 RandomizedSet 对象
+bool insert(int val) 当元素 val 不存在时，向集合中插入该项，并返回 true ；否则，返回 false 。
+bool remove(int val) 当元素 val 存在时，从集合中移除该项，并返回 true ；否则，返回 false 。
+int getRandom() 随机返回现有集合中的一项（测试用例保证调用此方法时集合中至少存在一个元素）。每个元素应该有 相同的概率 被返回。
+你必须实现类的所有函数，并满足每个函数的 平均 时间复杂度为 O(1) 。
+
+https://leetcode.cn/problems/insert-delete-getrandom-o1/?envType=study-plan-v2&envId=top-interview-150
+
+思路：哈希表
+    为实现时间复杂度O（1）,需要一个hash表，unsorted_map存储键值对
+
+RandomizedSet
+
+13、
+
+
+
+

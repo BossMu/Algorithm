@@ -81,6 +81,33 @@ void jumpMinTimesTest()
     printf("%d",ret);
 }
 
+void hIndexTest()
+{
+    // vector<int> nums = {3,0,6,1,5};
+    vector<int> nums = {1,3,1};
+    // vector<int> nums = {100};
+
+    int ret = hIndex(nums);
+    printf("%d",ret);
+}
+
+void RandomizedSetTest()
+{
+    int i = 0;
+    RandomizedSet* rd = new RandomizedSet();
+    rd->insert(0);
+    rd->insert(1);
+    rd->remove(0);
+    rd->insert(2);
+    rd->remove(1);
+    while(i<100)
+    {
+        int ret = rd->getRandom();
+        printf("%d",ret);
+        i++;
+    }
+}
+
 int main() {
     
     // removeElementTest();    //2
@@ -91,7 +118,8 @@ int main() {
     // maxProfitTest();        //7    
     // maxProfitSumTest();     //8   
     // canJumpTest();      //9
-    jumpMinTimesTest();     //10
-
+    // jumpMinTimesTest();     //10
+    // hIndexTest();       //11
+    RandomizedSetTest();        //12
 }
 

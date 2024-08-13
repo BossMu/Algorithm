@@ -1,4 +1,5 @@
 #include <vector>
+#include <set>
 using namespace std;
 
 // class ArraySolution 
@@ -33,3 +34,57 @@ int maxProfitSum(vector<int>& prices);
 bool canJump(vector<int>& nums);
 // 最少跳跃次数
 int jumpMinTimes(vector<int>& nums); 
+// n个大于等于n的数
+int hIndex(vector<int>& citations);
+// random 类
+class RandomizedSet {
+public:
+    RandomizedSet() 
+    {
+
+    }
+    
+    bool insert(int val) 
+    {
+        bool bRet = false;
+
+        auto iter = m_hash.find(val);
+        if(iter == m_hash.end())
+        {
+            m_vec.push_back(val);
+            m_hash[val] = m_vec.size() - 1;
+            bRet = true;
+        }
+
+        return bRet;
+    }
+    
+    bool remove(int val) 
+    {
+        bool bRet = false;
+
+        auto iter = m_hash.find(val);
+        if(iter != m_hash.end())
+        {
+            int iLast = m_vec.size()-1;
+            int iDel = m_hash[val];
+            m_vec[iDel] = m_vec[iLast];
+            m_vec.pop_back();
+            m_hash[m_vec[iDel]] = iDel;
+            m_hash.erase(val);
+            bRet = true;
+        }
+
+        return bRet;
+    }
+    
+    int getRandom() 
+    {
+        int iSize = m_vec.size();
+        int iRandom = rand()%iSize;
+        return m_vec[iRandom];
+    }
+private:
+    unordered_map<int, int> m_hash;
+    vector<int> m_vec; 
+};
