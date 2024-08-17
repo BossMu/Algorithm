@@ -184,8 +184,53 @@ https://leetcode.cn/problems/insert-delete-getrandom-o1/?envType=study-plan-v2&e
 
 RandomizedSet
 
-13、
+13、数组除自身外元素的乘积-禁用除法
+给你一个整数数组 nums，返回 数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积 。
+题目数据 保证 数组 nums之中任意元素的全部前缀元素和后缀的乘积都在  32 位 整数范围内。
+请 不要使用除法，且在 O(n) 时间复杂度内完成此题。
 
+https://leetcode.cn/problems/product-of-array-except-self/description/?envType=study-plan-v2&envId=top-interview-150
 
+示例 1:
 
+输入: nums = [1,2,3,4]
+输出: [24,12,8,6]
 
+思路：动态规划、数组划分
+    每个数的除自己外的乘积就是左边的乘积*右边的乘积，因此先遍历两次记下每个点对应左边乘积和右边乘积
+
+productExceptSelf
+
+14、加油站
+在一条环路上有 n 个加油站，其中第 i 个加油站有汽油 gas[i] 升。
+你有一辆油箱容量无限的的汽车，从第 i 个加油站开往第 i+1 个加油站需要消耗汽油 cost[i] 升。你从其中的一个加油站出发，开始时油箱为空。
+给定两个整数数组 gas 和 cost ，如果你可以按顺序绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1 。如果存在解，则 保证 它是 唯一 的。
+
+示例 1:
+输入: gas = [1,2,3,4,5], cost = [3,4,5,1,2]
+输出: 3
+
+思路：遍历
+两个数组的差位每个点开到下个点的收益或损耗，只要总和大于等于0表示可以转一圈
+
+canCompleteCircuit
+
+15、按分数分配糖果
+
+https://leetcode.cn/problems/candy/description/?envType=study-plan-v2&envId=top-interview-150
+
+n 个孩子站成一排。给你一个整数数组 ratings 表示每个孩子的评分。
+你需要按照以下要求，给这些孩子分发糖果：
+每个孩子至少分配到 1 个糖果。
+相邻两个孩子评分更高的孩子会获得更多的糖果。
+请你给每个孩子分发糖果，计算并返回需要准备的 最少糖果数目 。
+
+示例 1：
+输入：ratings = [1,0,2]
+输出：5
+解释：你可以分别给第一个、第二个、第三个孩子分发 2、1、2 颗糖果。
+
+思路：贪心算法+遍历 
+    其实每个元素只需要跟自己的左右相邻比较就行，因此左右各遍历一次，分别计算我这个人单侧比较应该有几个，然后取最大值
+
+candy

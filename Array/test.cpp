@@ -108,6 +108,31 @@ void RandomizedSetTest()
     }
 }
 
+void productExceptSelfTest()
+{
+    vector<int> nums = {1,2,3,4};
+
+    vector<int> tmp = productExceptSelf(nums);
+    printf("----");
+}
+
+void canCompleteCircuitTest()
+{
+    vector<int> gas = {3,1,1};
+    vector<int> cost = {1,2,2};
+
+    int ret = canCompleteCircuit(gas, cost);
+    printf("%d",ret);
+}
+
+void candyTest()
+{
+    vector<int> nums = {1,2,87,87,87,2,1};
+
+    int ret = candy(nums);
+    printf("%d",ret);
+}
+
 int main() {
     
     // removeElementTest();    //2
@@ -120,6 +145,10 @@ int main() {
     // canJumpTest();      //9
     // jumpMinTimesTest();     //10
     // hIndexTest();       //11
-    RandomizedSetTest();        //12
+    // RandomizedSetTest();        //12
+    // productExceptSelfTest();        //13
+    // canCompleteCircuitTest();       //14
+    candyTest();        //分糖果
+
 }
 

@@ -88,3 +88,10 @@ private:
     unordered_map<int, int> m_hash;
     vector<int> m_vec; 
 };
+// 数组除自己外的乘积
+vector<int> productExceptSelf(vector<int>& nums);
+// 加油站
+int canCompleteCircuit(vector<int>& gas, vector<int>& cost) ;
+// 分配糖果
+int candy(vector<int>& ratings);
+

@@ -245,3 +245,97 @@ int hIndex(vector<int>& citations)
 
     return iRet;
 }
+
+vector<int> productExceptSelf(vector<int>& nums) 
+{
+    int size = nums.size();
+    vector<int> vec(size);
+    vector<int> vecLeft(size);
+    vector<int> vecRight(size);
+    int num = 1;
+
+    if(size <= 1)
+    {
+        return vec;
+    }
+
+    for(int i = 0; i < size; i++)
+    {
+        num *= nums[i];
+        vecLeft[i] = num;
+    }
+
+    num = 1;
+    for(int i = size-1; i >= 0; i--)
+    {
+        num *= nums[i];
+        vecRight[i] = num;
+    }
+
+    for(int i = 1; i < size - 1; i++)
+    {
+        vec[i] = vecLeft[i-1] * vecRight[i+1];
+    }
+    vec[0] = vecRight[1];
+    vec[size-1] = vecLeft[size-2];
+
+    return vec;
+}
+
+int canCompleteCircuit(vector<int>& gas, vector<int>& cost) 
+{
+    int size = gas.size();
+    int sum = 0;
+    int minSum = INT_MAX;
+    int minIndex = 0;
+
+    for(int i = 0; i < size; i++)
+    {
+        sum += gas[i] - cost[i];
+        if(sum < minSum)
+        {
+            minSum = sum;
+            minIndex = i;
+        }
+    }
+
+    // 亏最严重的一定放在后面
+    return sum <= 0 ? -1 : (minIndex+1)%size;
+}
+
+int candy(vector<int>& ratings) 
+{
+    int size = ratings.size();
+
+    if(size <= 1)
+    {
+        return 1;
+    }
+
+    vector<int> vecLeft(size, 1);
+    vector<int> vecRight(size, 1);
+
+    // 左遍历
+    for(int i = 1; i < size; i++)
+    {
+        if(ratings[i] > ratings[i-1])
+        {
+            vecLeft[i] = vecLeft[i-1] + 1;
+        }
+    }
+
+    int sum = vecLeft[size-1];
+    for(int i = size-2; i >= 0; i--)
+    {
+        if(ratings[i] > ratings[i+1])
+        {
+            vecRight[i] = vecRight[i+1] + 1;
+        }
+
+        // 取最大值
+        sum += max(vecLeft[i], vecRight[i]);
+    }
+
+    return sum;
+}
+
