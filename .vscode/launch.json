@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug with LLDB",
+            "name": "Array",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/Array/test",  // 可执行文件路径
@@ -20,6 +20,26 @@
                 }
             ],
             "preLaunchTask": "BuildArray"  // 运行调试前执行的任务
+        },
+        {
+            "name": "Public",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/Public/test",  // 可执行文件路径
+            "args": [],  // 如果需要传递参数，可以在这里添加
+            "stopAtEntry": false,  // 是否在程序入口处停止
+            "cwd": "${workspaceFolder}/Public",  // 当前工作目录
+            "environment": [],
+            "externalConsole": false,  // 是否使用外部控制台
+            "MIMode": "lldb",  // 选择 LLDB 作为调试器
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for lldb",
+                    "text": "settings set target.inline-breakpoint-strategy always",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "BuildPublic"  // 运行调试前执行的任务
         }
     ]
 }

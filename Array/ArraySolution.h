@@ -1,5 +1,8 @@
 #include <vector>
 #include <set>
+#include <string>
+#include <algorithm>
+
 using namespace std;
 
 // class ArraySolution 
@@ -94,4 +97,9 @@ vector<int> productExceptSelf(vector<int>& nums);
 int canCompleteCircuit(vector<int>& gas, vector<int>& cost) ;
 // 分配糖果
 int candy(vector<int>& ratings);
-
+// 最后一个字符串的长度
+int lengthOfLastWord(string s);
+// 最长的公共前缀
+string longestCommonPrefix(vector<string>& strs) ;
+// 翻转字符串的单词
+string reverseWords(string s) ;

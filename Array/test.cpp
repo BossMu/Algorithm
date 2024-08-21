@@ -125,12 +125,12 @@ void canCompleteCircuitTest()
     printf("%d",ret);
 }
 
-void candyTest()
+void longestCommonPrefixTest()
 {
-    vector<int> nums = {1,2,87,87,87,2,1};
+    vector<string> strs = {"asd","asdf","as"};
 
-    int ret = candy(nums);
-    printf("%d",ret);
+    string s = longestCommonPrefix(strs);
+    printf("%s",s.c_str());
 }
 
 int main() {
@@ -148,7 +148,9 @@ int main() {
     // RandomizedSetTest();        //12
     // productExceptSelfTest();        //13
     // canCompleteCircuitTest();       //14
-    candyTest();        //分糖果
+    // candyTest();        //分糖果
+
+    longestCommonPrefixTest();      //17 公共前缀
 
 }
 

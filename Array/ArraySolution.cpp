@@ -339,3 +339,69 @@ int candy(vector<int>& ratings)
     return sum;
 }
 
+int lengthOfLastWord(string s) 
+{
+    int j = s.size() - 1;
+
+    // 去除末尾空格
+    while(s.at(j) == ' ')
+    {
+        j--;
+    }
+
+    int i = j-1;
+    while (i >= 0 && s.at(i) != ' ')
+    {
+        i--;
+    }
+
+    return j - i;
+}
+
+string longestCommonPrefix(vector<string>& strs) 
+{
+    string& s = strs[0];
+
+    // 公共长度
+    for(int j = 0; j <s.size(); j++)
+    {
+        // 遍历每个字符串
+        for(string& str : strs)
+        {
+            // 退出条件：有一个字符串不相等或者有一个字符串长度结束
+            if(str[j] != s[j] || j == str.size())
+            {
+                return s.substr(0, j);
+            }
+        }
+    }
+
+    return s;
+}
+
+string reverseWords(string s) 
+{
+    int i = s.size() - 1;
+    string ret;
+
+    while (i >= 0)
+    {
+        int cnt = 0;
+
+        // 去除空格
+        while(i >= 0 && s[i] == ' ') i--;
+        while(i >= 0 && s[i] != ' ')
+        {
+            i--;
+            cnt++;
+        }
+
+        if(cnt > 0)
+        {
+            ret += s.substr(i+1, cnt) + " "; 
+        }
+    }
+    
+    // 去除最后一个空格
+    return ret.substr(0, ret.size()-1);
+}
