@@ -6,4 +6,10 @@
 
 using namespace std;
 
-void trim(std::string& str);
+class stringUtils
+{
+public:
+    // 去除字符串两侧空格
+    static void trim(std::string& str);
+
+};

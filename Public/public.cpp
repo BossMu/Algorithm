@@ -1,6 +1,6 @@
 #include "public.h"
 
-void trim(std::string& str) 
+void stringUtils::trim(std::string& str) 
 {
     // 找到第一个非空白字符的位置
     auto start = std::find_if_not(str.begin(), str.end(), [](unsigned char ch) {

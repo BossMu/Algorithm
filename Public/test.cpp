@@ -3,7 +3,7 @@
 void trimTest()
 {
     string s = "   hello mjh    ";
-    trim(s);
+    stringUtils::trim(s);
 
     printf("%s", s.c_str());
 }
