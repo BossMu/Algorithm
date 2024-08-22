@@ -405,3 +405,38 @@ string reverseWords(string s)
     // 去除最后一个空格
     return ret.substr(0, ret.size()-1);
 }
+
+// 维护递减栈
+int trap(vector<int>& height) 
+{
+    int ret = 0;
+    stack<int> st;
+    int size = height.size();
+
+    // 遍历每个高度（找左右边界）
+    for(int iRight = 0; iRight < size; iRight++)
+    {
+        // 栈非空 && 当前元素大于栈顶元素（右边界）
+        while (!st.empty() && height[iRight] >= height[st.top()])
+        {
+            // 栈顶元素（低点）
+            int bottom_h = height[st.top()];
+            st.pop();
+
+            // 找左边界 没有的话不计算
+            if(st.empty())
+            {
+                break;
+            }
+
+            int iLeft = st.top();   // 左侧下一个更高的
+            int h = min(height[iLeft], height[iRight]) - bottom_h;
+            ret += (iRight - iLeft - 1) * h;
+        }
+        
+        // 全部出栈更小元素后，这个数据入栈
+        st.push(iRight);
+    }
+
+    return ret;
+}

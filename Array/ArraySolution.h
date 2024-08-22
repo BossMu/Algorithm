@@ -2,6 +2,7 @@
 #include <set>
 #include <string>
 #include <algorithm>
+#include <stack>
 
 using namespace std;
 
@@ -103,3 +104,5 @@ int lengthOfLastWord(string s);
 string longestCommonPrefix(vector<string>& strs) ;
 // 翻转字符串的单词
 string reverseWords(string s) ;
+// 接雨水
+int trap(vector<int>& height);

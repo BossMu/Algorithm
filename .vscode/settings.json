@@ -64,7 +64,8 @@
         "utility": "cpp",
         "format": "cpp",
         "text_encoding": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "stack": "cpp"
     }
 } // {
 //     "files.exclude": {
