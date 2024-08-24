@@ -324,3 +324,14 @@ convertZ
 思路：遍历、指针
 
 strStr
+
+22、居中展示
+this   is  tree
+
+思路：
+int a = diff / (num-1)  // 前num-2个元素后面跟a个空格
+int b = diff % (num-1)  // 倒数第2个元素后面跟b个空格
+
+DiffAve
+
+23、

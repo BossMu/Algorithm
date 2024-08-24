@@ -491,3 +491,47 @@ int strStr(string haystack, string needle)
 
     return iRet;
 }
+
+string DiffAve(vector<string> strVec, int width)
+{
+    int iSumWide = 0;
+    int size = strVec.size();
+
+    for(const string& str : strVec)
+    {
+        iSumWide += str.size();
+    }
+    iSumWide += size - 1;
+
+    if(iSumWide > width)
+    {
+        return "";
+    }
+
+    int diff = width - iSumWide;
+    int a = diff / (size - 1);      // 前num-2个元素后面跟a个空格
+    int b = diff % (size - 1);      // 倒数第2个元素后面跟b个空格
+
+    stringstream ss;
+    if(size == 1)
+    {
+        ss << string(a, ' ');
+        ss << strVec[0];
+        ss << string(b, ' ');
+    }
+    else
+    {
+        for(int i = 0 ; i < size-2; i++)
+        {
+            ss << strVec[i];
+            ss << string(a, ' ');
+        }
+
+        // 最后2个
+        ss << strVec[size-2];
+        ss << string(b, ' ');
+        ss << strVec[size-1];
+    }
+
+    return ss.str();
+}

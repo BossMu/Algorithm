@@ -142,6 +142,14 @@ void strStrTest()
     printf("%d",i);
 }
 
+void DiffAveTest()
+{
+    vector<string> strs = {"I","am","iron","man"};
+
+    string s = DiffAve(strs, 21);
+    printf("%s",s.c_str());
+}
+
 int main() {
     
     // removeElementTest();    //2
@@ -161,7 +169,8 @@ int main() {
 
     // longestCommonPrefixTest();      //17 公共前缀
 
-    strStrTest();       // 子字符串
+    // strStrTest();       // 子字符串
+    DiffAveTest();      //22 字符串居中
 
 }
 

@@ -3,6 +3,7 @@
 #include <string>
 #include <algorithm>
 #include <stack>
+#include <sstream>
 
 using namespace std;
 
@@ -110,3 +111,5 @@ int trap(vector<int>& height);
 string convertZ(string s, int numRows);
 // 字符串子串
 int strStr(string haystack, string needle) ;
+// 居中字符串
+string DiffAve(vector<string> strVec, int width);
