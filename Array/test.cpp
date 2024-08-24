@@ -133,6 +133,15 @@ void longestCommonPrefixTest()
     printf("%s",s.c_str());
 }
 
+void strStrTest()
+{
+    string s1 = "sadbutsad";
+    string s2 = "sad";
+
+    int i = strStr(s1, s2);
+    printf("%d",i);
+}
+
 int main() {
     
     // removeElementTest();    //2
@@ -150,7 +159,9 @@ int main() {
     // canCompleteCircuitTest();       //14
     // candyTest();        //分糖果
 
-    longestCommonPrefixTest();      //17 公共前缀
+    // longestCommonPrefixTest();      //17 公共前缀
+
+    strStrTest();       // 子字符串
 
 }
 

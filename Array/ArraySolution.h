@@ -106,3 +106,7 @@ string longestCommonPrefix(vector<string>& strs) ;
 string reverseWords(string s) ;
 // 接雨水
 int trap(vector<int>& height);
+// z字型变换
+string convertZ(string s, int numRows);
+// 字符串子串
+int strStr(string haystack, string needle) ;

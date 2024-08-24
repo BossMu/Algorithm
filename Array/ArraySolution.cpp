@@ -440,3 +440,54 @@ int trap(vector<int>& height)
 
     return ret;
 }
+
+string convertZ(string s, int numRows)
+{
+    if(numRows < 2)
+    {
+        return s;
+    }
+
+    vector<string> rows(numRows);
+    int iRow = 0;
+    int iFlag = -1;
+    string sRet;
+    
+    for(char c : s)
+    {
+        rows[iRow].push_back(c);
+        // 边界反向
+        if(iRow == 0 || iRow == numRows-1)
+        {
+            iFlag = -iFlag;
+        }
+        iRow += iFlag;
+    }
+
+    for(const string& s : rows)
+    {
+        sRet += s;
+    }
+
+    return sRet;
+}
+
+int strStr(string haystack, string needle) 
+{
+    int iRet = -1;
+
+    int strSize = haystack.size();
+    int subStrSize = needle.size();
+    int iEnd = strSize - subStrSize;
+
+    for(int i = 0; i <= iEnd; i++)
+    {
+        if(haystack.substr(i, subStrSize) == needle)
+        {
+            iRet = i;
+            break;
+        }
+    }
+
+    return iRet;
+}
