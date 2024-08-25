@@ -65,7 +65,11 @@
         "format": "cpp",
         "text_encoding": "cpp",
         "thread": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "span": "cpp",
+        "__tree": "cpp",
+        "queue": "cpp",
+        "set": "cpp"
     }
 } // {
 //     "files.exclude": {

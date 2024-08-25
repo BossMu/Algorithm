@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "ArraySolution.h"
+#include "ArrayAndString.h"
 
 void removeElementTest()
 {
@@ -133,6 +133,14 @@ void longestCommonPrefixTest()
     printf("%s",s.c_str());
 }
 
+void Test()
+{
+    string s1 = "11";
+    string s2 = "222222222222222222222222asdasdasdav adasdasdasdasd";
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+}
+
 void strStrTest()
 {
     string s1 = "sadbutsad";
@@ -148,6 +156,14 @@ void DiffAveTest()
 
     string s = DiffAve(strs, 21);
     printf("%s",s.c_str());
+}
+
+void isPalindromeTest()
+{
+    string s = "A man, a plan, a canal: Panama";
+
+    bool b = isPalindrome(s);
+    printf("------=%d", b);
 }
 
 int main() {
@@ -170,7 +186,10 @@ int main() {
     // longestCommonPrefixTest();      //17 公共前缀
 
     // strStrTest();       // 子字符串
-    DiffAveTest();      //22 字符串居中
+    // DiffAveTest();      //22 字符串居中
 
+    // Test();  
+
+    isPalindromeTest(); // 回文串
 }
 

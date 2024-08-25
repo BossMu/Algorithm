@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <stack>
 #include <sstream>
+#include <thread>
+#include <cctype> 
 
 using namespace std;
 
@@ -113,3 +115,5 @@ string convertZ(string s, int numRows);
 int strStr(string haystack, string needle) ;
 // 居中字符串
 string DiffAve(vector<string> strVec, int width);
+// 回文串
+bool isPalindrome(string s);

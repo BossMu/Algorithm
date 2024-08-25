@@ -1,4 +1,4 @@
-#include "ArraySolution.h"
+#include "ArrayAndString.h"
 
 void test()
 {
@@ -534,4 +534,43 @@ string DiffAve(vector<string> strVec, int width)
     }
 
     return ss.str();
+}
+
+bool isPalindrome(string s)
+{
+    bool bRet = true;
+    int size = s.size();
+    int i = 0;
+    int j = size - 1 ;
+    if(size <= 1)
+    {
+        return bRet;
+    }
+
+    while(i <= j)
+    {
+        while(i < j && !isdigit(s[i]) && !isalpha(s[i]))
+        {
+            i++;
+        }
+
+        while(i < j && !isdigit(s[j]) && !isalpha(s[j]))
+        {
+            j--;
+        }
+
+        if(i <= j && tolower(s[i]) == tolower(s[j]) )
+        {
+            i++;
+            j--;
+            continue;
+        }
+        else
+        {
+            bRet = false;
+            break;
+        }
+    }
+
+    return bRet;
 }
