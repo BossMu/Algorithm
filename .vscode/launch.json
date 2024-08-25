@@ -2,13 +2,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Array",
+            "name": "ArrayAndStr",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/Array/test",  // 可执行文件路径
+            "program": "${workspaceFolder}/ArrayAndStr/test",  // 可执行文件路径
             "args": [],  // 如果需要传递参数，可以在这里添加
             "stopAtEntry": false,  // 是否在程序入口处停止
-            "cwd": "${workspaceFolder}/Array",  // 当前工作目录
+            "cwd": "${workspaceFolder}/ArrayAndStr",  // 当前工作目录
             "environment": [],
             "externalConsole": false,  // 是否使用外部控制台
             "MIMode": "lldb",  // 选择 LLDB 作为调试器

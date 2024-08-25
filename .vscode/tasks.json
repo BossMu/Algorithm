@@ -7,7 +7,7 @@
             "command": "make",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/Array"  // 设置工作目录为 Array
+                "cwd": "${workspaceFolder}/ArrayAndStr"  // 设置工作目录
             },
             "group": {
                 "kind": "build",

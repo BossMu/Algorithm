@@ -1,4 +1,4 @@
-#include "ArrayAndString.h"
+#include "ArrayAndStr.h"
 
 void test()
 {

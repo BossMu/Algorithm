@@ -8,7 +8,7 @@ CXXFLAGS = -g -Wall -std=c++11
 TARGET = test
 
 # 源文件
-SRCS = test.cpp ArrayAndString.cpp
+SRCS = test.cpp ArrayAndStr.cpp
 
 # 目标文件路径
 OBJDIR = build
