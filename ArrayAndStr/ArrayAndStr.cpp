@@ -574,3 +574,46 @@ bool isPalindrome(string s)
 
     return bRet;
 }
+
+bool isSubsequence(string s, string t) 
+{
+    int sSize = s.size();
+    int tSize = t.size();
+
+    if(sSize == 0)
+    {
+        return true;
+    }
+
+    int i = 0;
+    int j = 0;
+    while (j < tSize)
+    {
+        if(s[i] == t[j]) 
+        {
+            i++;
+            if(i == sSize)
+            {
+                return true;
+            }
+        }
+        j++;
+    }
+
+    return false; 
+}
+
+vector<int> twoSum(vector<int>& numbers, int target) 
+{
+    int i = 0;
+    int j = numbers.size()-1;
+
+    while(i < j)
+    {
+        if(numbers[i] + numbers[j] < target) i++;
+        else if(numbers[i] + numbers[j] > target) j--;
+        else return vector<int>{i+1, j+1};
+    }
+
+    return vector<int>{-1, -1};
+}

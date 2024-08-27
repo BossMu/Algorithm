@@ -117,3 +117,8 @@ int strStr(string haystack, string needle) ;
 string DiffAve(vector<string> strVec, int width);
 // 回文串
 bool isPalindrome(string s);
+// 判断子序列
+bool isSubsequence(string s, string t) ;
+// 两数之和
+vector<int> twoSum(vector<int>& numbers, int target) ;
+

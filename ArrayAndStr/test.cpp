@@ -166,6 +166,15 @@ void isPalindromeTest()
     printf("------=%d", b);
 }
 
+void isSubsequenceTest()
+{
+    string s1 = "a";
+    string s2 = "b";
+
+    bool b = isSubsequence(s1, s2);
+    printf("------=%d", b);
+}
+
 int main() {
     
     // removeElementTest();    //2
@@ -190,6 +199,7 @@ int main() {
 
     // Test();  
 
-    isPalindromeTest(); // 回文串
+    // isPalindromeTest(); // 23回文串
+    isSubsequenceTest();    // 24子串
 }
 
