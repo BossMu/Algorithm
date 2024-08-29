@@ -121,4 +121,7 @@ bool isPalindrome(string s);
 bool isSubsequence(string s, string t) ;
 // 两数之和
 vector<int> twoSum(vector<int>& numbers, int target) ;
-
+// 最大面积
+int maxArea(vector<int>& height) ;
+// 3数之和
+vector<vector<int>> threeSum(vector<int>& nums) ;

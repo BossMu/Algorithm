@@ -617,3 +617,57 @@ vector<int> twoSum(vector<int>& numbers, int target)
 
     return vector<int>{-1, -1};
 }
+
+int maxArea(vector<int>& height) 
+{
+    int i =0;
+    int j = height.size()-1;
+    int ret = 0;
+
+    while(i < j)
+    {
+        if(height[i] < height[j]) ret = max(ret, (j-i) * height[i++]);
+        else ret = max(ret, (j-i) * height[j--]);
+    }
+
+    return ret;
+}
+
+// [-4,-1,-1,0,1,2]
+vector<vector<int>> threeSum(vector<int>& nums) 
+{
+    vector<vector<int>> ret;
+    sort(nums.begin(), nums.end());
+    int size = nums.size();
+    int a = 0;
+    while(a <= nums.size() - 2)
+    {
+        if(nums[a] > 0) break;
+
+        int b = a+1;
+        int c = size-1;
+
+        // 固定a，双指针找b和c
+        while(b < c)
+        {
+            if(nums[a] + nums[b] + nums[c] < 0) b++;
+            else if(nums[a] + nums[b] + nums[c] > 0) c--;
+            else 
+            {
+                ret.push_back(vector<int>{nums[a], nums[b], nums[c]});
+                b++;
+                c--;
+            }
+
+            // 去重
+            while(b > a+1 && b < size-1 && nums[b] == nums[b-1]) b++; 
+            while(c >= 1 && c < size-1 && nums[c] == nums[c+1]) c--;
+        }
+
+        // a去重
+        a++;
+        while(a >=1 && a < size-2 && nums[a] == nums[a-1]) a++; 
+    }
+
+    return ret;
+}
