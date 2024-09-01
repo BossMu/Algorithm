@@ -125,3 +125,7 @@ vector<int> twoSum(vector<int>& numbers, int target) ;
 int maxArea(vector<int>& height) ;
 // 3数之和
 vector<vector<int>> threeSum(vector<int>& nums) ;
+// 长度最小子数组
+int minSubArrayLen(int target, vector<int>& nums) ;
+// 最长无重复子串
+int lengthOfLongestSubstring(string s) ;

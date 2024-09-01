@@ -626,8 +626,16 @@ int maxArea(vector<int>& height)
 
     while(i < j)
     {
-        if(height[i] < height[j]) ret = max(ret, (j-i) * height[i++]);
-        else ret = max(ret, (j-i) * height[j--]);
+        if(height[i] < height[j]) 
+        {
+            ret = max(ret, (j-i) * height[i]);
+            i++;
+        }
+        else 
+        {
+            ret = max(ret, (j-i) * height[j]);
+            j--;
+        }
     }
 
     return ret;
@@ -671,3 +679,47 @@ vector<vector<int>> threeSum(vector<int>& nums)
 
     return ret;
 }
+
+int minSubArrayLen(int target, vector<int>& nums) 
+{
+    int iMinLen = INT_MAX;
+    int sum = 0;
+    int i = 0;
+
+    // 窗口一直右移
+    for(int j = 0; j < nums.size(); j++)
+    {
+        sum += nums[j];
+        // 和大于等于sum时窗口左边右移一位,一只移动到不满足
+        while(sum >= target)
+        {
+            iMinLen = min(iMinLen, (j-i+1));
+            sum -= nums[i++];
+        }
+    }
+
+    return iMinLen == INT_MAX ? 0 : iMinLen;
+}
+
+int lengthOfLongestSubstring(string s) 
+{
+    int i = -1; //只有一个字符时可以输出1
+    int ret = 0;
+    int len = s.length();
+    unordered_map<char, int> map;   // value是最后出现下标
+
+    for(int j = 0; j < len; j++ )
+    {
+        auto iter = map.find(s[j]);
+        if(iter != map.end() )
+        {
+            // 更新窗口左侧,上一次出现的位置
+            i = max(i, iter->second);
+        }
+        map[s[j]] = j;
+        ret = max(ret, (j-i) );
+    }
+
+    return ret;
+}
+

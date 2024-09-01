@@ -175,6 +175,14 @@ void isSubsequenceTest()
     printf("------=%d", b);
 }
 
+void minSubArrayLenTest()
+{
+    vector<int> nums = {2,3,1,2,4,3};
+
+    int i = minSubArrayLen(7, nums);
+    printf("%d", i);
+}
+
 int main() {
     
     // removeElementTest();    //2
@@ -200,6 +208,7 @@ int main() {
     // Test();  
 
     // isPalindromeTest(); // 23回文串
-    isSubsequenceTest();    // 24子串
+    // isSubsequenceTest();    // 24子串
+    minSubArrayLenTest();   // 28最小子数组
 }
 
