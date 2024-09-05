@@ -129,3 +129,5 @@ vector<vector<int>> threeSum(vector<int>& nums) ;
 int minSubArrayLen(int target, vector<int>& nums) ;
 // 最长无重复子串
 int lengthOfLongestSubstring(string s) ;
+// 最小包含子串
+string minWindow(string s, string t);

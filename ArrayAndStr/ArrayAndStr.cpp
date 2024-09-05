@@ -723,3 +723,44 @@ int lengthOfLongestSubstring(string s)
     return ret;
 }
 
+
+string minWindow(string s, string t) 
+{
+    int m = s.size();
+    int n = t.size();
+    if(m < n) return "";
+
+    unordered_map<char, int> cnt_s,cnt_t;   // 两个记录字母和数量的map
+    for(char ch : t) cnt_t[ch]++;   // 拆解子串t
+    int ret_l = -1, ret_r = m;
+    string ret;
+
+    // 这个函数判断cnt_s全包含cnt_t
+    function<bool()> check = [&]()
+    {
+        for(const pair<char, int>& p : cnt_t)
+        {
+            if(cnt_s.find(p.first) == cnt_s.end()) return false; // s中没有字母
+            if(p.second > cnt_s.at(p.first )) return false;     // 该字母次数满足
+        }
+        return true;
+    };
+
+    // 每次右端点右移一位
+    for(int l = 0, r = 0; r < m; r++)
+    {
+        cnt_s[s[r]]++; //s的右端点加入
+        // 左端点一直右移到最小
+        while(check())
+        {
+            if(r-l < ret_r-ret_l)
+            {
+                ret_l = l;
+                ret_r = r;
+            }
+            cnt_s[s[l++]]--;    //左端点右移
+        }
+    }
+
+    return ret_l == -1 ? "" : s.substr(ret_l,ret_r - ret_l + 1);
+}
