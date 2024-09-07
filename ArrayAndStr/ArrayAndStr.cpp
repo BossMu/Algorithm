@@ -764,3 +764,90 @@ string minWindow(string s, string t)
 
     return ret_l == -1 ? "" : s.substr(ret_l,ret_r - ret_l + 1);
 }
+
+bool canConstruct(string ransomNote, string magazine) 
+{
+    std::unordered_map<char, int> map;
+
+    for(char c : magazine)
+    {
+        map[c]++;
+    }
+
+    for(char c : ransomNote)
+    {
+        if(map[c] == 0)
+        {
+            return false;
+        }
+        map[c]--;
+    }
+
+    return true;
+}
+
+bool isIsomorphic(string s, string t)
+{
+    int sizeS = s.size();
+    int sizeT = t.size();
+    if(sizeS != sizeT) return false;
+
+    std::unordered_map<char, int> sMap;
+    std::unordered_map<char, int> TMap;
+
+    for(int i = 0; i < sizeS; i++)
+    {
+        if(sMap[s[i]] != TMap[t[i]])
+        {
+            return false;
+        }
+
+        // 记录上一次出现的下标，防止默认位置是0
+        sMap[s[i]] = i + 1;
+        TMap[t[i]] = i + 1;
+    }
+
+    return true;
+}
+
+bool wordPattern(string pattern, string s)
+{
+    int size1 = pattern.size();
+
+    // ------分隔字符串------
+    int size = s.size();
+    vector<string> vec;
+    int wordStart = 0;  // 单词的起点索引
+    int wordEnd = 0;    // 单词的终点索引（边界或指向空格），不包含
+    while(wordEnd < size)
+    {
+        while (wordEnd < size && s[wordEnd] == ' ') wordEnd++;  // 跳过连续的空格
+        wordStart = wordEnd;  // 设置下一个单词的起点
+        while (wordEnd < size && s[wordEnd] != ' ') wordEnd++; // 找这次的字符串直到分隔符
+        if (wordStart < wordEnd) 
+        {
+            vec.push_back(s.substr(wordStart, wordEnd - wordStart));
+        }
+    }
+
+    int size2 = vec.size();
+    if(size1 != size2) return false;
+
+    std::unordered_map<char, int> map1;
+    std::unordered_map<string, int> map2;
+
+    for(int i = 0; i < size1; i++)
+    {
+        if(map1[pattern[i]] != map2[vec[i]] )
+        {
+            return false;
+        }
+
+        // 记录上一次出现的下标，防止默认位置是0
+        map1[pattern[i]] = i + 1;
+        map2[vec[i]] = i + 1;
+    }
+
+    return true;
+}
+

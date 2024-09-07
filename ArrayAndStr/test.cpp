@@ -175,12 +175,31 @@ void isSubsequenceTest()
     printf("------=%d", b);
 }
 
+// void isSubsequenceTest()
+// {
+//     string s1 = "a";
+//     string s2 = "b";
+
+//     bool b = isSubsequence(s1, s2);
+//     printf("------=%d", b);
+// }
+
 void minSubArrayLenTest()
 {
     vector<int> nums = {2,3,1,2,4,3};
 
     int i = minSubArrayLen(7, nums);
     printf("%d", i);
+}
+
+
+void wordPatternTest()
+{
+    string s1 = "abba";
+    string s2 = "dog cat cat dog";
+
+    bool b = wordPattern(s1, s2);
+    printf("%d", b);
 }
 
 int main() {
@@ -209,6 +228,9 @@ int main() {
 
     // isPalindromeTest(); // 23回文串
     // isSubsequenceTest();    // 24子串
-    minSubArrayLenTest();   // 28最小子数组
+    // minSubArrayLenTest();   // 28最小子数组
+
+    // isIsomorphicTest();  //32 
+    wordPatternTest();  //33)
 }
 

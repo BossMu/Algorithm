@@ -125,9 +125,15 @@ vector<int> twoSum(vector<int>& numbers, int target) ;
 int maxArea(vector<int>& height) ;
 // 3数之和
 vector<vector<int>> threeSum(vector<int>& nums) ;
-// 长度最小子数组
+// 【滑动窗口】长度最小子数组
 int minSubArrayLen(int target, vector<int>& nums) ;
-// 最长无重复子串
+// 【滑动窗口】最长无重复子串
 int lengthOfLongestSubstring(string s) ;
-// 最小包含子串
+// 【滑动窗口】最小包含子串
 string minWindow(string s, string t);
+// 【哈希表】字符串重新构建
+bool canConstruct(string ransomNote, string magazine) ;
+// 【哈希表】同构字符串
+bool isIsomorphic(string s, string t);
+// 【哈希表】字符串匹配
+bool wordPattern(string pattern, string s);

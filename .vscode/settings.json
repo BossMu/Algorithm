@@ -69,7 +69,8 @@
         "span": "cpp",
         "__tree": "cpp",
         "queue": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "sstream": "cpp"
     }
 } // {
 //     "files.exclude": {
