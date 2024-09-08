@@ -137,3 +137,7 @@ bool canConstruct(string ransomNote, string magazine) ;
 bool isIsomorphic(string s, string t);
 // 【哈希表】字符串匹配
 bool wordPattern(string pattern, string s);
+// 【哈希表】字符串异位
+bool isAnagram(string s, string t);
+// 【哈希表】字符串异位分组
+vector<vector<string>> groupAnagrams(vector<string>& strs);

@@ -18,18 +18,30 @@ void stringUtils::trim(std::string& str)
 
 void stringUtils::splitStr(string& s, vector<string>& vec, char c)
 {
-    int size = s.size();
-    int wordStart = 0;  // 单词的起点索引
-    int wordEnd = 0;    // 单词的终点索引（边界或指向空格），不包含
+    // c风格
+    // int size = s.size();
+    // int wordStart = 0;  // 单词的起点索引
+    // int wordEnd = 0;    // 单词的终点索引（边界或指向空格），不包含
 
-    while(wordEnd < size)
-    {
-        while (wordEnd < size && s[wordEnd] == c) wordEnd++;  // 跳过连续的分隔符
-        wordStart = wordEnd;  // 设置下一个单词的起点
-        while (wordEnd < size && s[wordEnd] != c) wordEnd++; // 找这次的字符串直到分隔符
-        if (wordStart < wordEnd) 
-        {
-            vec.push_back(s.substr(wordStart, wordEnd - wordStart));
+    // while(wordEnd < size)
+    // {
+    //     while (wordEnd < size && s[wordEnd] == c) wordEnd++;  // 跳过连续的分隔符
+    //     wordStart = wordEnd;  // 设置下一个单词的起点
+    //     while (wordEnd < size && s[wordEnd] != c) wordEnd++; // 找这次的字符串直到分隔符
+    //     if (wordStart < wordEnd) 
+    //     {
+    //         vec.push_back(s.substr(wordStart, wordEnd - wordStart));
+    //     }
+    // }
+
+    // cpp风格
+    std::string token;
+    std::stringstream ss(s);
+    
+    while (std::getline(ss, token, c)) {
+        // 过滤掉空的子字符串（例如多个分隔符之间没有字符）
+        if (!token.empty()) {
+            vec.push_back(token);
         }
     }
 }

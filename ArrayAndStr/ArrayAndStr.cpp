@@ -851,3 +851,54 @@ bool wordPattern(string pattern, string s)
     return true;
 }
 
+bool isAnagram(string s, string t)
+{
+    int size1 = s.size();
+    int size2 = t.size();
+    if(size1 != size2) return false;
+
+    std::unordered_map<char, int> map1,map2;
+
+    for(int i = 0; i < size1; i++)
+    {
+        map1[s[i]]++;
+        map2[t[i]]++;
+    }
+
+    // 两个map如果完全相等的话，那么key和value一定一样，只要找到一个不一样就退出
+    for(auto iter = map1.begin(); iter != map1.end(); iter++)
+    {
+        if(iter->second != map2[iter->first])
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+vector<vector<string>> groupAnagrams(vector<string>& strs)
+{
+    std::unordered_map<string, std::vector<string> > map;
+    for(auto& s : strs)
+    {
+        string sTmp = s;
+        std::sort(sTmp.begin(), sTmp.end());
+        map[sTmp].push_back(s);     // key是排序好的字符串，value是一堆原始字符串
+    }
+
+    vector<vector<string> > retVec;
+    retVec.reserve(map.size());
+
+    // _是占位符，即map的key不关注
+    for(auto& [_, tmpVec] : map)
+    {
+        retVec.push_back(tmpVec);
+    }
+
+    return retVec;
+}
+
+
+
+
