@@ -6,6 +6,7 @@
 #include <sstream>
 #include <thread>
 #include <cctype> 
+#include <unordered_set>
 
 using namespace std;
 
@@ -141,3 +142,7 @@ bool wordPattern(string pattern, string s);
 bool isAnagram(string s, string t);
 // 【哈希表】字符串异位分组
 vector<vector<string>> groupAnagrams(vector<string>& strs);
+// 【哈希表】快乐数
+bool isHappy(int n);
+// 【哈希表】重复数字间隔
+bool containsNearbyDuplicate(vector<int>& nums, int k);

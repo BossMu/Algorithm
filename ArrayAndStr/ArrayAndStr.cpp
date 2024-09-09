@@ -899,6 +899,49 @@ vector<vector<string>> groupAnagrams(vector<string>& strs)
     return retVec;
 }
 
+bool isHappy(int n)
+{
+    auto getNum = [](int n)
+    {
+        int sum = 0;
+        while(n)
+        {
+            sum += (n%10)*(n%10);
+            n /= 10;
+        }
+        return sum;
+    };
+
+    std::unordered_set<int> set;
+    while(n != 1)
+    {
+        n = getNum(n);
+        if(set.count(n)) return false;
+        else set.insert(n);
+    }
+
+    return true;
 
 
+}
 
+bool containsNearbyDuplicate(vector<int>& nums, int k)
+{
+    int size = nums.size();
+    std::unordered_map<int, int> map;
+
+    for(int i = 0; i < size; i++)
+    {
+        if(map.count(nums[i]))
+        {
+            int iLast = map[nums[i]];
+            if(i - iLast <= k)
+            {
+                return true;
+            }
+        }
+        map[nums[i]] = i;
+    }
+
+    return false;
+}

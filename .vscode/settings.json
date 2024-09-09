@@ -70,7 +70,8 @@
         "__tree": "cpp",
         "queue": "cpp",
         "set": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "unordered_set": "cpp"
     }
 } // {
 //     "files.exclude": {
