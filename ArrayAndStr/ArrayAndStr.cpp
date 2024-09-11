@@ -945,3 +945,35 @@ bool containsNearbyDuplicate(vector<int>& nums, int k)
 
     return false;
 }
+
+int longestConsecutive(vector<int>& nums)
+{
+    int size = nums.size();
+    int maxLen = 1;
+    int nowLen = 1;
+    int pre = 0;
+
+    std::sort(nums.begin(), nums.end() );
+    if(size == 0) return 0;
+
+    for(int j = 1; j < size ;j++)
+    {
+        pre = j-1;
+        while(j < size && nums[j] == nums[j-1]) j++;    // 跳过重复元素
+
+        if(j < size)
+        {
+            if(nums[j] == nums[pre] + 1 )
+            {
+                nowLen++;
+                maxLen = max(maxLen, nowLen );
+            } 
+            else
+            {
+                nowLen = 1;
+            }
+        }
+    }
+
+    return maxLen;
+}
