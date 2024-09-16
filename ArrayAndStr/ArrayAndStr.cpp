@@ -977,3 +977,55 @@ int longestConsecutive(vector<int>& nums)
 
     return maxLen;
 }
+
+vector<string> summaryRanges(vector<int>& nums)
+{
+    std::vector<string> ret;
+    int size = nums.size();
+
+    for(int i = 0,j; i < size ; i++)
+    {
+        j = i + 1;
+        while(j < size && nums[j] - nums[j-1] == 1 ) j++;
+        
+        string str = "";
+        if(j == i + 1 )
+        {
+            str += to_string(nums[i]);
+        }
+        else
+        {
+            str += to_string(nums[i]) + "->" + to_string(nums[j-1]);
+        }
+
+        ret.push_back(str);
+
+        i = j-1;
+    }
+
+    return ret;
+}
+
+vector<vector<int>> merge(vector<vector<int>>& intervals)
+{
+    std::sort(intervals.begin(), intervals.end() );
+    vector<vector<int>> ret;
+    int size = intervals.size();
+
+    for(int i = 0; i < size; )
+    {
+        int t = intervals[i][1];    // 区间右侧
+        int j = i + 1;
+
+        while (j < size && intervals[j][0] <= t)    //区间左侧在区间内，拓展区间右侧
+        {
+            t = max(t, intervals[j][1] );
+            j++;
+        }
+
+        ret.push_back(vector<int>{intervals[i][0], t} );
+        i = j;  // i 重新赋值ß
+    }
+
+    return ret;
+}

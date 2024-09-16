@@ -146,5 +146,10 @@ vector<vector<string>> groupAnagrams(vector<string>& strs);
 bool isHappy(int n);
 // 【哈希表】重复数字间隔
 bool containsNearbyDuplicate(vector<int>& nums, int k);
-// 【哈希表】最长连续序列
+// 【双链表】最长连续序列
 int longestConsecutive(vector<int>& nums);
+// 【双链表】汇总区间
+vector<string> summaryRanges(vector<int>& nums);
+// [双指针+贪心] 区间合并
+vector<vector<int>> merge(vector<vector<int>>& intervals);
+
