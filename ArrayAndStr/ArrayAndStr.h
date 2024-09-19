@@ -152,4 +152,7 @@ int longestConsecutive(vector<int>& nums);
 vector<string> summaryRanges(vector<int>& nums);
 // [双指针+贪心] 区间合并
 vector<vector<int>> merge(vector<vector<int>>& intervals);
-
+// [双指针+贪心] 插入后区间合并
+vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval);
+// [贪心] 射气球最少箭
+int findMinArrowShots(vector<vector<int>>& points);

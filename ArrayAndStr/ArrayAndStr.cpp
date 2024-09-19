@@ -1029,3 +1029,38 @@ vector<vector<int>> merge(vector<vector<int>>& intervals)
 
     return ret;
 }
+
+vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval)
+{
+    intervals.push_back(newInterval);
+
+    return merge(intervals);
+}
+
+int findMinArrowShots(vector<vector<int>>& points)
+{
+    int size = points.size();
+    std::sort(points.begin(), points.end() );
+    int ret = 0;
+    int l = points[0][0];
+    int r = points[0][1];
+
+    for(int i = 1; i < size; i++)
+    {
+        // 左端点在最小区间内 表示有交集
+        if(points[i][0] <= r)
+        {
+            l = max(l, points[i][0]);
+            r = min(r, points[i][1]);
+        }
+        else
+        {
+            ret++;
+            l = points[i][0];
+            r = points[i][1];   //新区间
+        }
+    }
+
+    return ret+1;
+
+}
