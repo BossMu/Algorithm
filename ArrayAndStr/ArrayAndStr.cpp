@@ -1064,3 +1064,42 @@ int findMinArrowShots(vector<vector<int>>& points)
     return ret+1;
 
 }
+
+bool isValid(string s)
+{
+    std::unordered_map<char, int> dic = { {'(', 1} , {'[', 2} , {'{', 3}, 
+                                          {')', 11}, {']', 12}, {'}', 13}};
+    std::stack<int> stack;
+            
+    for(char c : s)
+    {
+        if(dic[c] < 10)
+        {
+            stack.push(dic[c]);
+        }
+        else
+        {
+            if(stack.empty())
+            {
+                return false;
+            } 
+            char cTmp = dic[c] - 10;
+            if(stack.top() == dic[c] - 10)
+            {
+                stack.pop();
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    // 是否全部配对
+    if(!stack.empty())
+    {
+        return false;
+    }
+
+    return true;
+}

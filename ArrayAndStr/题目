@@ -606,14 +606,6 @@ longestConsecutive
 summaryRanges
 
 40、合并区间
-
-
-代码
-代码
-测试用例
-测试结果
-测试结果
-56. 合并区间
 以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi] 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。
 
 示例 1：
@@ -626,7 +618,7 @@ summaryRanges
 
 merge
 
-57、插入后合并区间
+41、插入后合并区间
 示例 1：
 
 输入：intervals = [[1,3],[6,9]], newInterval = [2,5]
@@ -637,7 +629,7 @@ merge
 
 insert
 
-58、射气球最少箭
+42、射气球最少箭
 
 有一些球形气球贴在一堵用 XY 平面表示的墙面上。墙面上的气球记录在整数数组 points ，其中points[i] = [xstart, xend] 表示水平直径在 xstart 和 xend之间的气球。你不知道气球的确切 y 坐标。
 
@@ -658,3 +650,14 @@ insert
 维护一个最小区间，每次尽可能的多放一些进去，知道没有交集再另开一个区间
 
 findMinArrowShots
+
+43、判断有效的括号
+
+示例 1：
+输入：s = "()"
+输出：true
+
+思路：栈
+
+isValid
+
