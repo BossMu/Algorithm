@@ -156,3 +156,41 @@ vector<vector<int>> merge(vector<vector<int>>& intervals);
 vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval);
 // [贪心] 射气球最少箭
 int findMinArrowShots(vector<vector<int>>& points);
+// [栈]有效的括号
+bool isValid(string s);
+// [栈]最小栈
+class MinStack 
+{
+public:
+    MinStack() 
+    {
+        stMin.push(INT_MAX);
+    }
+    
+    void push(int val) 
+    {
+        st.push(val);
+        stMin.push(min(stMin.top(), val));
+    }
+    
+    void pop() 
+    {
+        st.pop();
+        stMin.pop();
+    }
+    
+    int top() 
+    {
+        return st.top();
+    }
+    
+    int getMin() 
+    {
+        return stMin.top();
+    }
+private:
+    stack<int> st;
+    stack<int> stMin;
+};
+// [栈]逆波兰表达式
+int evalRPN(vector<string>& tokens);

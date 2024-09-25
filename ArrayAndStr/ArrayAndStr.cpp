@@ -1103,3 +1103,31 @@ bool isValid(string s)
 
     return true;
 }
+
+int evalRPN(vector<string>& tokens)
+{
+    std::stack<int> stack;
+    int i,j = 0;
+    for(auto& c : tokens)
+    {
+        if(c != "+" && c != "-" && c != "*" && c != "/")
+        {
+            stack.push(stoi(c));
+        }
+        else
+        {
+            // 每次取两个数运算
+            i = stack.top();
+            stack.pop();
+            j = stack.top();
+            stack.pop();
+
+            if(c == "+") stack.push(j + i); 
+            else if(c == "-") stack.push(j - i); 
+            else if(c == "*") stack.push(j * i); 
+            else if(c == "/") stack.push(j / i); 
+        }
+    }
+
+    return stack.top();
+}
