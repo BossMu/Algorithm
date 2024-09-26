@@ -194,3 +194,5 @@ private:
 };
 // [栈]逆波兰表达式
 int evalRPN(vector<string>& tokens);
+// [栈]加减运算器
+int calculate(string s) ;

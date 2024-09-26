@@ -1131,3 +1131,32 @@ int evalRPN(vector<string>& tokens)
 
     return stack.top();
 }
+
+int calculate(string s) 
+{
+    stack<int> sign;
+    sign.push(1);
+    int num = 0;
+    int op = 1;
+    int res = 0;
+
+    for(char ch : s)
+    {
+        if(isdigit(ch))
+        {
+            num = num * 10 + (ch - '0');
+            continue;
+        }
+        
+        res += op * num;
+        num = 0;
+
+        if (ch == '+') op = sign.top(); // 与括号外面符号结合起来
+        else if (ch == '-') op = -sign.top(); // 与括号外面符号结合起来
+        else if (ch == '(') sign.push(op);  //进入左括号，把左括号之前的符号置于栈顶
+        else if (ch == ')') sign.pop();     //退出括号，弹出栈顶符号
+    }
+    res += op * num;
+
+    return res;
+}
