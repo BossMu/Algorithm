@@ -196,3 +196,14 @@ private:
 int evalRPN(vector<string>& tokens);
 // [栈]加减运算器
 int calculate(string s) ;
+// [快慢指针]判断环形链表
+struct ListNode 
+{
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+bool hasCycle(ListNode *head);
+
+
+

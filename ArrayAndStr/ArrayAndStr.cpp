@@ -1160,3 +1160,22 @@ int calculate(string s)
 
     return res;
 }
+
+bool hasCycle(ListNode *head) 
+{
+    ListNode* fast = head;
+    ListNode* slow = head;
+    
+    while(fast && fast->next)
+    {
+        slow = slow->next;
+        fast = fast->next->next;    
+        // 指针判断 即使为空也无所谓
+        if(slow == fast)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
