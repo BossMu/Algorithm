@@ -1179,3 +1179,46 @@ bool hasCycle(ListNode *head)
 
     return false;
 }
+
+ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) 
+{
+    ListNode* lpHead = nullptr;
+    ListNode* lpTail = nullptr;
+    int32_t carry = 0;
+
+    while(l1 || l2)
+    {
+        int n1 = l1 ? l1->val : 0;
+        int n2 = l2 ? l2->val : 0;
+        int sum = n1 + n2 + carry;
+
+        if(!lpHead)
+        {
+            lpHead = lpTail = new ListNode(sum % 10);
+        }
+        else
+        {
+            lpTail->next = new ListNode(sum % 10);
+            lpTail = lpTail->next;
+        }
+
+        carry = sum / 10;
+
+        if(l1)
+        {
+            l1 = l1->next;
+        } 
+        if(l2) 
+        {
+            l2 = l2->next;   
+        }
+    }
+    
+    // 多出一位
+    if(carry > 0)
+    {
+        lpTail->next = new ListNode(carry);
+    }
+
+    return lpHead;
+}

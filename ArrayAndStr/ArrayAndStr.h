@@ -204,6 +204,8 @@ struct ListNode
     ListNode(int x) : val(x), next(NULL) {}
 };
 bool hasCycle(ListNode *head);
+// 两个链表表示的数字相加
+ListNode* addTwoNumbers(ListNode* l1, ListNode* l2);
 
 
 
