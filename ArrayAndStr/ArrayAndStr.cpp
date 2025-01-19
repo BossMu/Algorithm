@@ -1222,3 +1222,29 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2)
 
     return lpHead;
 }
+
+ListNode* mergeTwoLists(ListNode* list1, ListNode* list2)
+{
+    ListNode* lpHead = new ListNode(-1);
+    ListNode* lpRet = lpHead;
+
+    while (list1 && list2)
+    {
+        if(list1->val < list2->val)
+        {
+            lpRet->next = new ListNode(list1->val);
+            list1 = list1->next;
+        }
+        else
+        {
+            lpRet->next = new ListNode(list2->val);
+            list2 = list2->next;
+        }
+
+        lpRet = lpRet->next;
+    }
+    
+    lpRet->next = list1 == nullptr ? list2 : list1;
+
+    return lpHead->next;
+}
