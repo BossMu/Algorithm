@@ -200,13 +200,120 @@ int calculate(string s) ;
 struct ListNode 
 {
     int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
+     ListNode *next;
+     ListNode() : val(0), next(nullptr) {}
+     ListNode(int x) : val(x), next(nullptr) {}
+     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 bool hasCycle(ListNode *head);
 // [链表]两个链表表示的数字相加
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2);
 // [链表]合并两个有序链表
 ListNode* mergeTwoLists(ListNode* list1, ListNode* list2);
+// [链表]逆转部分链表
+ListNode* reverseBetween(ListNode* head, int left, int right);
+// 【链表】删除链表倒数第n个
+ListNode* removeNthFromEnd(ListNode* head, int n);
+// 【链表】删除链表中的重复元素
+ListNode* deleteDuplicates(ListNode* head) ;
+// [链表]向右平移后重新拼接
+ListNode* rotateRight(ListNode* head, int k) ;
+// [链表+哈希表]LRU
+class LRUNode
+{
+public:
+    LRUNode(int k = 0, int v = 0) : key(k), value(v) 
+    {
 
+    } 
+
+public:
+    int key;
+    int value;
+    LRUNode* prev;
+    LRUNode* next;
+};
+class LRUCache {
+public:
+    LRUCache(int capacity) : capacity(capacity), dummy(new LRUNode())
+    {
+        dummy->prev = dummy;
+        dummy->next = dummy;
+    }
+    
+    int get(int key) 
+    {
+        LRUNode* node = get_node(key);
+        return node ? node->value : -1;
+    }
+    
+    void put(int key, int value) 
+    {
+        LRUNode* node = get_node(key);
+        if(node)
+        {
+            node->value = value;
+            return;
+        }
+
+        // 插入操作
+        node = new LRUNode(key, value);
+        map[key] = node;
+        push_front(node);
+        // 超出容量，删除最后一个
+        if(map.size() > capacity)
+        {
+            LRUNode* tailNode = dummy->prev;
+            map.erase(tailNode->key);   // 哈希表释放
+            remove(tailNode);   // 从双链表中释放
+            delete tailNode;    // 内存释放
+        }
+    }
+
+private:
+    LRUNode* get_node(int key)
+    {
+        auto iter = map.find(key);
+        if(iter == map.end())
+        {
+            return nullptr;
+        }
+
+        LRUNode* node = iter->second;
+        // 访问过 抽出来放到前面
+        remove(node);   
+        push_front(node);
+
+        return node;
+    }
+
+    void remove(LRUNode* node)
+    {
+        if(node == nullptr)
+        {
+            return;
+        }
+
+        node->prev->next = node->next;
+        node->next->prev = node->prev;
+    }
+
+    void push_front(LRUNode* node)
+    {
+        if(node == nullptr)
+        {
+            return;
+        }
+
+        node->prev = dummy;
+        node->next = dummy->next;
+        node->prev->next = node;
+        node->next->prev = node;
+    }
+
+private:
+    int capacity;
+    LRUNode* dummy;  // 双链表的哨兵
+    unordered_map<int, LRUNode*> map;   // 哈希表
+};
 

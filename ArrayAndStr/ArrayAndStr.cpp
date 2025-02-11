@@ -1248,3 +1248,126 @@ ListNode* mergeTwoLists(ListNode* list1, ListNode* list2)
 
     return lpHead->next;
 }
+
+ListNode* reverseBetween(ListNode* head, int left, int right) 
+{
+    ListNode* lpHead = new ListNode(0, head);
+    ListNode* rePre = lpHead;
+    int iCount = 1;
+
+    // 找到翻转开始前一个节点
+    while(iCount < left)
+    {
+        rePre = rePre->next;
+        iCount++;
+    }
+
+    ListNode* reHead = rePre->next;
+
+    // 翻转
+    ListNode* cur = reHead;
+    ListNode* next;
+    ListNode* last;
+    // 3个指针，cur每次后移，把cur的next赋值成last
+    while(iCount <= right)
+    {
+        iCount++;
+        next = cur->next;
+        cur->next = last;
+        last = cur;
+        cur = next;
+    }
+
+    // 拼接
+    rePre->next = last;  // 头的下一个是区间的尾
+    reHead->next = cur;  // 区间头的下一个是尾 
+
+    return lpHead->next;
+}
+
+ListNode* removeNthFromEnd(ListNode* head, int n)
+{
+    ListNode* newList = new ListNode(0, head);
+    ListNode* l = newList;
+    ListNode* r = newList;
+
+    for(int i = 0; i < n; i++)
+    {
+        r = r->next;
+    }
+
+    while(r->next)
+    {
+        l = l->next;
+        r = r->next;
+    }
+
+    ListNode* lNext = l->next;
+    l->next = lNext->next;
+
+    return newList->next;
+}
+
+ListNode* deleteDuplicates(ListNode* head) 
+{
+    ListNode* lpHead = new ListNode(0, head);
+    ListNode* cur = lpHead;
+
+    // 从当前位置往后看，存在还存在两个，就可能相同
+    while (cur->next && cur->next->next)
+    {
+        int32_t val = cur->next->val;
+
+        // 重复的数字直接全去掉
+        if(cur->next->next->val == val)
+        {
+            while (cur->next && cur->next->val == val)
+            {
+                cur->next = cur->next->next;
+            }
+        }
+        else
+        {
+            cur = cur->next;
+        }
+    }
+    
+    return lpHead->next;
+}
+
+ListNode* rotateRight(ListNode* head, int k) 
+{
+    if (k == 0 || head == nullptr || head->next == nullptr) 
+    {
+        return head;
+    } 
+
+    int32_t iNum = 1;
+    ListNode* iterEnd = head;
+    // 统计链表个数
+    while (iterEnd->next)
+    {
+        iNum++;
+        iterEnd = iterEnd->next;
+    }
+    
+    int32_t iDiff = iNum - k % iNum;
+    if(iDiff == iNum || iDiff == 0)
+    {
+        return head;
+    }
+
+    // 找到分界处 重新拼接
+    int32_t iTmpNum = 1;
+    ListNode* iter = head;
+    while(iTmpNum < iDiff)
+    {
+        iTmpNum++;
+        iter = iter->next;
+    }
+    ListNode* lpNewHead = iter->next;
+    iter->next = nullptr;
+    iterEnd->next = head;
+
+    return lpNewHead;
+}

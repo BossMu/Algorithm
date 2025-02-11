@@ -720,4 +720,30 @@ addTwoNumbers
 49、合并两个有序链表
 mergeTwoLists
 
+50、反转链表
+给你单链表的头指针 head 和两个整数 left 和 right ，其中 left <= right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。
+输入：head = [1,2,3,4,5], left = 2, right = 4
+输出：[1,4,3,2,5]
 
+思路：指针遍历
+reverseBetween
+
+51、删除链表倒数第n个节点
+思路：双指针同时移动
+ListNode* removeNthFromEnd(ListNode* head, int n)
+
+52、删除链表中重复元素
+思路：指针遍历，每次往后判断两个；注意本题是只要是重复元素直接删掉，而不是去重
+deleteDuplicates
+
+53、旋转链表
+给你一个链表的头节点 head ，旋转链表，将链表每个节点向右移动 k 个位置。
+输入：head = [1,2,3,4,5], k = 2
+输出：[4,5,1,2,3]
+
+思路：找到分隔点
+rotateRight
+
+54、LRU缓存
+实现最近最小使用
+思路：一个哈希表表示有哪些元素，控制容量；指向一个双链表，表头为最近使用
