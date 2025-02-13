@@ -1371,3 +1371,52 @@ ListNode* rotateRight(ListNode* head, int k)
 
     return lpNewHead;
 }
+
+int maxDepth(TreeNode* root) 
+{
+    if(1)
+    {
+        // 方法1 DFS 递归或者栈
+        if(root == nullptr)
+        {
+            return 0;
+        }
+    
+        return std::max(maxDepth(root->left), maxDepth(root->right)) + 1;
+    }
+    else
+    {
+        // 方法2 BFS 层次遍历
+        if(root == nullptr)
+        {
+            return 0;
+        }
+
+        std::queue<TreeNode*> queue;
+        queue.push(root);
+        int i = 0;
+        while (!queue.empty())
+        {
+            // 把这一层都遍历完
+            int size = queue.size();
+            for(int i = 0; i < size; i++)
+            {
+                TreeNode* curNode = queue.front();
+                queue.pop();
+
+                if(curNode->left)
+                {
+                    queue.push(curNode->left);
+                }
+                if(curNode->right)
+                {
+                    queue.push(curNode->right);
+                }
+            }
+
+            i++;
+        }
+        
+        return i;
+    }
+}
