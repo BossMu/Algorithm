@@ -1420,3 +1420,75 @@ int maxDepth(TreeNode* root)
         return i;
     }
 }
+
+bool isSameTree(TreeNode* p, TreeNode* q) 
+{
+    if(p == nullptr || q == nullptr)
+    {
+        return p == q;
+    }
+
+    return (p->val == q->val) && isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+}
+
+TreeNode* invertTree(TreeNode* root) 
+{
+    // 空节点递归结束
+    if(root == nullptr) return nullptr;
+
+    TreeNode* tmp = root->left;
+    root->left = invertTree(root->right);
+    root->right = invertTree(tmp);
+
+    return root; 
+}
+
+bool isSymmetric(TreeNode* root)
+{
+    // 函数入参只有一个节点，无法直接递归调用，因此要新函数
+    if(root == nullptr)
+    {   
+        return true;
+    }
+
+    std::function<bool(TreeNode*, TreeNode*)> is_symmetric = [&](TreeNode* left, TreeNode* right)->bool
+    {
+        if(left == nullptr && right == nullptr) return true;
+        if(left == nullptr || right == nullptr || left->val != right->val) return false;
+    
+        return (is_symmetric(left->left, right->right) && is_symmetric(left->right, right->left));
+    };
+
+    return is_symmetric(root->left, root->right);
+}
+
+TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder)
+{
+    // 只能处理无重复元素的二叉树
+    unordered_map<int, int> dic;
+    // 记录中序元素的值和位置关系(用中序去拆分)
+    for(int i = 0; i < inorder.size(); i++)
+    {
+        dic[inorder[i]] = i;
+    }
+
+    // root-根节点在前序位置 left左节点中序位置
+    std::function<TreeNode*(int, int, int)> innerFunc = [&](int root, int left, int right)->TreeNode*
+    {
+        if(left > right) return nullptr;
+        TreeNode* node = new TreeNode(preorder[root]);  // 前序中建立根节点
+        int idx = dic[preorder[root]];  // 找到根节点值对应的中序中的位置
+        // 左子树 
+        // 前序：根节点在前序的后一个
+        // 中序：左是left，右是idx根的左边
+        node->left = innerFunc(root+1, left, idx-1);     
+        // 右子树
+        // 前序：根root往后偏移左子树的数量(idx-left),再偏移1
+        // 中序：左是idx根的右边，右是right
+        node->right = innerFunc(root+(idx-left)+1, idx+1, right);
+        return node;
+    };
+
+    //前序中的根0，中序的左0，右size-1
+    return innerFunc(0, 0, inorder.size()-1);
+}

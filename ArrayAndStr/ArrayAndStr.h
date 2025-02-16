@@ -330,3 +330,11 @@ private:
 
 // [二叉树]数最大高度
 int maxDepth(TreeNode* root);
+// [二叉树]相同的树
+bool isSameTree(TreeNode* p, TreeNode* q) ;
+// [二叉树]翻转二叉树
+TreeNode* invertTree(TreeNode* root) ;
+// [二叉树]判断对称二叉树
+bool isSymmetric(TreeNode* root);
+// [二叉树]从前序和中序遍历中构建二叉树
+TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder);
