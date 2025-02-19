@@ -775,3 +775,8 @@ bool isSymmetric(TreeNode* root)
 前序遍历是（根-左-右）、中序遍历是（左根右）
 前序的第一个是根，可以从中序中划分成左右子树，那也就知道左右子树的数量了
 TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder);
+
+60、路径长度
+找一条路径值的和等于目标值
+思路：递归 深度优先
+hasPathSum

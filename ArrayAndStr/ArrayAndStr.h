@@ -338,3 +338,5 @@ TreeNode* invertTree(TreeNode* root) ;
 bool isSymmetric(TreeNode* root);
 // [二叉树]从前序和中序遍历中构建二叉树
 TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder);
+// [二叉树]路径长度
+bool hasPathSum(TreeNode* root, int targetSum);

@@ -1492,3 +1492,16 @@ TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder)
     //前序中的根0，中序的左0，右size-1
     return innerFunc(0, 0, inorder.size()-1);
 }
+
+bool hasPathSum(TreeNode* root, int targetSum)
+{
+    if(root == nullptr) return false;
+
+    targetSum -= root->val;
+    if(root->left == nullptr && root->right == nullptr)
+    {
+        return targetSum == 0;
+    }
+
+    return hasPathSum(root->left, targetSum) || hasPathSum(root->right, targetSum);
+}
