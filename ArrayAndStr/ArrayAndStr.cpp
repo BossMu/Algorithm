@@ -1493,6 +1493,37 @@ TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder)
     return innerFunc(0, 0, inorder.size()-1);
 }
 
+TreeNode* buildTree2(vector<int>& inorder, vector<int>& postorder)
+{
+    // 只能处理无重复元素的二叉树
+    unordered_map<int, int> dic;
+    // 记录中序元素的值和位置关系(用中序去拆分)
+    for(int i = 0; i < inorder.size(); i++)
+    {
+        dic[inorder[i]] = i;
+    }
+
+    // root-根节点在后序位置 left左节点中序位置
+    std::function<TreeNode*(int, int, int)> innerFunc = [&](int root, int left, int right)->TreeNode*
+    {
+        if(left > right) return nullptr;
+        TreeNode* node = new TreeNode(postorder[root]);  // 前序中建立根节点
+        int idx = dic[postorder[root]];  // 找到根节点值对应的中序中的位置
+        // 左子树 
+        // 后序：根节点往前偏移右子树的数量(right-idx),再偏移1
+        // 中序：左是left，右是idx根的左边
+        node->left = innerFunc(root-(right-idx)-1, left, idx-1);     
+        // 右子树
+        // 后序：根节点的前一个
+        // 中序：左是idx根的右边，右是right
+        node->right = innerFunc(root-1, idx+1, right);
+        return node;
+    };
+
+    //后序中的根0，中序的左0，右size-1
+    return innerFunc(postorder.size()-1, 0, inorder.size()-1);
+}
+
 bool hasPathSum(TreeNode* root, int targetSum)
 {
     if(root == nullptr) return false;
@@ -1504,4 +1535,16 @@ bool hasPathSum(TreeNode* root, int targetSum)
     }
 
     return hasPathSum(root->left, targetSum) || hasPathSum(root->right, targetSum);
+}
+
+int countNodes(TreeNode* root)
+{
+    int num = 0;
+
+    if(root == nullptr)
+    {
+        return 0;
+    }
+
+    return 1 + countNodes(root->left) + countNodes(root->right);
 }

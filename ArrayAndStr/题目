@@ -771,12 +771,23 @@ bool isSymmetric(TreeNode* root)
 输入: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
 输出: [3,9,20,null,null,15,7]
 
-思路：递归+hashmap
+思路：递归+hashmap 利用中序遍历知道左右子树数量
 前序遍历是（根-左-右）、中序遍历是（左根右）
 前序的第一个是根，可以从中序中划分成左右子树，那也就知道左右子树的数量了
 TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder);
 
-60、路径长度
+60、从中序和后序遍历中构建二叉树
+输入：inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]
+输出：[3,9,20,null,null,15,7]
+思路：递归+hashmap 利用中序遍历知道左右子树数量
+后续最后一个是根，从中序中划分左右子树
+buildTree2
+
+61、路径长度
 找一条路径值的和等于目标值
 思路：递归 深度优先
 hasPathSum
+
+62、计算二叉树节点数
+思路：递归遍历
+int countNodes(TreeNode* root)
