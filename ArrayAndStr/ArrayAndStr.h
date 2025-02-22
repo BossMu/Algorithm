@@ -344,3 +344,5 @@ TreeNode* buildTree2(vector<int>& inorder, vector<int>& postorder);
 bool hasPathSum(TreeNode* root, int targetSum);
 // [二叉树]节点个数
 int countNodes(TreeNode* root);
+// [二叉树]填充二叉树的next
+Node* connect(Node* root);

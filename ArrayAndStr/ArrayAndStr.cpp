@@ -1548,3 +1548,43 @@ int countNodes(TreeNode* root)
 
     return 1 + countNodes(root->left) + countNodes(root->right);
 }
+
+class Node {
+public:
+    int val;
+    Node* left;
+    Node* right;
+    Node* next;
+
+    Node() : val(0), left(NULL), right(NULL), next(NULL) {}
+
+    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
+
+    Node(int _val, Node* _left, Node* _right, Node* _next)
+        : val(_val), left(_left), right(_right), next(_next) {}
+};
+Node* connect(Node* root)
+{
+    if(root == nullptr) return nullptr;
+
+    vector<Node*> vec = {root};
+    while (!vec.empty())
+    {
+        int size = vec.size();
+        for(int i = 0; i < size; i++)
+        {
+            Node* tmp = vec[i];
+            if(i > 0)
+            {
+                vec[i-1]->next = tmp;
+            }
+            if(tmp->left) vec.push_back(tmp->left);
+            if(tmp->right) vec.push_back(tmp->right);
+        }
+
+        // vec去除前size个元素
+        vec.erase(vec.begin(), vec.begin()+size);
+    }
+
+    return root;
+}
