@@ -20,6 +20,22 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
+
+class Node 
+{
+    public:
+        int val;
+        Node* left;
+        Node* right;
+        Node* next;
+    
+        Node() : val(0), left(NULL), right(NULL), next(NULL) {}
+    
+        Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
+    
+        Node(int _val, Node* _left, Node* _right, Node* _next)
+            : val(_val), left(_left), right(_right), next(_next) {}
+};
   
 // class ArraySolution 
 // {
@@ -346,3 +362,7 @@ bool hasPathSum(TreeNode* root, int targetSum);
 int countNodes(TreeNode* root);
 // [二叉树]填充二叉树的next
 Node* connect(Node* root);
+// [二叉树]二叉树先序遍历展开为链表
+void flatten(TreeNode* root);
+// [二叉树]根节点到叶子节点数字拼接之和
+int sumNumbers(TreeNode* root);

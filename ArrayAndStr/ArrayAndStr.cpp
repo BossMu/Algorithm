@@ -1549,20 +1549,6 @@ int countNodes(TreeNode* root)
     return 1 + countNodes(root->left) + countNodes(root->right);
 }
 
-class Node {
-public:
-    int val;
-    Node* left;
-    Node* right;
-    Node* next;
-
-    Node() : val(0), left(NULL), right(NULL), next(NULL) {}
-
-    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
-
-    Node(int _val, Node* _left, Node* _right, Node* _next)
-        : val(_val), left(_left), right(_right), next(_next) {}
-};
 Node* connect(Node* root)
 {
     if(root == nullptr) return nullptr;
@@ -1587,4 +1573,56 @@ Node* connect(Node* root)
     }
 
     return root;
+}
+
+void flatten(TreeNode* root)
+{
+    std::function<TreeNode*(TreeNode*)> dfs = [&](TreeNode* root) -> TreeNode*
+    {
+        if(root == nullptr) return nullptr;
+
+        TreeNode* leftTail = dfs(root->left);
+        TreeNode* rightTail = dfs(root->right);
+
+        // 左子树存在，把左子树右下角的next链接为右子树
+        // 构建返回的链表:根的左null，根的右是根原先的左
+        if(leftTail)
+        {   
+            leftTail->right = root->right;
+            root->right = root->left;
+            root->left = nullptr;
+        }
+
+        // 依次返回右子树、左子树、根
+        return rightTail ? rightTail : (leftTail ? leftTail : root);
+    };
+
+    dfs(root);
+}
+
+int sumNumbers(TreeNode* root)
+{
+    int ret = 0;
+    
+    std::function<void(TreeNode*, int)> dfs = [&](TreeNode* root, int num) -> void
+    {
+        if(root == nullptr)
+        {
+            return;
+        }
+
+        num = num*10 + root->val;
+        // 叶子节点 返回值累加这条路径的数值
+        if(root->left == nullptr && root->right == nullptr)
+        {
+            ret += num;
+            return;
+        }
+        
+        dfs(root->left, num);
+        dfs(root->right, num);
+    };
+    
+    dfs(root, 0);
+    return ret;
 }
