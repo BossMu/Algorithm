@@ -366,3 +366,5 @@ Node* connect(Node* root);
 void flatten(TreeNode* root);
 // [二叉树]根节点到叶子节点数字拼接之和
 int sumNumbers(TreeNode* root);
+// [二叉树]最近公共祖先
+TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q);

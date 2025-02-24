@@ -812,3 +812,7 @@ void flatten(TreeNode* root)
 因此，数字总和 = 12 + 13 = 25
 
 int sumNumbers(TreeNode* root)
+
+66、二叉树最近公共祖先
+思路：dfs
+TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q)
