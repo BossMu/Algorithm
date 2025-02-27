@@ -368,3 +368,5 @@ void flatten(TreeNode* root);
 int sumNumbers(TreeNode* root);
 // [二叉树]最近公共祖先
 TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q);
+// [二叉树]二叉树的最大路径和
+int maxPathSum(TreeNode* root);

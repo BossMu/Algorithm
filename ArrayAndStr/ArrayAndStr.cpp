@@ -1635,3 +1635,23 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q)
     if (left && right) return root;
     return left ? left : right;
 }
+
+int maxPathSum(TreeNode* root)
+{
+    std::function<int(TreeNode* , int&)> maxPathSum = [&](TreeNode* root, int &val) -> int
+    {
+        if (root == nullptr) return 0;
+	int left = maxPathSum(root->left, val);
+	int right = maxPathSum(root->right, val);
+	int lmr = root->val + max(0, left) + max(0, right);
+    // ret是这个节点作为一条分支，和别人拼接的最大值，因此只能与左或者右的一个
+	int ret = root->val + max(0, max(left, right));
+    // val是这个节点最为根
+	val = max(val, max(lmr, ret));
+	return ret;
+    };
+
+    int val = INT_MIN;
+    maxPathSum(root, val);
+    return val;
+}

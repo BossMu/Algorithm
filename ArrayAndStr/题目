@@ -816,3 +816,7 @@ int sumNumbers(TreeNode* root)
 66、二叉树最近公共祖先
 思路：dfs
 TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q)
+
+67、二叉树的最大路径和
+思路：递归，每次比较两种情况
+int maxPathSum(TreeNode* root)
