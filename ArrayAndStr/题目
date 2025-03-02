@@ -820,3 +820,9 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q)
 67、二叉树的最大路径和
 思路：递归，每次比较两种情况
 int maxPathSum(TreeNode* root)
+
+68、二叉树的右视图
+返回二叉树每层的组右边节点
+思路1：层次遍历 每次只记录这一层最后一个
+思路2：深度优先遍历，先遍历右子树，每新增一层的时候右子树先行
+vector<int> rightSideView(TreeNode* root)

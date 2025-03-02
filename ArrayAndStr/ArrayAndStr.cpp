@@ -1655,3 +1655,26 @@ int maxPathSum(TreeNode* root)
     maxPathSum(root, val);
     return val;
 }
+
+// vector<int> rightSideView(TreeNode* root)
+// {
+//     vector<int> ret;
+
+//     // this auto&& dfs  递归调用自己
+//     auto dfs = [&](this auto&& dfs, TreeNode* root, int depth) -> void
+//     {
+//         if(root == nullptr) return;
+
+//         // 这一层首次遍历到，一定是最右边的
+//         if(depth == ret.size())
+//         {
+//             ret.push_back(root->val);
+//         }
+
+//         dfs(root->right, depth+1);
+//         dfs(root->left, depth+1);
+//     };
+
+//     dfs(root, 0);
+//     return ret;
+// }

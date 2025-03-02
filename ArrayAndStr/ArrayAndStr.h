@@ -370,3 +370,5 @@ int sumNumbers(TreeNode* root);
 TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q);
 // [二叉树]二叉树的最大路径和
 int maxPathSum(TreeNode* root);
+// [二叉树]右视图
+vector<int> rightSideView(TreeNode* root);
