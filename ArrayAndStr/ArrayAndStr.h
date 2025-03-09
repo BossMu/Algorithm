@@ -372,3 +372,7 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q);
 int maxPathSum(TreeNode* root);
 // [二叉树]右视图
 vector<int> rightSideView(TreeNode* root);
+// [二叉树]计算每层平均值
+vector<double> averageOfLevels(TreeNode* root);
+// [二叉树]层次遍历
+vector<vector<int>> levelOrder(TreeNode* root);

@@ -1678,3 +1678,56 @@ int maxPathSum(TreeNode* root)
 //     dfs(root, 0);
 //     return ret;
 // }
+
+vector<double> averageOfLevels(TreeNode* root)
+{
+    vector<double> ret;
+    queue<TreeNode* > queue;
+    if(root)
+    {
+        queue.push(root);
+    }
+
+    // 每一层都要取这一层的个数总和
+    while (!queue.empty())
+    {
+        double sum = 0;
+        int size = queue.size();
+        for(int i =0;i < size ; i++)
+        {
+            TreeNode* node = queue.front();
+            queue.pop();
+            sum += node->val;
+            if(node->left) queue.push((node->left));
+            if(node->right) queue.push((node->right));
+        }
+        ret.push_back(sum/size);
+    }
+    
+    return ret;
+}
+
+vector<vector<int>> levelOrder(TreeNode* root)
+{
+    vector<vector<int>> ret;
+    queue<TreeNode*> que;
+
+    if(root) que.push(root);
+
+    while (!que.empty())
+    {
+        vector<int> vec;
+        int size = que.size();
+        for(int i = 0; i < size; i++)
+        {
+            TreeNode* node = que.front();
+            que.pop();
+            vec.push_back(node->val);
+            if(node->left) que.push((node->left));
+            if(node->right) que.push((node->right));
+        }
+        ret.push_back(vec);
+    }
+    
+    return ret;
+}
