@@ -376,3 +376,9 @@ vector<int> rightSideView(TreeNode* root);
 vector<double> averageOfLevels(TreeNode* root);
 // [二叉树]层次遍历
 vector<vector<int>> levelOrder(TreeNode* root);
+// [二叉树]Z型遍历
+vector<vector<int>> zigzagLevelOrder(TreeNode* root);
+// [二叉树]二叉搜索树中找节点的最小差值
+int getMinimumDifference(TreeNode* root);
+// [二叉搜索树]验证二叉搜索树
+bool isValidBST(TreeNode* root);

@@ -834,3 +834,15 @@ vector<double> averageOfLevels(TreeNode* root)
 70、二叉树层次遍历
 每一层返回一个vector
 vector<vector<int>> levelOrder(TreeNode* root)
+
+71、二叉树z型遍历
+思路：层次遍历的基础上，奇数层翻转一下 reverse(vec.begin(), vec.end())
+vector<vector<int>> zigzagLevelOrder(TreeNode* root)
+
+72、二叉搜索树找两个节点最小差值
+思路：二叉搜索树的中序遍历就是有序递增的
+int getMinimumDifference(TreeNode* root)；
+
+73、验证二叉搜索树
+思路：二叉搜索树的中序遍历应该是有序递增的
+bool isValidBST(TreeNode* root)

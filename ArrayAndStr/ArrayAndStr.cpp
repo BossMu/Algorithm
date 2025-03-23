@@ -1731,3 +1731,75 @@ vector<vector<int>> levelOrder(TreeNode* root)
     
     return ret;
 }
+
+vector<vector<int>> zigzagLevelOrder(TreeNode* root)
+{
+    vector<vector<int>> ret;
+    queue<TreeNode*> que;
+
+    if(root) que.push(root);
+
+    while (!que.empty())
+    {
+        // 奇数
+        vector<int> tmp;
+        int size = que.size();
+        for(int i = size; i > 0; i--)
+        {
+            TreeNode* node = que.front();
+            que.pop();
+            tmp.push_back(node->val);
+            if(node->left) que.push((node->left));
+            if(node->right) que.push((node->right));
+        }
+
+        if(ret.size() % 2 == 1) reverse(tmp.begin(), tmp.end());
+        ret.push_back(tmp);
+    }
+    
+    return ret;
+}
+
+int getMinimumDifference(TreeNode* root)
+{
+    int iMin = INT_MAX;
+    TreeNode* lpPre = nullptr;
+
+    std::function<void(TreeNode*)> inorder = [&](TreeNode* node)  
+    {
+        if(node == nullptr) return;
+        inorder(node->left);
+        if(lpPre)
+        {
+            iMin = min(iMin, abs(node->val-lpPre->val));
+        }
+        lpPre = node;
+        inorder(node->right);
+    };
+
+    inorder(root);
+
+    return iMin;
+}
+
+bool isValidBST(TreeNode* root)
+{
+    TreeNode* lpPre = nullptr;
+
+    std::function<bool(TreeNode*)> inorder = [&](TreeNode* node)
+    {
+        if(node == nullptr) return true;
+
+        if(!inorder(node->left)) return false;
+        if(lpPre)
+        {
+            if(lpPre->val >= node->val) return false;
+        }
+
+        lpPre = node;
+
+        return inorder(node->right);
+    };
+
+    return inorder(root);
+}
