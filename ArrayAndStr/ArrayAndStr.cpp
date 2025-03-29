@@ -1803,3 +1803,27 @@ bool isValidBST(TreeNode* root)
 
     return inorder(root);
 }
+
+int kthSmallest(TreeNode* root, int k)
+{
+    int i = 0;
+    int ret = 0;
+    std::function<void(TreeNode*)> dfs = [&](TreeNode* node) -> void
+    {
+        if(node == nullptr) return;
+
+        dfs(node->left);
+
+        i++;
+        if(i == k)
+        {
+            ret = node->val;
+            return;
+        }
+
+        dfs(node->right);
+    };
+
+    dfs(root);
+    return ret;
+}

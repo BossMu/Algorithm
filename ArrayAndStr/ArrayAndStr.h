@@ -382,3 +382,36 @@ vector<vector<int>> zigzagLevelOrder(TreeNode* root);
 int getMinimumDifference(TreeNode* root);
 // [二叉搜索树]验证二叉搜索树
 bool isValidBST(TreeNode* root);
+// [二叉搜索树]实现迭代器
+class BSTIterator 
+{
+public:
+    BSTIterator(TreeNode* root) 
+    {
+        std::function<void(TreeNode*)> dfs = [&](TreeNode* node) -> void
+        {
+            if(node == nullptr) return;
+            dfs(node->left);
+            vec.push_back(node->val);
+            dfs(node->right); 
+        };
+
+        dfs(root);
+    }
+    
+    int next() 
+    {
+        if(hasNext()) return vec[++idx];
+        return -1;
+    }
+    
+    bool hasNext() 
+    {
+        return (idx+1) < vec.size();
+    }
+private:
+    vector<int> vec;
+    int idx = -1;
+};
+// [二叉搜索树]找第k小元素
+int kthSmallest(TreeNode* root, int k);

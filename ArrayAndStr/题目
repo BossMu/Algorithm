@@ -846,3 +846,10 @@ int getMinimumDifference(TreeNode* root)；
 73、验证二叉搜索树
 思路：二叉搜索树的中序遍历应该是有序递增的
 bool isValidBST(TreeNode* root)
+
+74、二叉搜索树实现迭代器
+思路：搞一个数组直接存，构造函数的时候实现一次遍历
+
+75、二叉搜索树种的第k小元素
+思路：深度优先遍历（中序遍历即可）
+int kthSmallest(TreeNode* root, int k)
