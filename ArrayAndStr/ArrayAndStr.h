@@ -415,3 +415,7 @@ private:
 };
 // [二叉搜索树]找第k小元素
 int kthSmallest(TreeNode* root, int k);
+// [图]岛屿数量
+int numIslands(vector<vector<char>>& grid);
+// [图]不含边缘的包围问题
+void solve(vector<vector<char>>& board);

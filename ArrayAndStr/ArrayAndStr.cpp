@@ -1827,3 +1827,76 @@ int kthSmallest(TreeNode* root, int k)
     dfs(root);
     return ret;
 }
+
+int numIslands(vector<vector<char>>& grid)
+{
+    int iRow = grid.size();
+    int iCol = grid[0].size();
+    int iCount = 0;
+
+    std::function<void(vector<vector<char>>&, int, int)> dfs = [&](vector<vector<char>>& grid, int i, int j) -> void
+    {
+        if(i < 0 || j < 0 || i >= iRow || j >= iCol) return;
+        if(grid[i][j] != '0') return;
+
+        grid[i][j] = '#';
+        dfs(grid, i-1, j);
+        dfs(grid, i+1, j);
+        dfs(grid, i, j-1);
+        dfs(grid, i, j+1);
+    };
+
+    for(int i = 0; i < iRow; i++)
+    {
+        for(int j = 0; j < iCol; j++)
+        {
+            if(grid[i][j] == '1')
+            {
+                dfs(grid, i, j);
+                iCount++;
+            }
+        }
+    }
+
+    return iCount;
+}
+
+void solve(vector<vector<char>>& board)
+{
+    int iRow = board.size();
+    int iCol = board[0].size();
+
+    std::function<void(vector<vector<char>>&, int, int)> dfs = [&](vector<vector<char>>& board, int i, int j) -> void
+    {
+        if(i < 0 || j < 0 || i >= iRow || j >= iCol) return;
+        if(board[i][j] != 'O') return;
+
+        board[i][j] = '#';
+        dfs(board, i-1, j);
+        dfs(board, i+1, j);
+        dfs(board, i, j-1);
+        dfs(board, i, j+1);
+    };
+
+    // 把边缘临时处理
+    for(int i = 0; i < iRow; i++)
+    {
+        if(board[i][0] == 'O') dfs(board, i, 0);
+        if(board[i][iCol-1] == 'O') dfs(board, i, iCol-1);
+    }
+    for(int j = 0; j < iCol; j++)
+    {
+        if(board[0][j] == 'O') dfs(board, 0, j);
+        if(board[iRow-1][j] == 'O') dfs(board, iRow-1, j);
+    }
+
+    // 全遍历一次 重新上色
+    for(int i = 0; i < iRow; i++)
+    {
+        for(int j = 0; j < iCol; j++)
+        {
+            if(board[i][j] == 'O') board[i][j] = 'X';
+            if(board[i][j] == '#') board[i][j] = 'O';
+        }
+    }
+}

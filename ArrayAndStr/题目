@@ -853,3 +853,11 @@ bool isValidBST(TreeNode* root)
 75、二叉搜索树种的第k小元素
 思路：深度优先遍历（中序遍历即可）
 int kthSmallest(TreeNode* root, int k)
+
+76、岛屿数量
+思路：递归即可，把所有连接的都置为0
+int numIslands(vector<vector<char>>& grid)
+
+77、包围问题
+思路：76类似 但是边缘不算 临时替代
+void solve(vector<vector<char>>& board)
