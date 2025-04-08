@@ -861,3 +861,7 @@ int numIslands(vector<vector<char>>& grid)
 77、包围问题
 思路：76类似 但是边缘不算 临时替代
 void solve(vector<vector<char>>& board)
+
+78、课程表 依赖关系
+思路：每个点分3个状态 0-未访问 1-正在访问该环 2-访问完
+bool canFinish(int numCourses, vector<vector<int>>& prerequisites);

@@ -419,3 +419,5 @@ int kthSmallest(TreeNode* root, int k);
 int numIslands(vector<vector<char>>& grid);
 // [图]不含边缘的包围问题
 void solve(vector<vector<char>>& board);
+// [图]课程表依赖
+bool canFinish(int numCourses, vector<vector<int>>& prerequisites);

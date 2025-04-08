@@ -1900,3 +1900,39 @@ void solve(vector<vector<char>>& board)
         }
     }
 }
+
+
+bool canFinish(int numCourses, vector<vector<int>>& prerequisites)
+{
+    // 每个点分3个状态 0-未访问 1-正在访问该环 2-访问完
+    vector<vector<int>> g(numCourses);
+    for(auto& p : prerequisites)
+    {
+        g[p[1]].push_back(p[0]);
+    }
+
+    vector<int> colors(numCourses);
+    std::function<bool(int)> dfs = [&](int x) -> bool
+    {
+        colors[x] = 1;
+        for(int y : g[x])
+        {
+            if(colors[y] == 1 || (colors[y] == 0 && dfs(y)) )
+            {
+                return true;
+            }
+        }
+        colors[x] = 2;
+        return false;
+    };
+
+    for(int i = 0; i < numCourses; i++)
+    {
+        // 未访问过并且有环
+        if(colors[i] == 0 && dfs(i))
+        {
+            return false;
+        }
+    }
+    return true;
+}
