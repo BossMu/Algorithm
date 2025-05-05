@@ -865,3 +865,8 @@ void solve(vector<vector<char>>& board)
 78、课程表 依赖关系
 思路：每个点分3个状态 0-未访问 1-正在访问该环 2-访问完
 bool canFinish(int numCourses, vector<vector<int>>& prerequisites);
+
+79、课程表2
+返回学习顺序
+vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites)
+思想：一个双层数组记录每门课后可以学哪些课（邻居），另一个记录每门课的入度数量（学这门课前需要学几门）

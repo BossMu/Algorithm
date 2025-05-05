@@ -1936,3 +1936,40 @@ bool canFinish(int numCourses, vector<vector<int>>& prerequisites)
     }
     return true;
 }
+
+vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites)
+{
+    vector<vector<int>> g(numCourses);
+    vector<int> indegree(numCourses, 0);
+    for(auto& p : prerequisites)
+    {
+        g[p[1]].push_back(p[0]);    //学完1后可以学2、3、4
+        indegree[p[0]]++;           // 学2之前需要学一门
+    } 
+
+    // 入度为0的先学（课程都是从0开始的，因此下标就是编号主键）
+    vector<int> queue;
+    for(int i = 0; i < numCourses; i++)
+    {
+        if(indegree[i] == 0) queue.push_back(i);
+    }
+
+    // 拓扑
+    vector<int> ret;
+    while(!queue.empty())
+    {
+        int node = queue.back();
+        queue.pop_back();
+        ret.push_back(node);
+
+        // 找他的所有邻居节点
+        for(int nb : g[node])
+        {
+            indegree[nb]--;
+            if(indegree[nb] == 0) queue.push_back(nb);  // 遍历中入度为0的表示没有前置依赖课程
+        }
+    }
+
+    if(ret.size() >= numCourses) return ret;
+    return {};
+}

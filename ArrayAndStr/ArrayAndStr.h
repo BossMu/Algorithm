@@ -421,3 +421,5 @@ int numIslands(vector<vector<char>>& grid);
 void solve(vector<vector<char>>& board);
 // [图]课程表依赖
 bool canFinish(int numCourses, vector<vector<int>>& prerequisites);
+// [图]课程表依赖
+vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites);
