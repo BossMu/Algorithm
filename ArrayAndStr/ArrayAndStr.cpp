@@ -1973,3 +1973,18 @@ vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites)
     if(ret.size() >= numCourses) return ret;
     return {};
 }
+
+TreeNode* sortedArrayToBST(vector<int>& nums)
+{
+    std::function<TreeNode*(int, int)> dfs = [&](int left, int right) ->  TreeNode*
+    {
+        if(left == right) return nullptr;
+        int m = (left+right) / 2;
+
+        return new TreeNode(nums[m], dfs(left, m), dfs(m+1, right));
+    };
+
+    // 注意这里，right是size，因为右侧分治时是+1
+    return dfs(0, nums.size());
+}
+

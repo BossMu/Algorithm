@@ -423,3 +423,5 @@ void solve(vector<vector<char>>& board);
 bool canFinish(int numCourses, vector<vector<int>>& prerequisites);
 // [图]课程表依赖
 vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites);
+// [分治]二叉搜索树
+TreeNode* sortedArrayToBST(vector<int>& nums);
