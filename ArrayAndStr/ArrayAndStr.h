@@ -425,3 +425,5 @@ bool canFinish(int numCourses, vector<vector<int>>& prerequisites);
 vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites);
 // [分治]二叉搜索树
 TreeNode* sortedArrayToBST(vector<int>& nums);
+// [分治]四叉树构建
+Node* construct(vector<vector<int>>& grid);

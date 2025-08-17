@@ -1987,4 +1987,75 @@ TreeNode* sortedArrayToBST(vector<int>& nums)
     // 注意这里，right是size，因为右侧分治时是+1
     return dfs(0, nums.size());
 }
+class Node4
+{
+    class Node 
+    {
+    public:
+        bool val;
+        bool isLeaf;
+        Node* topLeft;
+        Node* topRight;
+        Node* bottomLeft;
+        Node* bottomRight;
+        
+        Node() {
+            val = false;
+            isLeaf = false;
+            topLeft = NULL;
+            topRight = NULL;
+            bottomLeft = NULL;
+            bottomRight = NULL;
+        }
+        
+        Node(bool _val, bool _isLeaf) {
+            val = _val;
+            isLeaf = _isLeaf;
+            topLeft = NULL;
+            topRight = NULL;
+            bottomLeft = NULL;
+            bottomRight = NULL;
+        }
+        
+        Node(bool _val, bool _isLeaf, Node* _topLeft, Node* _topRight, Node* _bottomLeft, Node* _bottomRight) {
+            val = _val;
+            isLeaf = _isLeaf;
+            topLeft = _topLeft;
+            topRight = _topRight;
+            bottomLeft = _bottomLeft;
+            bottomRight = _bottomRight;
+        } 
+    };
+
+    Node* construct(vector<vector<int>>& grid) 
+    {
+        int s = grid.size();
+        return inner_construct(grid,0,0,s-1,s-1);
+    }
+    Node* inner_construct(vector<vector<int>>& grid, int lur, int luc, int rdr, int rdc)
+    {
+        int area = (rdc - luc + 1) * (rdr - lur + 1);
+        // 最小递归单元
+        if(area == 1)
+        {
+            return new Node(grid[lur][luc], true);
+        }
+
+        int mid_r = lur + (rdr - lur + 1) / 2;
+        int mid_c = luc + (rdc - luc + 1) / 2;
+        Node* node_left_up = inner_construct(grid, lur, luc, mid_r-1, mid_c-1);
+        Node* node_right_up = inner_construct(grid, lur, mid_c, mid_r-1, rdc);
+        Node* node_left_down = inner_construct(grid, mid_r, luc, rdr, mid_c-1);
+        Node* node_right_down = inner_construct(grid, mid_r, mid_c, rdr, rdc);
+        if(node_left_up->isLeaf && node_right_up->isLeaf && node_left_down->isLeaf && node_right_down->isLeaf &&
+        (node_left_up->val == node_right_up->val && node_left_up->val == node_left_down->val && node_left_up->val == node_right_down->val))
+        {
+            return new Node(node_left_up->val, true);
+        }
+        else
+        {
+            return new Node(0, false, node_left_up, node_right_up, node_left_down, node_right_down);
+        }
+    } 
+};
 

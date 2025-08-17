@@ -873,3 +873,6 @@ vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites)
 
 80、分治二叉搜索树
 TreeNode* sortedArrayToBST(vector<int>& nums)
+
+81、四叉树构建
+Node* construct(vector<vector<int>>& grid);
