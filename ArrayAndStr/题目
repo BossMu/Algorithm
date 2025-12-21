@@ -429,7 +429,7 @@ threeSum
 思路：滑动窗口
     每次右端点右移1位，左端点右移多次直到满足条件
     每次和大于目标值时，要循环把左侧移动到值小于目标值
-
+    窗口右端一直右移，大于目标值后窗口左端开始收缩，像一只毛毛虫一样蠕动
 minSubArrayLen
 
 29、最长无重复子串
@@ -876,3 +876,15 @@ TreeNode* sortedArrayToBST(vector<int>& nums)
 
 81、四叉树构建
 Node* construct(vector<vector<int>>& grid);
+
+82、规范化linux路径
+思路：栈存储每一级元素，字符串处理使用stream流
+输入：path = "/home///user/Documents/../Pictures"
+输出："/home/user/Pictures"
+string simplifyPath(string path);
+
+83、深拷贝一个随机链表
+随机链表的复制
+这个链表有next指针、random随机指针
+思路：两次遍历，第一次创建节点，并用一个哈希表存对应关系，第二次遍历维护指针
+Node* copyRandomList(Node* head)

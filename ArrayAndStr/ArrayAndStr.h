@@ -49,6 +49,7 @@ class Node
 //     // int removeElement(vector<int>& nums, int val);
 // };
 
+// ------------------------- 数组、字符串 begin ------------------------- 
 //  合并两个有序数组
 void mergeSortedVector(vector<int>& nums1, int m, vector<int>& nums2, int n);
 //  删除数组指定元素
@@ -143,6 +144,9 @@ string convertZ(string s, int numRows);
 int strStr(string haystack, string needle) ;
 // 居中字符串
 string DiffAve(vector<string> strVec, int width);
+// ------------------------- 数组、字符串 end ------------------------- 
+
+// ------------------------- 双指针 begin ------------------------- 
 // 回文串
 bool isPalindrome(string s);
 // 判断子序列
@@ -153,12 +157,18 @@ vector<int> twoSum(vector<int>& numbers, int target) ;
 int maxArea(vector<int>& height) ;
 // 3数之和
 vector<vector<int>> threeSum(vector<int>& nums) ;
+// ------------------------- 双指针 end ------------------------- 
+
+// ------------------------- 滑动窗口 begin ------------------------- 
 // 【滑动窗口】长度最小子数组
 int minSubArrayLen(int target, vector<int>& nums) ;
 // 【滑动窗口】最长无重复子串
 int lengthOfLongestSubstring(string s) ;
 // 【滑动窗口】最小包含子串
 string minWindow(string s, string t);
+// ------------------------- 滑动窗口 end ------------------------- 
+
+// ------------------------- 哈希 begin ------------------------- 
 // 【哈希表】字符串重新构建
 bool canConstruct(string ransomNote, string magazine) ;
 // 【哈希表】同构字符串
@@ -173,16 +183,18 @@ vector<vector<string>> groupAnagrams(vector<string>& strs);
 bool isHappy(int n);
 // 【哈希表】重复数字间隔
 bool containsNearbyDuplicate(vector<int>& nums, int k);
-// 【双链表】最长连续序列
-int longestConsecutive(vector<int>& nums);
-// 【双链表】汇总区间
-vector<string> summaryRanges(vector<int>& nums);
+// ------------------------- 哈希 end ------------------------- 
+
+// ------------------------- 贪心 begin ------------------------- 
 // [双指针+贪心] 区间合并
 vector<vector<int>> merge(vector<vector<int>>& intervals);
 // [双指针+贪心] 插入后区间合并
 vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval);
 // [贪心] 射气球最少箭
 int findMinArrowShots(vector<vector<int>>& points);
+// ------------------------- 贪心 end ------------------------- 
+
+// ------------------------- 栈 begin ------------------------- 
 // [栈]有效的括号
 bool isValid(string s);
 // [栈]最小栈
@@ -223,6 +235,12 @@ private:
 int evalRPN(vector<string>& tokens);
 // [栈]加减运算器
 int calculate(string s) ;
+// [栈]规范linux路径格式
+string simplifyPath(string path);
+
+// ------------------------- 栈 end ------------------------- 
+
+// ------------------------- 链表 begin ------------------------- 
 // [快慢指针]判断环形链表
 struct ListNode 
 {
@@ -343,7 +361,30 @@ private:
     LRUNode* dummy;  // 双链表的哨兵
     unordered_map<int, LRUNode*> map;   // 哈希表
 };
+// 【双链表】最长连续序列
+int longestConsecutive(vector<int>& nums);
+// 【双链表】汇总区间
+vector<string> summaryRanges(vector<int>& nums);
+// [链表]深拷贝随机链表
+class RandomNode {
+    class Node {
+    public:
+        int val;
+        Node* next;
+        Node* random;
+        
+        Node(int _val) {
+            val = _val;
+            next = NULL;
+            random = NULL;
+        }
+    };
 
+    Node* copyRandomList(Node* head);
+};
+// ------------------------- 链表 end ------------------------- 
+
+// ------------------------- 二叉树 begin ------------------------- 
 // [二叉树]数最大高度
 int maxDepth(TreeNode* root);
 // [二叉树]相同的树
@@ -415,6 +456,9 @@ private:
 };
 // [二叉搜索树]找第k小元素
 int kthSmallest(TreeNode* root, int k);
+// ------------------------- 二叉树 end ------------------------- 
+
+// ------------------------- 图 begin ------------------------- 
 // [图]岛屿数量
 int numIslands(vector<vector<char>>& grid);
 // [图]不含边缘的包围问题
@@ -423,7 +467,11 @@ void solve(vector<vector<char>>& board);
 bool canFinish(int numCourses, vector<vector<int>>& prerequisites);
 // [图]课程表依赖
 vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites);
+// ------------------------- 图 end ------------------------- 
+
+// ------------------------- 分治 begin ------------------------- 
 // [分治]二叉搜索树
 TreeNode* sortedArrayToBST(vector<int>& nums);
 // [分治]四叉树构建
 Node* construct(vector<vector<int>>& grid);
+// ------------------------- 分治 end ------------------------- 

@@ -686,7 +686,7 @@ int minSubArrayLen(int target, vector<int>& nums)
     int sum = 0;
     int i = 0;
 
-    // 窗口一直右移
+    // 窗口右端一直右移，大于目标值后窗口左端开始收缩，像一只毛毛虫一样蠕动
     for(int j = 0; j < nums.size(); j++)
     {
         sum += nums[j];
@@ -1083,7 +1083,7 @@ bool isValid(string s)
             {
                 return false;
             } 
-            char cTmp = dic[c] - 10;
+            // char cTmp = dic[c] - 10;
             if(stack.top() == dic[c] - 10)
             {
                 stack.pop();
@@ -1539,7 +1539,7 @@ bool hasPathSum(TreeNode* root, int targetSum)
 
 int countNodes(TreeNode* root)
 {
-    int num = 0;
+    // int num = 0;
 
     if(root == nullptr)
     {
@@ -2059,3 +2059,70 @@ class Node4
     } 
 };
 
+string simplifyPath(string path)
+{
+    istringstream ss(path);
+    string s;
+    vector<string> vec; // 栈+队列一起用
+
+    // 处理字符串到数组中
+    while (getline(ss, s,'/'))
+    {
+        // 空串或者当前路径跳过
+        if(s.empty() || s == ".")
+        {
+            continue;
+        }
+
+        if(s != "..")
+        {
+            vec.push_back(s);
+        }
+        else
+        {
+            if(!vec.empty())
+            {
+                vec.pop_back();
+            }
+        }
+    }
+    
+    string sRet;
+    for(auto& s : vec)
+    {
+        sRet += "/";
+        sRet += s;
+    }
+
+    return sRet.empty() ? "/" : sRet;
+}
+
+// [链表]深拷贝随机链表
+RandomNode::Node* RandomNode::copyRandomList(RandomNode::Node* head)
+{
+    if(head == nullptr)
+    {
+        return head;
+    }
+
+    Node* lpCur = head;
+    unordered_map<Node*, Node*> map;
+
+    // 第一次遍历，创建新节点、插入map
+    while (lpCur != nullptr)
+    {
+        map[lpCur] = new Node(lpCur->val);
+        lpCur = lpCur->next;
+    }
+    
+    // 第二次遍历，维护指针关系
+    lpCur = head;
+    while (lpCur != nullptr)
+    {
+        map[lpCur]->next = map[lpCur->next];
+        map[lpCur]->random = map[lpCur->random];
+        lpCur = lpCur->next;
+    }
+    
+    return map[head];
+}
