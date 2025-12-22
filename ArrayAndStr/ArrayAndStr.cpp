@@ -2126,3 +2126,66 @@ RandomNode::Node* RandomNode::copyRandomList(RandomNode::Node* head)
     
     return map[head];
 }
+
+vector<string> letterCombinations(string digits)
+{
+    if(digits.empty())
+    {
+        return {};
+    }
+
+    unordered_map<char, string> map
+    {
+        {'2', "abc"}, {'3', "def"}, {'4', "ghi"},
+        {'5', "jkl"}, {'6', "mno"}, {'7', "pqrs"},
+        {'8', "tuv"}, {'9', "wxyz"}
+    };
+    
+    vector<string> res;
+    string path;
+    const int len = digits.length();
+
+    // 方法一：auto 
+    /* 
+    auto traceback = [&](auto&& self, int i) -> void
+    {
+        // 长度一致退出
+        if(i == len)
+        {
+            res.push_back(path);
+            return;
+        }
+
+        for(char ch : map[digits[i]])
+        {
+            path.push_back(ch);
+            // 递归下一位
+            self(self, i+1);
+            // 回溯
+            path.pop_back();    // 删除字符串最后一个字符
+        }
+    };
+    */
+
+    // 方法二：std:function
+    std::function<void(int)> traceback = [&](int i) -> void
+    {
+        // 终止条件：遍历完所有数字
+        if (i == digits.length()) {
+            res.push_back(path);
+            return;
+        }
+
+        // 遍历当前数字对应的所有字母
+        for (char ch : map[digits[i]]) {
+            path.push_back(ch);   // 做选择
+            traceback(i + 1);     // 递归调用（直接写traceback，无需传self）
+            path.pop_back();      // 撤销选择
+        }
+    };
+
+    // traceback(traceback, 0); // 方法一
+    traceback(0);   // 方法二
+
+    return res;
+}
