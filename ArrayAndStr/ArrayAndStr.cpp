@@ -2189,3 +2189,71 @@ vector<string> letterCombinations(string digits)
 
     return res;
 }
+
+// [回溯]组合
+vector<vector<int>> combine(int n, int k)
+{
+    vector<vector<int>> res;
+    vector<int> path;
+
+    std::function<void(int)> func = [&](int start)
+    {
+        // 退出条件,本轮完成，插入
+        if(path.size() == k)
+        {
+            res.push_back(path);
+            return; 
+        }
+
+        // 剪枝
+        int need = k - path.size();
+        int end = n - need + 1;
+
+        // 回溯 eg(4,4)  121-4 后，把1退出，变成1221
+        for(auto i = start; i <= end; i++)
+        {
+            path.push_back(i);
+            func(i+1);
+            path.pop_back();
+        }
+    };
+
+    func(1);
+
+    return res;
+}
+
+// 
+vector<vector<int>> combinationSum(vector<int>& candidates, int target)
+{
+    vector<vector<int>> res;
+    vector<int> tmp;
+    int size = candidates.size();
+
+    std::function<void(int,int)> func = [&](int start, int sum)
+    {
+        // 退出条件
+        if(sum == target)
+        {
+            res.push_back(tmp);
+            return;
+        }
+
+        // 剪枝
+        if(sum > target)
+        {
+            return;
+        }
+
+        // 递归回溯
+        for(int i = start; i < size; i++)
+        {
+            tmp.push_back(candidates[i]);
+            func(i, sum+candidates[i]);
+            tmp.pop_back();
+        }
+    };
+
+    func(0, 0);
+    return res;
+}

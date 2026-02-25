@@ -479,5 +479,9 @@ Node* construct(vector<vector<int>>& grid);
 // ------------------------- 回溯 begin ------------------------- 
 // [回溯]9键排列组合
 vector<string> letterCombinations(string digits);
+// [回溯]组合
+vector<vector<int>> combine(int n, int k);
+// [回溯]组合总和
+vector<vector<int>> combinationSum(vector<int>& candidates, int target);
 
 // ------------------------- 回溯 end ------------------------- 

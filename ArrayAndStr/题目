@@ -892,3 +892,12 @@ Node* copyRandomList(Node* head)
 84、9键号码的排列组合
 思路：回溯，排列组合
 vector<string> letterCombinations(string digits);
+
+85、组合
+思路：回溯
+给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。
+
+86、组合总和
+思路：回溯
+从候选数组中选数组合成目标值，可重复
+vector<vector<int>> combinationSum(vector<int>& candidates, int target)
