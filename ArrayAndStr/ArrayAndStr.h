@@ -483,5 +483,7 @@ vector<string> letterCombinations(string digits);
 vector<vector<int>> combine(int n, int k);
 // [回溯]组合总和
 vector<vector<int>> combinationSum(vector<int>& candidates, int target);
+// [回溯]括号组合
+vector<string> generateParenthesis(int n);
 
 // ------------------------- 回溯 end ------------------------- 

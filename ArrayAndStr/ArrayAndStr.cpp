@@ -2257,3 +2257,38 @@ vector<vector<int>> combinationSum(vector<int>& candidates, int target)
     func(0, 0);
     return res;
 }
+
+vector<string> generateParenthesis(int n)
+{
+    vector<string> res;
+    string tmp;
+
+    std::function<void(int, int)> func = [&](int leftNum, int rightNum)
+    {
+        // 总数量2n表示结束
+        if(tmp.size() == 2*n)
+        {
+            res.push_back(tmp);
+            return;
+        }
+
+        // 只要左括号数量小于n既可以添加
+        if(leftNum < n)
+        {
+            tmp.push_back('(');
+            func(leftNum+1, rightNum);
+            tmp.pop_back();
+        }
+
+        // 只要右括号数量小于左括号就可以添加
+        if(rightNum < leftNum)
+        {
+            tmp.push_back(')');
+            func(leftNum, rightNum+1);
+            tmp.pop_back();
+        }
+    };
+
+    func(0, 0);
+    return res;
+}

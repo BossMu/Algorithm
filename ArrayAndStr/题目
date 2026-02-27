@@ -901,3 +901,10 @@ vector<string> letterCombinations(string digits);
 思路：回溯
 从候选数组中选数组合成目标值，可重复
 vector<vector<int>> combinationSum(vector<int>& candidates, int target)
+
+87、括号组合
+思路：回溯
+输出所有可能的括号组合
+只要左括号数量小于n既可以添加
+只要右括号数量小于左括号就可以添加
+vector<string> generateParenthesis(int n)
