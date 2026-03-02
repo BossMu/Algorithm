@@ -908,3 +908,7 @@ vector<vector<int>> combinationSum(vector<int>& candidates, int target)
 只要左括号数量小于n既可以添加
 只要右括号数量小于左括号就可以添加
 vector<string> generateParenthesis(int n)
+
+88、二维数组中找某个单词
+思路：回溯
+bool exist(vector<vector<char>>& board, string word) 

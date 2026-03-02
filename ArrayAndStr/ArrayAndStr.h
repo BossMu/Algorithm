@@ -485,5 +485,6 @@ vector<vector<int>> combine(int n, int k);
 vector<vector<int>> combinationSum(vector<int>& candidates, int target);
 // [回溯]括号组合
 vector<string> generateParenthesis(int n);
-
+// [回溯]二维数组中找单词
+bool exist(vector<vector<char>>& board, string word) ;
 // ------------------------- 回溯 end ------------------------- 
