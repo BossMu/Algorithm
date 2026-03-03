@@ -2292,3 +2292,80 @@ vector<string> generateParenthesis(int n)
     func(0, 0);
     return res;
 }
+
+bool exist(vector<vector<char>>& board, string word) 
+{
+    int m = board.size();
+    int n = board[0].size();
+
+    std::function<bool(int,int,int)> func = [&](int i, int j, int index)
+    {
+        // 退出
+        if(index == word.size())
+        {
+            return true;
+        }
+
+        if(i < 0 || i >= m || j < 0 || j >= n || board[i][j] != word[index])
+        {
+            return false;
+        }
+
+        // 标记
+        char tmp = board[i][j];
+        board[i][j] = '\0'; //不允许重复
+
+        bool b = false;
+        if(!b) b = func(i-1,j,index+1);
+        if(!b) b = func(i+1,j,index+1);
+        if(!b) b = func(i,j-1,index+1);
+        if(!b) b = func(i,j+1,index+1);
+
+        // 回退
+        board[i][j] =tmp;
+        return b;
+    };
+
+    for(int i = 0; i < m; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
+            if(func(i, j, 0)) 
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+bool searchMatrix(vector<vector<int>>& matrix, int target)
+{
+    int m = matrix.size();
+    int n = matrix[0].size();
+
+    int l = -1;
+    int r = m*n;
+
+    while (l+1 < r)
+    {
+        int mid = l + (r-l)/2;
+        int x = matrix[mid/n][mid%n];
+        if(x == target)
+        {
+            return true;
+        }
+
+        if(x < target)
+        {
+            l = mid;
+        }
+        else
+        {
+            r = mid
+        }
+    }
+    
+    return false;
+}

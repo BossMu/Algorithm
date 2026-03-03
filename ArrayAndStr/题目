@@ -912,3 +912,7 @@ vector<string> generateParenthesis(int n)
 88、二维数组中找某个单词
 思路：回溯
 bool exist(vector<vector<char>>& board, string word) 
+
+89、有序二维数组查找
+思路：二分查找
+bool searchMatrix(vector<vector<int>>& matrix, int target)
