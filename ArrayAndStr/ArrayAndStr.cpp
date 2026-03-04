@@ -2363,9 +2363,29 @@ bool searchMatrix(vector<vector<int>>& matrix, int target)
         }
         else
         {
-            r = mid
+            r = mid;
         }
     }
     
     return false;
+}
+
+int findPeakElement(vector<int>& nums)
+{
+    int l = 0, r = nums.size() - 1;
+
+    while (l + 1 < r)
+    {
+        int mid = l + (r-l)/2;
+        if(nums[mid] > nums[mid+1])
+        {
+            r = mid;
+        }
+        else
+        {
+            l = mid;
+        }
+    }
+    
+    return nums[l] > nums[r] ? l : r;
 }

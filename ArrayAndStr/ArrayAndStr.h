@@ -488,3 +488,10 @@ vector<string> generateParenthesis(int n);
 // [回溯]二维数组中找单词
 bool exist(vector<vector<char>>& board, string word) ;
 // ------------------------- 回溯 end ------------------------- 
+
+// ------------------------- 二分查找 begin ------------------------- 
+// [二分]有序二维数组查找
+bool searchMatrix(vector<vector<int>>& matrix, int target);
+// [二分]寻找数组的峰值元素
+int findPeakElement(vector<int>& nums);
+// ------------------------- 二分查找 end ------------------------- 

@@ -916,3 +916,7 @@ bool exist(vector<vector<char>>& board, string word)
 89、有序二维数组查找
 思路：二分查找
 bool searchMatrix(vector<vector<int>>& matrix, int target)
+
+90、寻找数组中的峰值元素
+思路：二分查找
+int findPeakElement(vector<int>& nums)
