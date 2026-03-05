@@ -920,3 +920,7 @@ bool searchMatrix(vector<vector<int>>& matrix, int target)
 90、寻找数组中的峰值元素
 思路：二分查找
 int findPeakElement(vector<int>& nums)
+
+91、二进制运算
+思路：位运算
+string addBinary(string a, string b);

@@ -495,3 +495,9 @@ bool searchMatrix(vector<vector<int>>& matrix, int target);
 // [二分]寻找数组的峰值元素
 int findPeakElement(vector<int>& nums);
 // ------------------------- 二分查找 end ------------------------- 
+
+// ------------------------- 位运算 begin -----------------------
+// [位运算] 二进制相加
+string addBinary(string a, string b);
+// ------------------------- 位运算 end -------------------------
+
