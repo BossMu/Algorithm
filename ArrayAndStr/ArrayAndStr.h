@@ -499,5 +499,7 @@ int findPeakElement(vector<int>& nums);
 // ------------------------- 位运算 begin -----------------------
 // [位运算] 二进制相加
 string addBinary(string a, string b);
+// [位运算] 二进制数逆转
+int reverseBits(int n);
 // ------------------------- 位运算 end -------------------------
 

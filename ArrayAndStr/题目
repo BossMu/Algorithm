@@ -924,3 +924,6 @@ int findPeakElement(vector<int>& nums)
 91、二进制运算
 思路：位运算
 string addBinary(string a, string b);
+
+92、数字转为二进制再逆转
+int reverseBits(int n)
