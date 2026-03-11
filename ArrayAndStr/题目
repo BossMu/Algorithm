@@ -927,3 +927,6 @@ string addBinary(string a, string b);
 
 92、数字转为二进制再逆转
 int reverseBits(int n)
+
+93、位1的个数
+int hammingWeight(int n)

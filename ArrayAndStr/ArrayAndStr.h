@@ -501,5 +501,7 @@ int findPeakElement(vector<int>& nums);
 string addBinary(string a, string b);
 // [位运算] 二进制数逆转
 int reverseBits(int n);
+// [位运算] 二进制位1的个数
+int hammingWeight(int n);
 // ------------------------- 位运算 end -------------------------
 
