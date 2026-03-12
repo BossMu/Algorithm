@@ -2436,3 +2436,16 @@ int hammingWeight(int n)
     
     return num;
 }
+
+int singleNumber(vector<int>& nums)
+{
+    int tmp = 0;
+
+    for(int i : nums)
+    {
+        // 运算操作自动转二进制
+        tmp ^= i;
+    }
+
+    return tmp;
+}

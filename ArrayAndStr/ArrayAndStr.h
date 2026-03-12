@@ -503,5 +503,7 @@ string addBinary(string a, string b);
 int reverseBits(int n);
 // [位运算] 二进制位1的个数
 int hammingWeight(int n);
+// [位运算] 只出现一次的数字
+int singleNumber(vector<int>& nums);
 // ------------------------- 位运算 end -------------------------
 
