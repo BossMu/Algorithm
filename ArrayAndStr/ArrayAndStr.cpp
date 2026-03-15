@@ -2449,3 +2449,35 @@ int singleNumber(vector<int>& nums)
 
     return tmp;
 }
+
+int singleNumber2(vector<int>& nums)
+{
+    int one = 0,two = 0;
+
+    for(int i : nums)
+    {
+        two |= one & i;
+        one ^= i;
+        // 出现3次清空
+        int mask = ~(one & two);
+        one &= mask;
+        two &= mask;
+    }
+
+    return one;
+}
+
+int rangeBitwiseAnd(int left, int right)
+{
+    // 只要 left != right，区间内必然存在至少一个数会把某一位从 1 翻到 0，导致该位及更低位的按位与结果为 0。
+
+    int n = 0;
+    while (left != right)
+    {
+        left >>= 1;
+        right >>= 1;
+        n++; 
+    }
+    
+    return left << n;
+}

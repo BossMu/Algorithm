@@ -505,5 +505,9 @@ int reverseBits(int n);
 int hammingWeight(int n);
 // [位运算] 只出现一次的数字
 int singleNumber(vector<int>& nums);
+// [位运算] 只出现一次的数字2
+int singleNumber2(vector<int>& nums);
+// [位运算] 按位与
+int rangeBitwiseAnd(int left, int right);
 // ------------------------- 位运算 end -------------------------
 
