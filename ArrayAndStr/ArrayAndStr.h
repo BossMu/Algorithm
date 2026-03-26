@@ -511,3 +511,7 @@ int singleNumber2(vector<int>& nums);
 int rangeBitwiseAnd(int left, int right);
 // ------------------------- 位运算 end -------------------------
 
+// ------------------------- 动态规划 begin ---------------------
+// [一阶动态规划]
+int climbStairs(int n);
+// ------------------------- 动态规划 end -----------------------

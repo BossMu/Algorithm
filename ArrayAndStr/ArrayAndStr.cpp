@@ -2481,3 +2481,21 @@ int rangeBitwiseAnd(int left, int right)
     
     return left << n;
 }
+
+int climbStairs(int n)
+{
+    // a b sum
+    // 走到当前的方式只有两种，f(n-2)+2  或者  f(n-1)+1,因此只需要两个数记录就好了
+    if(n == 1) return 1;
+    if(n == 2) return 2;
+    int a = 1,  b = 1;
+    int sum = 0;
+    for(int i = 2; i <= n; i++)
+    {
+        sum = a + b;
+        a = b;
+        b = sum;
+    }
+
+    return sum;
+}

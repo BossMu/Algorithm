@@ -942,3 +942,9 @@ int singleNumber2(vector<int>& nums)
 int rangeBitwiseAnd(int left, int right)
 思路：因为是连续数字的二进制与，只有前面的全都是1的相同部分会保留下来，右面有不同位只有有一个0就必然整体式0，
 最后返回111000这种格式
+
+97、爬楼梯
+动态规划
+每次走一个台阶或者两个台阶，有几种走法
+走到当前的方式只有两种，f(n-2)+2  或者  f(n-1)+1,因此只需要两个数记录就好了 
+int climbStairs(int n);
