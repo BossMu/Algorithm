@@ -948,3 +948,12 @@ int rangeBitwiseAnd(int left, int right)
 每次走一个台阶或者两个台阶，有几种走法
 走到当前的方式只有两种，f(n-2)+2  或者  f(n-1)+1,因此只需要两个数记录就好了 
 int climbStairs(int n);
+
+98、打家劫舍
+动态规划
+不能连续打劫相邻的两家
+定义一个数组，记录到本位置最大收益
+int rob(vector<int>& nums)
+
+99、单词拆分
+bool wordBreak(string s, vector<string>& wordDict)

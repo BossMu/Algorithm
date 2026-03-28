@@ -514,4 +514,8 @@ int rangeBitwiseAnd(int left, int right);
 // ------------------------- 动态规划 begin ---------------------
 // [一阶动态规划]
 int climbStairs(int n);
+// [一阶动态规划]
+int rob(vector<int>& nums);
+// [一阶动态规划]
+bool wordBreak(string s, vector<string>& wordDict);
 // ------------------------- 动态规划 end -----------------------

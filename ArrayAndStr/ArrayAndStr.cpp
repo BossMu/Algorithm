@@ -2499,3 +2499,67 @@ int climbStairs(int n)
 
     return sum;
 }
+
+int rob(vector<int>& nums)
+{
+    // 方法1：dp数组
+    // 定义一个数组，记录到本位置最大收益
+    /*
+    int n = nums.size();
+    if(n == 0) return 0; 
+    if(n == 1) return nums[0];
+
+    vector<int> dp(n);
+    dp[0] = nums[0];
+    dp[1] = max(nums[0], nums[1]);
+
+    for(int i = 2; i < n; i++)
+    {
+        dp[i] = max(dp[i-1], dp[i-2] + nums[i]);
+    }
+    return dp.back();
+    */
+
+    // 方法2：优化空间，两个变量
+    int n = nums.size();
+    if(n == 0) return 0; 
+    if(n == 1) return nums[0];
+
+    int n1 = nums[0];
+    int n2 = max(nums[0], nums[1]);
+    int cur = n2;
+    for(int i = 2; i < n; i++)
+    {
+        cur = max(n2, n1 + nums[i]);
+        n1 = n2;
+        n2 = cur;
+    }
+
+    return n2;
+}
+
+bool wordBreak(string s, vector<string>& wordDict)
+{
+    // 思想：创建一个dp数组，表示s中岛本位置可以被拼出
+    unordered_set<string> wordSet(wordDict.begin(),wordDict.end()); //方便查找子字符串
+    int n = s.size();
+    vector<bool> dp(n+1,false); // 0占位，因此N+1
+    dp[0] = true;
+
+    for(int i = 0; i < n+1; i++)
+    {
+        // 只查找子字符串
+        for(string str : wordSet)
+        {
+            int sLen = str.size();
+            // 当前长度大于子串，并且子串前位置可拼，并且子串相等
+            if(i >= sLen && dp[i-sLen] && (s.substr(i-sLen, sLen) == str))
+            {
+                dp[i] = true;
+                break;
+            }
+        }
+    }
+
+    return dp.back();
+}
