@@ -2563,3 +2563,27 @@ bool wordBreak(string s, vector<string>& wordDict)
 
     return dp.back();
 }
+
+int coinChange(vector<int>& coins, int amount)
+{
+    // 完全背包问题
+    // dp[i] 表示凑成金额 i 所需的最少硬币数
+    // 对于每个硬币corn，要遍历金额i,min(dp[i],dp[i-corn]+1)
+    vector<int> dp(amount+1, INT_MAX-1);
+    dp[0] = 0; // 凑齐0元需要0个硬币
+
+    for(int i = 1; i <= amount; i++)
+    {
+        for(int j = 0; j < coins.size(); j++)
+        {
+            // 只有当前金额 >= 硬币面额时，才能使用这个硬币
+            if(i >= coins[j])
+            {
+                // 取小的
+                dp[i] = min(dp[i], dp[i-coins[j]] + 1);
+            }
+        }
+    }
+
+    return dp[amount] == (INT_MAX-1) ? -1 : dp[amount];
+}

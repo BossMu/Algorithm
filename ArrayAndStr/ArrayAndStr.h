@@ -512,10 +512,14 @@ int rangeBitwiseAnd(int left, int right);
 // ------------------------- 位运算 end -------------------------
 
 // ------------------------- 动态规划 begin ---------------------
-// [一阶动态规划]
+// 适用场景：求最大最小、大问题划分成小问题、无后滞性
+// 动态规划步骤：明确dp数组含义、状态转移方程、初始化dp、遍历
+// [一阶动态规划] 爬楼梯
 int climbStairs(int n);
-// [一阶动态规划]
+// [一阶动态规划] 打家劫舍
 int rob(vector<int>& nums);
-// [一阶动态规划]
+// [一阶动态规划] 拼单词
 bool wordBreak(string s, vector<string>& wordDict);
+// 零钱兑换
+int coinChange(vecor<int>& coins, int amount);
 // ------------------------- 动态规划 end -----------------------
