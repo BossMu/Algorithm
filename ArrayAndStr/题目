@@ -960,3 +960,6 @@ bool wordBreak(string s, vector<string>& wordDict)
 
 100、零钱兑换
 int coinChange(vector<int>& coins, int amount)
+
+101、最长递增子数列
+int lengthOfLIS(vector<int>& nums);

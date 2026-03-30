@@ -2587,3 +2587,27 @@ int coinChange(vector<int>& coins, int amount)
 
     return dp[amount] == (INT_MAX-1) ? -1 : dp[amount];
 }
+
+int lengthOfLIS(vector<int>& nums)
+{
+    // dp[i]表示到当前位置的最长长度几个
+    // 状态转移：从某个位置到本位置是不是递增，比较这两个数
+    int n = nums.size();
+    if(n == 0) return 0;
+    vector<int> dp(n, 1);
+    int ret = 1;
+
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < i; j++)
+        {
+            if(nums[j] < nums[i])
+            {
+                dp[i] = max(dp[i], dp[j]+1);
+                if(dp[i] > ret) ret = dp[i];
+            }
+        }
+    }
+
+    return ret;
+}

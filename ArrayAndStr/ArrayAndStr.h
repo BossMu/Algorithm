@@ -522,4 +522,6 @@ int rob(vector<int>& nums);
 bool wordBreak(string s, vector<string>& wordDict);
 // 零钱兑换
 int coinChange(vecor<int>& coins, int amount);
+// 最长递增子数列
+int lengthOfLIS(vector<int>& nums);
 // ------------------------- 动态规划 end -----------------------
