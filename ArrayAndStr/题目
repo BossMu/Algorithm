@@ -963,3 +963,6 @@ int coinChange(vector<int>& coins, int amount)
 
 101、最长递增子数列
 int lengthOfLIS(vector<int>& nums);
+
+102、三角形最小路径和
+int minimumTotal(vector<vector<int>>& triangle)

@@ -514,14 +514,19 @@ int rangeBitwiseAnd(int left, int right);
 // ------------------------- 动态规划 begin ---------------------
 // 适用场景：求最大最小、大问题划分成小问题、无后滞性
 // 动态规划步骤：明确dp数组含义、状态转移方程、初始化dp、遍历
-// [一阶动态规划] 爬楼梯
+// [一阶动态规划] 
+// 爬楼梯
 int climbStairs(int n);
 // [一阶动态规划] 打家劫舍
 int rob(vector<int>& nums);
 // [一阶动态规划] 拼单词
 bool wordBreak(string s, vector<string>& wordDict);
 // 零钱兑换
-int coinChange(vecor<int>& coins, int amount);
+int coinChange(vector<int>& coins, int amount);
 // 最长递增子数列
 int lengthOfLIS(vector<int>& nums);
+
+// [多维动态规划]
+// 三角形最小路径和
+int minimumTotal(vector<vector<int>>& triangle);
 // ------------------------- 动态规划 end -----------------------

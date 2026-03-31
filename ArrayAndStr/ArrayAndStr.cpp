@@ -2611,3 +2611,21 @@ int lengthOfLIS(vector<int>& nums)
 
     return ret;
 }
+
+int minimumTotal(vector<vector<int>>& triangle)
+{
+    // dp[i][j]表示到当前行的最小和
+    // 状态转移：自底而上，不用考虑边界，每个上层元素只能来源于下面的两个，取小即可
+    int row = triangle.size();
+
+    // 原地修改，不用dp
+    for(int i = row-2; i >= 0 ; i--)
+    {
+        for(int j = 0; j < triangle[i].size();j++)
+        {
+            triangle[i][j] += min(triangle[i+1][j], triangle[i+1][j+1]);
+        }
+    }
+
+    return triangle[0][0];
+}
