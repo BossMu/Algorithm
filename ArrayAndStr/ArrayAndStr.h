@@ -529,4 +529,6 @@ int lengthOfLIS(vector<int>& nums);
 // [多维动态规划]
 // 三角形最小路径和
 int minimumTotal(vector<vector<int>>& triangle);
+// [最短路径]
+int minPathSum(vector<vector<int>>& grid);
 // ------------------------- 动态规划 end -----------------------

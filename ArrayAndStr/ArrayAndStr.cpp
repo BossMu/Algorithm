@@ -2629,3 +2629,50 @@ int minimumTotal(vector<vector<int>>& triangle)
 
     return triangle[0][0];
 }
+
+int minPathSum(vector<vector<int>>& grid)
+{
+    // 方法一：二维dp
+    int row = grid.size();
+    int col = grid[0].size();
+    vector<vector<int>> dp(row, vector<int>(col,0));
+    dp[0][0] = grid[0][0];
+    // 初始化第一行,只能左边移动过来
+    for(int j = 1;j < col;j++)
+    {
+        dp[0][j] = dp[0][j-1] + grid[0][j];
+    }
+    for(int i = 1; i < row; i++)
+    {
+        dp[i][0] = dp[i-1][0] + grid[i][0];
+    }
+
+    for(int i = 1; i < row; i++)
+    {
+        for(int j = 1; j < col; j++)
+        {
+            dp[i][j] = min(dp[i-1][j] + grid[i][j], dp[i][j-1] + grid[i][j]);
+        }
+    }
+
+    return dp[row-1][col-1];
+
+    // ==============================================
+    // 2. 一维DP优化版（空间O(n)，推荐）
+    // 因为只需要用到上一行和左侧即可
+    // vector<int> dp(n, 0);
+    // dp[0] = grid[0][0];
+    // // 初始化第一行
+    // for (int j = 1; j < n; j++) {
+    //     dp[j] = dp[j-1] + grid[0][j];
+    // }
+    // // 遍历剩余行
+    // for (int i = 1; i < m; i++) {
+    //     // 更新当前行第一个元素（只能从上一行下来）
+    //     dp[0] = dp[0] + grid[i][0];
+    //     for (int j = 1; j < n; j++) {
+    //         dp[j] = min(dp[j], dp[j-1]) + grid[i][j];
+    //     }
+    // }
+    // return dp[n-1];
+}
