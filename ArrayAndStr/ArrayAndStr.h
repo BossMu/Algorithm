@@ -531,4 +531,6 @@ int lengthOfLIS(vector<int>& nums);
 int minimumTotal(vector<vector<int>>& triangle);
 // [最短路径]
 int minPathSum(vector<vector<int>>& grid);
+// [避障路径]
+int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid);
 // ------------------------- 动态规划 end -----------------------

@@ -2676,3 +2676,67 @@ int minPathSum(vector<vector<int>>& grid)
     // }
     // return dp[n-1];
 }
+
+int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid)
+{
+    // dp表示到达这个位置的路线数量。障碍物的为0
+    // 初始化第一行第一列，若有一个障碍物后面的都是0
+    // 转移方程：(dp[i-1][j] + dp[i][j-1])
+    int m = obstacleGrid.size();
+    int n = obstacleGrid[0].size();
+    vector<vector<int>> dp(m, vector<int>(n, 0));
+
+    if(obstacleGrid[0][0] == 1 || obstacleGrid[m-1][n-1] == 1) return 0;
+
+    // 初始化
+    int flag = 0;
+    for(int j = 0; j < n; j++)
+    {
+        if(obstacleGrid[0][j] == 1 )
+        {
+            flag = 1; 
+        }
+        if(flag == 1)
+        {
+            dp[0][j] = 0;
+        }
+        else
+        {
+            dp[0][j] = 1;
+        }
+    }
+
+    int flag2 = 0;
+    for(int i = 0; i < m; i++)
+    {
+        if(obstacleGrid[i][0] == 1 )
+        {
+            flag2 = 1; 
+        }
+        if(flag2 == 1)
+        {
+            dp[i][0] = 0;
+        }
+        else
+        {
+            dp[i][0] = 1;
+        }
+    }
+
+    for(int i = 1; i < m; i++)
+    {
+        for(int j = 1; j < n; j++)
+        {
+            if(obstacleGrid[i][j] == 1)
+            {
+                dp[i][j] = 0;
+            }
+            else
+            {
+                dp[i][j] = dp[i-1][j] + dp[i][j-1];
+            }
+        }
+    }
+
+    return dp[m-1][n-1];
+}

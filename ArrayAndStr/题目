@@ -969,3 +969,6 @@ int minimumTotal(vector<vector<int>>& triangle)
 
 103、最短路径
 int minPathSum(vector<vector<int>>& grid)
+
+104、机器人避障路径
+int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid)；
