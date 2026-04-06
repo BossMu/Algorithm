@@ -513,7 +513,7 @@ int rangeBitwiseAnd(int left, int right);
 
 // ------------------------- 动态规划 begin ---------------------
 // 适用场景：求最大最小、大问题划分成小问题、无后滞性
-// 动态规划步骤：明确dp数组含义、状态转移方程、初始化dp、遍历
+// 动态规划步骤：1明确dp数组含义、2初始化、3dp状态转移方程、4遍历
 // [一阶动态规划] 
 // 爬楼梯
 int climbStairs(int n);
@@ -529,8 +529,12 @@ int lengthOfLIS(vector<int>& nums);
 // [多维动态规划]
 // 三角形最小路径和
 int minimumTotal(vector<vector<int>>& triangle);
-// [最短路径]
+// 最短路径
 int minPathSum(vector<vector<int>>& grid);
-// [避障路径]
+// 避障路径
 int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid);
+// 最长回文子串(中心扩展法 或 动态规划)
+string longestPalindrome(string s);
+// 交错字符串
+bool isInterleave(string s1, string s2, string s3);
 // ------------------------- 动态规划 end -----------------------

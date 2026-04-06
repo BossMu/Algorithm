@@ -972,3 +972,9 @@ int minPathSum(vector<vector<int>>& grid)
 
 104、机器人避障路径
 int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid)；
+
+105、最长回文子串
+string longestPalindrome(string s);
+
+106、交错字符串
+bool isInterleave(string s1, string s2, string s3)
