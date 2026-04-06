@@ -2831,3 +2831,81 @@ bool isInterleave(string s1, string s2, string s3)
 
     return dp[m][n];
 }
+
+// 最小转换次数（编辑距离）
+int minDistance(string word1, string word2) 
+{
+    // dp[i][j]表示word1的i转换成word2的j的最小次数
+    // 转移方程：增删改三种操作
+    // 修改：dp[i-1][j-1] + 1
+    // 新增:dp[i][j-1] + 1
+    // 删除：dp[i-1][j] + 1
+    // 初始化 dp[i][0] = i 将前i个转成空字符 
+    // 初始化 dp[0][j] = j
+    int m = word1.size();
+    int n = word2.size();
+    vector<vector<int>> dp(m+1, vector<int>(n+1, 0));
+    
+    // 初始化
+    for(int i = 0 ; i <= m; i++)
+    {
+        dp[i][0] = i;
+    }
+    for(int j = 0; j <= n; j++)
+    {
+        dp[0][j] = j;
+    }
+
+    for(int i = 1; i <= m; i++)
+    {
+        for(int j = 1; j <= n;j++)
+        {
+            // 字符相等就不用操作
+            if(word1[i-1] == word2[j-1])
+            {
+                dp[i][j] = dp[i-1][j-1];
+            }
+            // 字符不相等 增删改的一种
+            else
+            {
+                dp[i][j] = min(dp[i-1][j-1], min(dp[i-1][j], dp[i][j-1])) + 1;
+            }
+        }
+    }
+
+    return dp[m][n];
+}
+
+// 买卖股票
+int maxProfit(vector<int>& prices)
+{
+    // 思路：状态机，上一步执行完下一步才有意义 ，否则值不会变
+    // 只有最多4次操作，因此用变量记录即可
+
+    int m = prices.size();
+    if(m < 2) return 0;
+
+    int buy1 = -prices[0];  // 第一天买入后的钱
+    int sell1 = -999999;
+    int buy2 = -999999;
+    int sell2 = -999999;
+
+    for(int i = 1; i < m; i++)
+    {
+        // 以更低的价格买入
+        int buy1_tmp = max(buy1, -prices[i]);
+        // 依赖buy1，以更高的价格卖出
+        int sell1_tmp = max(sell1, buy1 + prices[i]);
+        // 依赖sell1
+        int buy2_tmp = max(buy2, sell1 - prices[i]);
+        // 依赖buy2
+        int sell2_tmp = max(sell2, buy2 + prices[i]);
+
+        buy1 = buy1_tmp;
+        sell1 = sell1_tmp;
+        buy2 = buy2_tmp;
+        sell2 = sell2_tmp;
+    }
+
+    return max(max(sell1, sell2), 0);
+}

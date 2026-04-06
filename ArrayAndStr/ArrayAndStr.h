@@ -537,4 +537,8 @@ int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid);
 string longestPalindrome(string s);
 // 交错字符串
 bool isInterleave(string s1, string s2, string s3);
+// 最小转换次数（编辑距离）
+int minDistance(string word1, string word2) ;
+// 买卖股票
+int maxProfit(vector<int>& prices);
 // ------------------------- 动态规划 end -----------------------
