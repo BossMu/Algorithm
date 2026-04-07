@@ -982,5 +982,8 @@ bool isInterleave(string s1, string s2, string s3)
 107、最小转换次数（编辑距离）
 int minDistance(string word1, string word2) 
 
-108、买卖股票
+108、两次买卖股票
 int maxProfit(vector<int>& prices);
+
+109、多次买卖股票
+int maxProfit(int k, vector<int>& prices);

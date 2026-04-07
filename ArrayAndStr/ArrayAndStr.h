@@ -539,6 +539,18 @@ string longestPalindrome(string s);
 bool isInterleave(string s1, string s2, string s3);
 // 最小转换次数（编辑距离）
 int minDistance(string word1, string word2) ;
-// 买卖股票
-int maxProfit(vector<int>& prices);
+
+// 买卖股票问题
+// 只允许买卖一次 - 贪心算法
+int maxProfit_one(vector<int>& prices);
+// 无限次交易(>一半元素个数) - 贪心
+int maxProfit_max(vector<int>& prices);
+// 无限次交易，卖出手续费 - 状态机&动态规划（只有买卖两种状态）
+int maxProfit_max_fee(vector<int>& prices, int fee);
+// 2次买卖股票 - 状态机+动态规划
+int maxProfit_2(vector<int>& prices);
+// 无限次交易+冷静期 - 状态机+动态规划
+int maxProfit_cooltime(vector<int>& prices);
+// 多次买卖股票 - 状态机+动态规划（数组代替变量）
+int maxProfit_k(int k, vector<int>& prices);
 // ------------------------- 动态规划 end -----------------------

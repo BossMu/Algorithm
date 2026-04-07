@@ -2876,8 +2876,63 @@ int minDistance(string word1, string word2)
     return dp[m][n];
 }
 
-// 买卖股票
-int maxProfit(vector<int>& prices)
+//----- 买卖股票
+// 只允许买卖一次 - 贪心算法
+int maxProfit_one(vector<int>& prices)
+{
+    // 定义一个最小的买入价，最大的收益，循环更新
+    int min_p = INT_MIN;
+    int res = 0;
+
+    for(int p : prices)
+    {
+        min_p = min(min_p, p);
+        res = max(res, p - min_p);
+    }
+
+    return res;
+}
+
+// 无限次交易(>一半元素个数) - 贪心
+int maxProfit_max(vector<int>& prices)
+{
+    // 只要有利润就加上,可以认为是提前买入或者一直持仓吃利润
+    int res = 0;
+
+    for(int i = 1; i < prices.size(); i++)
+    {
+        if(prices[i] - prices[i-1] > 0)
+        {
+            res += prices[i] - prices[i-1];
+        }
+    }
+
+    return res;
+}
+
+// 无限次交易，卖出手续费 - 状态机&贪心（只有买卖两种状态）
+int maxProfit_max_fee(vector<int>& prices, int fee)
+{
+    // 注意和2次买卖的区别，可以达到的状态初始化为0（一开始空仓），一开始达不到的状态初始化为最小值（第一次不可能卖出）
+    int n = prices.size();
+    int hold = -prices[0];
+    int empty = 0;
+
+    for(int i = 1; i < n; i++)
+    {
+        // 临时变量，因为状态转移是基于上一日
+        int hold_tmp = max(hold, empty - prices[i]);
+        int empty_tmp = max(empty, hold + prices[i] - fee);
+
+        hold = hold_tmp;
+        empty = empty_tmp;
+    }
+
+    return empty;
+}
+
+// 2次买卖股票 - 状态机+贪心
+int maxProfit_2(vector<int>& prices)
 {
     // 思路：状态机，上一步执行完下一步才有意义 ，否则值不会变
     // 只有最多4次操作，因此用变量记录即可
@@ -2908,4 +2963,66 @@ int maxProfit(vector<int>& prices)
     }
 
     return max(max(sell1, sell2), 0);
+}
+
+// 无限次交易+冷静期 - 状态机+动态规划
+int maxProfit_cooltime(vector<int>& prices)
+{
+    // 三状态流转：持有 → 卖出 → 冷却 → 可买入。
+    int n = prices.size();
+    if(n < 2) return 0;
+    int hold = -prices[0];
+    int empty = 0;
+    int cool = 0;
+
+    for(int i = 1; i < n; i++)
+    {
+        int hold_tmp = max(hold, cool - prices[i]);
+        int empty_tmp = max(empty, hold + prices[i]);
+        int cool_tmp = empty;
+
+        hold = hold_tmp;
+        empty = empty_tmp;
+        cool = cool_tmp;
+    }
+
+    // 最后卖完最赚钱
+    return max(empty, cool);
+}
+
+// 多次买卖股票 - 状态机+动态规划（数组代替变量）
+int maxProfit_k(int k, vector<int>& prices)
+{
+    int size = prices.size();
+    if(size < 2 || k <=0 ) return 0;
+
+    // 初始化
+    vector<int> buy(k+1, -999999);  // 后续状态不可达
+    vector<int> sell(k+1, -999999);
+    buy[1] = -prices[0];  // 第一个位置
+    sell[0] = 0;    // buy1依赖sell0
+
+    for(int i = 1; i < size; i ++)
+    {
+        vector<int> buy_tmp = buy;
+        vector<int> sell_tmp = sell;
+
+        for(int j = 1; j <= k; j++)
+        {
+            // j次买入依赖j-1次卖出；j次卖出依赖j次买入
+            buy_tmp[j] = max(buy[j], sell[j-1] - prices[i]);
+            sell_tmp[j] = max(sell[j], buy[j] + prices[i]);
+        }
+
+        buy = buy_tmp;
+        sell = sell_tmp;
+    }
+
+    int res = 0;
+    for (int j = 1; j <= k; j++) 
+    {
+        res = max(res, sell[j]);
+    }
+    return res;
+    // 固定次数的可以return sell[2]中前几个最大的
 }
