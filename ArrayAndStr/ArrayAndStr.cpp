@@ -3026,3 +3026,45 @@ int maxProfit_k(int k, vector<int>& prices)
     return res;
     // 固定次数的可以return sell[2]中前几个最大的
 }
+
+// 最大正方形面积
+int maximalSquare(vector<vector<char>>& matrix)
+{
+    // dp 表示正方形右下角的点能组成的边长为k的正方形
+    // 由左边、上边、左上三个格子的最小值决定能不能组成 
+    // min(dp[i-1][j], min(dp[i][j-1], dp[i-1][j-1])) + 1
+    int m = matrix.size();
+    int n = matrix[0].size();
+    int maxside = 0;
+
+    if(m == 0 || n == 0) return 0;
+
+    vector<vector<int>> dp(m, vector<int>(n, 0));
+
+    // 初始化 边长1
+    for(int i = 0; i < m; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
+            if(matrix[i][j] == '1')
+            {
+                dp[i][j] = 1;
+                maxside = 1;
+            }
+        }
+    }
+
+    for(int i =1; i < m; i++)
+    {
+        for(int j = 1; j < n; j++)
+        {
+            if(matrix[i][j] == '1')
+            {
+                dp[i][j] = min(dp[i-1][j], min(dp[i][j-1], dp[i-1][j-1])) + 1;
+                maxside = max(maxside, dp[i][j]);
+            }
+        }
+    }
+
+    return maxside * maxside;
+}

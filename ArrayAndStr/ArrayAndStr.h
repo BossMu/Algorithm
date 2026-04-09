@@ -553,4 +553,6 @@ int maxProfit_2(vector<int>& prices);
 int maxProfit_cooltime(vector<int>& prices);
 // 多次买卖股票 - 状态机+动态规划（数组代替变量）
 int maxProfit_k(int k, vector<int>& prices);
+// 最大正方形面积
+int maximalSquare(vector<vector<char>>& matrix);
 // ------------------------- 动态规划 end -----------------------
