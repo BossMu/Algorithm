@@ -556,3 +556,10 @@ int maxProfit_k(int k, vector<int>& prices);
 // 最大正方形面积
 int maximalSquare(vector<vector<char>>& matrix);
 // ------------------------- 动态规划 end -----------------------
+
+// ------------------------- 数学 begin -----------------------
+// 判断回文串
+bool isPalindrome(int x);
+// 加1
+vector<int> plusOne(vector<int>& digits);
+// ------------------------- 数学 end -----------------------

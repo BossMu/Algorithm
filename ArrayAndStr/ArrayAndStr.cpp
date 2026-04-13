@@ -3068,3 +3068,44 @@ int maximalSquare(vector<vector<char>>& matrix)
 
     return maxside * maxside;
 }
+
+bool isPalindrome(int x)
+{
+    // 负数、0结尾的这种排除
+    if(x < 0 || (x % 10 == 0 && x != 0))
+    {
+        return false;
+    }
+
+
+    // 12321 经过变换x变成12  reversernum变成123
+    int revesernum = 0;
+    while (x > revesernum)
+    {
+        revesernum = revesernum * 10  + x % 10;
+        x = x / 10;
+    }
+    
+    // 奇数的话去掉一位  123 变 12
+    return x == revesernum || (x == revesernum / 10);
+}
+
+vector<int> plusOne(vector<int>& digits)
+{
+    int n = digits.size();
+
+    for(int i = n-1; i >=0; i--)
+    {
+        digits[i]++;
+        digits[i] %= 10;
+        if(digits[i] != 0)
+        {
+            return digits;
+        }
+    }
+
+    // 后面全是0
+    vector<int> ret(n+1, 0);
+    ret[0] = 1;
+    return ret;
+}
