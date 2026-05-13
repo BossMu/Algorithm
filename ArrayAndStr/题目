@@ -996,3 +996,6 @@ bool isPalindrome(int x);
 
 112、加1
 vector<int> plusOne(vector<int>& digits) 
+
+113、平方根
+int mySqrt(int x)

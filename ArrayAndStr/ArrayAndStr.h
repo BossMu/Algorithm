@@ -562,4 +562,6 @@ int maximalSquare(vector<vector<char>>& matrix);
 bool isPalindrome(int x);
 // 加1
 vector<int> plusOne(vector<int>& digits);
+// 平方根[二分查找]
+int mySqrt(int x);
 // ------------------------- 数学 end -----------------------

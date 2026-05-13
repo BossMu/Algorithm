@@ -3109,3 +3109,26 @@ vector<int> plusOne(vector<int>& digits)
     ret[0] = 1;
     return ret;
 }
+
+int mySqrt(int x)
+{
+    // 不用内置的sqrt，二分查找
+    int l = 0;  
+    int r = x;
+    int res = 0; // 向下取整
+    while (l <= r)
+    {
+        int m = l + (r - l) / 2;
+        if((long long)m*m <= x)
+        {
+            res = m;
+            l = m + 1;
+        }
+        else
+        {
+            r = m - 1;
+        }
+    }
+
+    return res;
+}
