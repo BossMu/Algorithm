@@ -999,3 +999,9 @@ vector<int> plusOne(vector<int>& digits)
 
 113、平方根
 int mySqrt(int x)
+
+114、阶乘后尾数几个0
+int trailingZeroes(int n)
+
+115、求x的n次幂
+double myPow(double x, int n)

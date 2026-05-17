@@ -564,4 +564,8 @@ bool isPalindrome(int x);
 vector<int> plusOne(vector<int>& digits);
 // 平方根[二分查找]
 int mySqrt(int x);
+// 阶乘后尾数几个0
+int trailingZeroes(int n);
+// 求x的n次幂
+double myPow(double x, int n);
 // ------------------------- 数学 end -----------------------

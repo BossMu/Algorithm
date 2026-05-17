@@ -3132,3 +3132,47 @@ int mySqrt(int x)
 
     return res;
 }
+
+// 阶乘后尾数几个0
+int trailingZeroes(int n)
+{
+    // 尾数是10，一定是由2*5，2的数量一定多于5，有提成你统计由几个5就行
+    int cnt = 0;
+    while (n > 0)
+    {
+        n /= 5;
+        cnt += n;
+    }
+    
+    return cnt;
+}
+
+// 求x的n次幂
+double myPow(double x, int n)
+{
+    // 思路：底数翻倍，幂数减半，找中间平衡
+    long long exp = n;
+    // 负的幂数处理
+    if(exp < 0)
+    {
+        x = 1/x;
+        exp = -exp;
+    }
+
+    double res = 1.0;
+    // 都是偶数幂了
+    while (exp > 0)
+    {
+        // 奇数幂
+        if(exp % 2 != 0)
+        {
+            res *= x;
+        }
+
+        x *= x;
+        exp /= 2;   
+    }
+    
+    return res;
+}
+
