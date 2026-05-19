@@ -1005,3 +1005,6 @@ int trailingZeroes(int n)
 
 115、求x的n次幂
 double myPow(double x, int n)
+
+116、旋转数组后搜索
+int search(vector<int>& nums, int target)

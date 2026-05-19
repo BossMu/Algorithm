@@ -3176,3 +3176,45 @@ double myPow(double x, int n)
     return res;
 }
 
+// 旋转数组后查找
+int search(vector<int>& nums, int target)
+{
+    // 思想：不断二分，一定有一半是有序地，先去有序区间看是不是在这个范围内，
+    // 范围内继续查，范围外区另一半继续二分
+    // 找到是属于左区间耗时右区间
+    int l = 0,r = nums.size() - 1;
+    while (l <= r)
+    {
+        int m = l + (r-l)/2;
+        if(target == nums[m])
+        {
+            return  m;
+        }
+
+        // 左区间有序
+        if(nums[l] <= nums[m])
+        {
+            if(nums[l] <= target && target <= nums[m])
+            {
+                r = m-1;
+            }
+            else
+            {
+                l = m + 1;
+            }
+        }
+        else
+        {
+            if(nums[m] < target && target <= nums[r])
+            {
+                l = m+1;
+            }
+            else
+            {
+                r = m-1;
+            }
+        }
+    }
+    
+    return -1;
+}

@@ -494,6 +494,8 @@ bool exist(vector<vector<char>>& board, string word) ;
 bool searchMatrix(vector<vector<int>>& matrix, int target);
 // [二分]寻找数组的峰值元素
 int findPeakElement(vector<int>& nums);
+// 旋转数组后查找
+int search(vector<int>& nums, int target);
 // ------------------------- 二分查找 end ------------------------- 
 
 // ------------------------- 位运算 begin -----------------------
