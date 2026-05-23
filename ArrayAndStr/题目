@@ -1008,3 +1008,6 @@ double myPow(double x, int n)
 
 116、旋转数组后搜索
 int search(vector<int>& nums, int target)
+
+117、文本左右对齐
+vector<string> fullJustify(vector<string>& words, int maxWidth);

@@ -3218,3 +3218,64 @@ int search(vector<int>& nums, int target)
     
     return -1;
 }
+
+// 文本左右对齐
+vector<string> fullJustify(vector<string>& words, int maxWidth)
+{
+    vector<string> res;
+    int n = words.size();
+    int i = 0;  // 当前第几个单词
+
+    while(i < n)
+    {
+        // 1 贪心选当前行能放的所有单词 [i, j)
+        int len = 0;  // 当前行长度
+        int j = i;
+        // 单词长度+间隙空格
+        while (j < n && len + words[j].size() + (j-i) <= maxWidth)
+        {
+            len += words[j].size();
+            j++;  // 往后调了一个
+        }
+        // 到这 这一行就有i到j个单词
+
+        // 2 最后一行 或 只有一个单词：左对齐
+        int wordcnt = j-i;
+        int spacetotal = maxWidth-len;
+        string line;
+        if(j == n || wordcnt == 1)
+        {
+            for(int k = i; k < j; k++)
+            {
+                line += words[k];
+                if(k != j-1) line += ' ';
+            }
+            while (line.size() < maxWidth)
+            {
+                line += ' ';
+            }
+            
+        }
+        // 3 普通行
+        else
+        {
+            int spacegap = wordcnt-1;
+            int base = spacetotal / spacegap;
+            int spaceextra = spacetotal % spacegap;// 前 extra 个间隙多 1 个空格
+            for(int k = i; k < j; k++)
+            {
+                line += words[k];
+                if(k != j-1)
+                {
+                    int s = base + (k -i < spaceextra ? 1 : 0);
+                    line += string(s, ' ');
+                }
+            }
+        }
+
+        res.push_back(line);
+        i = j;
+    }
+    
+    return res;
+}

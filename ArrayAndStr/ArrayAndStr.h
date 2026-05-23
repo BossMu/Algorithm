@@ -144,6 +144,8 @@ string convertZ(string s, int numRows);
 int strStr(string haystack, string needle) ;
 // 居中字符串
 string DiffAve(vector<string> strVec, int width);
+// 文本左右对齐
+vector<string> fullJustify(vector<string>& words, int maxWidth);
 // ------------------------- 数组、字符串 end ------------------------- 
 
 // ------------------------- 双指针 begin ------------------------- 
