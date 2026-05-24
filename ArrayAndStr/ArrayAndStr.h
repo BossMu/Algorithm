@@ -168,6 +168,9 @@ int minSubArrayLen(int target, vector<int>& nums) ;
 int lengthOfLongestSubstring(string s) ;
 // 【滑动窗口】最小包含子串
 string minWindow(string s, string t);
+// 串联所有单词的子串
+vector<int> findSubstring(string s, vector<string>& words);
+
 // ------------------------- 滑动窗口 end ------------------------- 
 
 // ------------------------- 哈希 begin ------------------------- 
@@ -573,3 +576,10 @@ int trailingZeroes(int n);
 // 求x的n次幂
 double myPow(double x, int n);
 // ------------------------- 数学 end -----------------------
+
+// ------------------------- 矩阵 begin -----------------------
+// 判断数独
+bool isValidSudoku(vector<vector<char>>& board);
+// ------------------------- 矩阵 end -----------------------
+
+

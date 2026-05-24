@@ -1011,3 +1011,10 @@ int search(vector<int>& nums, int target)
 
 117、文本左右对齐
 vector<string> fullJustify(vector<string>& words, int maxWidth);
+
+118、串联所有单词的子串
+给定字符串和一组长度相同的单词，找出字符串里所有起点，从该起点截取的子串，恰好能由这些单词拼接而成。
+vector<int> findSubstring(string s, vector<string>& words)
+
+119、判断数独
+bool isValidSudoku(vector<vector<char>>& board)

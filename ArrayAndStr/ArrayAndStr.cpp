@@ -3279,3 +3279,101 @@ vector<string> fullJustify(vector<string>& words, int maxWidth)
     
     return res;
 }
+
+// 串联所有单词的子串
+vector<int> findSubstring(string s, vector<string>& words)
+{
+    // 思路：滑动窗口，统计一个需要匹配的need哈希表，再来一个当前滑动窗口的哈希表，当窗口都匹配的时候把本次结果记录下
+    // 两层循环，外层是定义s遍历的起点，内层每次递进单词长度(窗口扩大)
+    // 循环中判断需要的单词数量超了吗，多了的话收缩窗口左侧
+    vector<int> res;
+    if(s.empty() || words.empty()) return res;
+
+    int wordLen = words[0].size();    // 每个单词长度
+    int wordNum = words.size();       // 单词总个数
+    int totalLen = wordLen * wordNum; // 必须匹配的总长度
+    int sLen = s.size();
+
+    // 需要匹配的哈希表,填充进去
+    unordered_map<string, int> need;    
+    for(auto& w : words) need[w]++;
+
+    // 因为字符串等长，以3为例，只需要从0 1 2各自开始做一次对s的遍历，每次洞口跳动wordLen长度
+    for(int start = 0; start < wordLen; start++)
+    {
+        unordered_map<string,int> window;
+        int left = start;   // 窗口左边
+        int match = 0;  //// 已匹配成功的单词种类数
+        
+        // 右指针每次跳一个单词长度
+        for(int right = start; right <= sLen-wordLen; right += wordLen)
+        {
+            string cur = s.substr(right,wordLen);
+
+            // ================= 遇到不需要的单词，直接重置 =================
+            if(!need.count(cur))
+            {
+                window.clear();
+                match = 0;
+                left = right + wordLen;
+                continue;
+            }
+            // 需要的单词加入窗口
+            window[cur]++;
+            if(need[cur] == window[cur]) match++;
+
+            // 窗口单词数量超了，左边要删掉,用while知道删干净
+            while(window[cur] >need[cur])
+            {
+                // 要删掉的左边单词
+                string leftstr = s.substr(left,wordLen);
+                if(window[leftstr] == need[leftstr]) match--;
+                window[leftstr]--;
+                left += wordLen;
+            }
+
+            // 所有单词匹配成功，记录
+            if(match == need.size())
+            {
+                res.push_back(left);
+
+                // 
+            }
+        }
+    }
+
+    return res;
+}
+
+// 判断数独
+bool isValidSudoku(vector<vector<char>>& board)
+{
+    vector<unordered_set<char>> row(9);
+    vector<unordered_set<char>> col(9);
+    // 0 1 2 
+    // 3 4 5
+    // 6 7 8
+    vector<unordered_set<char>> box(9); 
+
+    for(int i = 0; i < 9; i++)
+    {
+        for(int j = 0; j < 9; j++)
+        {
+            char c = board[i][j];
+            if(c == '.') continue;
+            
+            int boxid = (i/3*3)+(j/3);
+
+            if(row[i].count(c) || col[j].count(c) || box[boxid].count(c))
+            {
+                return false;
+            }
+
+            row[i].insert(c);
+            col[j].insert(c);
+            box[boxid].insert(c);
+        }
+    }
+
+    return true;
+}
