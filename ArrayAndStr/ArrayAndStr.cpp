@@ -3377,3 +3377,53 @@ bool isValidSudoku(vector<vector<char>>& board)
 
     return true;
 }
+
+// 螺旋遍历矩阵
+vector<int> spiralOrder(vector<vector<int>>& matrix)
+{
+    vector<int> res;
+    if(matrix.empty()) return res;
+
+    int left = 0;
+    int right = matrix[0].size()-1;
+    int top = 0;
+    int bottom = matrix.size()-1;
+
+    // 收缩边界
+    while (left <= right && top <= bottom)
+    {
+        // 从左到右遍历上边界
+        for(int i = left; i <= right; i++)
+        {
+            res.push_back(matrix[top][i]);
+        }
+        top++;  // 上边界收缩
+
+        // 从上到下遍历有边界
+        for(int i = top; i <= bottom; i++)
+        {
+            res.push_back(matrix[i][right]);
+        }
+        right--;
+
+        // 3. 从右到左遍历下边界（需判断 top <= bottom，防止重复遍历）
+        if (top <= bottom) 
+        {
+            for (int i = right; i >= left; --i) {
+                res.push_back(matrix[bottom][i]);
+            }
+            bottom--; // 下边界收缩
+        }
+        
+        // 4. 从下到上遍历左边界（需判断 left <= right，防止重复遍历）
+        if (left <= right) 
+        {
+            for (int i = bottom; i >= top; --i) {
+                res.push_back(matrix[i][left]);
+            }
+            left++; // 左边界收缩
+        }
+    }
+    
+    return res;
+}

@@ -580,6 +580,8 @@ double myPow(double x, int n);
 // ------------------------- 矩阵 begin -----------------------
 // 判断数独
 bool isValidSudoku(vector<vector<char>>& board);
+// 螺旋遍历矩阵
+vector<int> spiralOrder(vector<vector<int>>& matrix);
 // ------------------------- 矩阵 end -----------------------
 
 

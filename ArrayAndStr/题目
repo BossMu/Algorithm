@@ -1018,3 +1018,6 @@ vector<int> findSubstring(string s, vector<string>& words)
 
 119、判断数独
 bool isValidSudoku(vector<vector<char>>& board)
+
+120、螺旋遍历矩阵
+vector<int> spiralOrder(vector<vector<int>>& matrix);
