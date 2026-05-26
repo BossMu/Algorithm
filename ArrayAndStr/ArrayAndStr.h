@@ -582,6 +582,8 @@ double myPow(double x, int n);
 bool isValidSudoku(vector<vector<char>>& board);
 // 螺旋遍历矩阵
 vector<int> spiralOrder(vector<vector<int>>& matrix);
+// 翻转矩阵
+void rotate(vector<vector<int>>& matrix);
 // ------------------------- 矩阵 end -----------------------
 
 

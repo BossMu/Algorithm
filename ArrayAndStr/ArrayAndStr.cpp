@@ -3427,3 +3427,25 @@ vector<int> spiralOrder(vector<vector<int>>& matrix)
     
     return res;
 }
+
+void rotate(vector<vector<int>>& matrix)
+{
+    // 先行列翻转，在逐行左右翻转
+    int n = matrix.size();
+    if(n == 0) return;
+
+    // 行列转置
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = i+1; j < n;j++)
+        {
+            swap(matrix[i][j], matrix[j][i]);
+        }
+    }
+
+    // 行前后转换
+    for(int i = 0; i < n; i++)
+    {
+        reverse(matrix[i].begin(), matrix[i].end());
+    }
+}
