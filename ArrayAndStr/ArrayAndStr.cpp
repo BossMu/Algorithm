@@ -3449,3 +3449,74 @@ void rotate(vector<vector<int>>& matrix)
         reverse(matrix[i].begin(), matrix[i].end());
     }
 }
+
+//  矩阵置为0
+void setZeroes(vector<vector<int>>& matrix)
+{
+    // 使用首行、首列标记有没有0
+    // 原地算法就是不用开辟其他区域存储
+    int m = matrix.size();
+    if(m == 0) return;
+    int n = matrix[0].size();
+
+    bool bFirstRow = false;
+    bool bFirstCol = false;
+
+    // 首行有没有0
+    for(int j = 0; j < n; j++)
+    {
+        if(matrix[0][j] == 0)
+        {
+            bFirstRow = true;
+            break;
+        }
+    }
+    for(int i = 0; i < m; i++)
+    {
+        if(matrix[i][0] == 0)
+        {
+            bFirstCol = true;
+            break;
+        }
+    }
+
+    for(int i = 1; i < m; i++)
+    {
+        for(int j = 1; j< n; j++)
+        {
+            if(matrix[i][j] == 0)
+            {
+                matrix[i][0] = 0;
+                matrix[0][j] = 0;
+            }
+        }
+    }
+
+    for(int i = 1; i < m; i++)
+    {
+        for(int j = 1; j< n; j++)
+        {
+            if(matrix[i][0] == 0 || matrix[0][j] == 0)
+            {
+                matrix[i][j] = 0;
+            }
+        }
+    }
+
+    if(bFirstRow)
+    {
+        for(int j = 0; j < n; j++)
+        {
+            matrix[0][j] = 0;
+        }
+    }
+
+    if(bFirstCol)
+    {
+        for(int i = 0; i < m; i++)
+        {
+            matrix[i][0] = 0;
+        }
+    }
+    
+}

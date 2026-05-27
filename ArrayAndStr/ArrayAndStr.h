@@ -584,6 +584,8 @@ bool isValidSudoku(vector<vector<char>>& board);
 vector<int> spiralOrder(vector<vector<int>>& matrix);
 // 翻转矩阵
 void rotate(vector<vector<int>>& matrix);
+// 矩阵置为0
+void setZeroes(vector<vector<int>>& matrix);
 // ------------------------- 矩阵 end -----------------------
 
 
