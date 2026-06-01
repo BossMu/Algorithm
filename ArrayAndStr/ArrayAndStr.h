@@ -586,6 +586,8 @@ vector<int> spiralOrder(vector<vector<int>>& matrix);
 void rotate(vector<vector<int>>& matrix);
 // 矩阵置为0
 void setZeroes(vector<vector<int>>& matrix);
+// 生命游戏
+void gameOfLife(vector<vector<int>>& board);
 // ------------------------- 矩阵 end -----------------------
 
 

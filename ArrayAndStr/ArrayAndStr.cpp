@@ -3520,3 +3520,61 @@ void setZeroes(vector<vector<int>>& matrix)
     }
     
 }
+
+// 生命游戏
+void gameOfLife(vector<vector<int>>& board)
+{
+    // 本题问题是所有元素要一起更新，不能先后更新影响下一个元素的状态
+    // 思路一：原地更新，特殊标记表示状态 1-活  2-活的死了  3-死的活了
+    // 新加一个状态数组，但是最后还是要拷贝一下
+    if(board.empty() && board[0].empty()) return;
+
+    int m = board.size();
+    int n = board[0].size();
+
+    vector<pair<int,int>> dir =     {{-1,-1}, {-1,0}, {-1,1},
+                                    {0,-1},          {0,1},
+                                    {1,-1},  {1,0},  {1,1}};
+
+    for(int i = 0; i < m; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
+            int neerLiveNum = 0;
+            for(auto& d : dir)
+            {
+                int x = i + d.first;
+                int y = j + d.second;
+                if(x >= 0 && x < m && y >= 0 && y < n)
+                {
+                    // 原本活细胞
+                    if(board[x][y] == 1 || board[x][y] == 3)
+                    {
+                        neerLiveNum++;
+                    }
+                }
+            }
+
+            // 活的死一下
+            if(board[i][j] == 1 && (neerLiveNum < 2 || neerLiveNum > 3))
+            {
+                board[i][j] = 2;
+            }
+
+            // 死的活一下
+            if(board[i][j] == 0 && neerLiveNum == 2)
+            {
+                board[i][j] = 3;
+            }
+        }
+    }
+
+    for(int i = 0; i < m; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
+            if(board[i][j] == 2) board[i][j] = 0;
+            if(board[i][j] == 3) board[i][j] = 1;
+        }
+    }
+}
