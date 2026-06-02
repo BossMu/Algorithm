@@ -3578,3 +3578,41 @@ void gameOfLife(vector<vector<int>>& board)
         }
     }
 }
+
+// 数组中第k个最大的数
+int findKthLargest(vector<int>& nums, int k)
+{
+    // 快速选择
+    // 第 k 大 → 转化为下标：数组长度n，目标下标pos = n - k（升序后 pos 位置就是答案）
+    // 随机选基准 pivot 做分区：小于 pivot 放左、大于放右   
+    // 对比 pos 与基准下标，只递归半边，舍弃另一半，平均复杂度 O (n)
+    int n = nums.size();
+    int target = n -k;
+    srand(time(0)); // 重新获取种子
+
+    auto func = [&](auto&& self, int l, int r) -> int 
+    {
+        // 随机选一个位置作为基准
+        int irand = l + rand() % (r-l+1);
+        // 交换到最右边
+        swap(nums[irand], nums[r]);
+        int base = nums[r];
+        // 分区，左边的小于base,双指针
+        int i = l;
+        for(int j = l; j < r; j++)
+        {
+            if(nums[j] < base)
+            {
+                swap(nums[i++], nums[j]);
+            }
+        }
+        swap(nums[i], nums[r]);
+
+        // 递归
+        if(target == i) return nums[i];
+        else if(target < i) return self(self, l, i-1);
+        else return self(self, i+1, r);
+    };
+
+    return func(func, 0, n-1);
+}
