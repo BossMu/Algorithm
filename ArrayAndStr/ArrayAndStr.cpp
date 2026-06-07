@@ -3616,3 +3616,92 @@ int findKthLargest(vector<int>& nums, int k)
 
     return func(func, 0, n-1);
 }
+
+// 和最小的k和数对
+vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k)
+{
+    // 方法一：大根堆，大小为k，留下的是最小的k个
+    // priority_queue<vector<int>> heap;
+    // int m = nums1.size(), n = nums2.size();
+
+    // for(int i = 0; i < m; ++i)
+    // {
+    //     for(int j = 0; j < n; ++j)
+    //     {
+    //         int sum = nums1[i]+nums2[j];
+    //         heap.push({sum,i,j});
+    //         // 超k就弹出堆顶（当前堆内最大值）
+    //         if(heap.size() > k)
+    //             heap.pop();
+    //     }
+    // }
+
+    // vector<vector<int>> res;
+    // while (!heap.empty())
+    // {
+    //     auto cur = heap.top();
+    //     heap.pop();
+    //     res.push_back({nums1[cur[1]], nums2[cur[2]]});
+    // }
+
+    // reverse(res.begin(), res.end());
+    // return res;
+    
+    // 小根堆，每次出堆
+    auto cmp = [&](pair<int,int>a,pair<int,int>b){
+        return nums1[a.first]+nums2[a.second] > nums1[b.first]+nums2[b.second];
+    };
+    priority_queue<pair<int,int>,vector<pair<int,int>>,decltype(cmp)> heap(cmp);
+
+    // 把nums1的元素和nums2[0]一起放进去
+    int m=nums1.size(),n=nums2.size();
+    int sz=min(k,m);
+    for(int i=0;i<sz;i++) heap.push({i,0});
+
+    // 每次出堆的时候，再塞一个nums1[0]和nums2[下一个]进堆排序，i是同一个
+    vector<vector<int>> res;
+    while(k-- && !heap.empty()){
+        auto [i,j]=heap.top();heap.pop();
+        res.push_back({nums1[i],nums2[j]});
+        if(j+1<n) heap.push({i,j+1});
+    }
+    return res;
+}
+
+// ipo k个项目，初始资金w
+int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capital)
+{
+    // 大根堆：按照收益排序
+    int n = profits.size();
+    // 打包成一个结构<成本、利润>
+    vector<pair<int, int>> projects;
+    for(int i = 0; i < n; i++)
+    {
+        projects.push_back({capital[i], profits[i]});
+    }
+    // 按照成本升序
+    sort(projects.begin(), projects.end());
+
+    // 大顶堆  按照收益来排序
+    priority_queue<int>   heap;
+    int idx = 0;
+    while (k--)
+    {
+        // 把所有成本要求满足的项目放进去
+        while (idx < n && projects[idx].first <= w)
+        {
+            heap.push(projects[idx].second);
+            idx++;
+        }
+        
+        if(heap.empty())
+        {
+            break;
+        }
+
+        w += heap.top();
+        heap.pop();
+    }
+     
+    return w;
+}

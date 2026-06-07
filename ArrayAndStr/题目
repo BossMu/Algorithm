@@ -1033,3 +1033,9 @@ void gameOfLife(vector<vector<int>>& board)
 
 124、数组中第k个最大的数
 int findKthLargest(vector<int>& nums, int k)
+
+125、和最小的k和数对
+vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k)
+
+126、ipo
+int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capital)

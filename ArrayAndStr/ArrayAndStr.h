@@ -598,3 +598,10 @@ int findKthLargest(vector<int>& nums, int k);
 // ------------------------- 排序 end -----------------------
 
 
+// ------------------------- 堆 begin -----------------------
+// priority_queue<int> heap; 
+// 和最小的k和数对
+vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k);
+// ipo
+int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capital);
+// ------------------------- 堆 end -----------------------
