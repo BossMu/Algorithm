@@ -1039,3 +1039,6 @@ vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k
 
 126、ipo
 int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capital)
+
+127、中位数
+class MedianFinder

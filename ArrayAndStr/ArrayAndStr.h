@@ -604,4 +604,47 @@ int findKthLargest(vector<int>& nums, int k);
 vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k);
 // ipo
 int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capital);
+// 中位数
+// 用两个堆来维护数据：
+// 大顶堆（maxHeap）：保存前半部分较小的一半数据，堆顶是这部分的最大值。
+// 小顶堆（minHeap）：保存后半部分较大的一半数据，堆顶是这部分的最小值。
+// 维护规则：
+// 保证 maxHeap.size() == minHeap.size() 或 maxHeap.size() == minHeap.size() + 1。
+// 这样：
+// 总数为奇数时，中位数就是 maxHeap.top()。
+
+class MedianFinder {
+public:
+    MedianFinder() {
+        
+    }
+    
+    void addNum(int num) {
+        // 先插入大顶堆，再把最大的放到小顶堆，然后平衡二者大小
+        maxheap.push(num);
+        minheap.push(maxheap.top());
+        maxheap.pop();
+
+        // 调整大小，保证 maxHeap.size() >= minHeap.size()
+        if(maxheap.size() < minheap.size())
+        {
+            maxheap.push(minheap.top());
+            minheap.pop();
+        }
+    }
+    
+    double findMedian() {
+        if(maxheap.size() > minheap.size())
+        {
+            return maxheap.top();
+        }
+        else
+        {
+            return (maxheap.top() + minheap.top()) / 2.0;
+        }
+    }
+private:
+    priority_queue<int> maxheap;
+    priority_queue<int, vector<int>, greater<int>> minheap;
+};
 // ------------------------- 堆 end -----------------------
