@@ -3705,3 +3705,69 @@ int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capita
      
     return w;
 }
+
+// 罗马数字转整数
+int romanToInt(string s)
+{
+    // 大数通常在左边，要是大数在右边，则要减去左边的
+    unordered_map<char, int> roman = {
+        {'I', 1},
+        {'V', 5},
+        {'X', 10},
+        {'L', 50},
+        {'C', 100},
+        {'D', 500},
+        {'M', 1000}
+    };
+
+    int res = 0;
+    int n = s.size();
+    for(int i = 0; i < n; i++)
+    {
+        if(i < n-1 && roman[s[i]] < roman[s[i+1]])
+        {
+            res -= roman[s[i]];
+        }
+        else
+        {
+            res += roman[s[i]];
+        }
+    }
+
+    return res;
+}
+
+// 整数转罗马数字
+string intToRoman(int num)
+{
+    // 从大到小的罗马数字列表，贪心匹配
+    vector<pair<int, string>> roman = {
+        {1000, "M"},
+        {900, "CM"},
+        {500, "D"},
+        {400, "CD"},
+        {100, "C"},
+        {90, "XC"},
+        {50, "L"},
+        {40, "XL"},
+        {10, "X"},
+        {9, "IX"},
+        {5, "V"},
+        {4, "IV"},
+        {1, "I"}
+    };
+
+    string res;
+    for(auto& p: roman)
+    {
+        while (num >= p.first)
+        {
+            res += p.second;
+            num -= p.first;
+
+            if(num == 0) break;
+        }
+    }
+
+    return res;
+}

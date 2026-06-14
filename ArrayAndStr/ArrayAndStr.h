@@ -146,6 +146,10 @@ int strStr(string haystack, string needle) ;
 string DiffAve(vector<string> strVec, int width);
 // 文本左右对齐
 vector<string> fullJustify(vector<string>& words, int maxWidth);
+// 罗马数字转整数
+int romanToInt(string s);
+// 整数转罗马数字
+string intToRoman(int num);
 // ------------------------- 数组、字符串 end ------------------------- 
 
 // ------------------------- 双指针 begin ------------------------- 

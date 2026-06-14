@@ -1042,3 +1042,9 @@ int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capita
 
 127、中位数
 class MedianFinder
+
+128、罗马数字转整数
+int romanToInt(string s)
+
+129、整数转罗马数字
+string intToRoman(int num)
