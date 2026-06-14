@@ -1048,3 +1048,6 @@ int romanToInt(string s)
 
 129、整数转罗马数字
 string intToRoman(int num)
+
+130、k个一组翻转链表
+ListNode* reverseKGroup(ListNode* head, int k)

@@ -3771,3 +3771,44 @@ string intToRoman(int num)
 
     return res;
 }
+
+ListNode* reverseKGroup(ListNode* head, int k)
+{
+    // 反转链表的变体，每k个一组反转
+    // 1、先数一下够不够k个，不够就不反转了
+    // 2、反转前k个节点，返回新的头节点和尾节点
+    // 3、递归反转后续节点，并连接起来
+
+    if(head == nullptr) return nullptr;
+
+    ListNode* newlist = new ListNode(0);
+    newlist->next = head;
+    ListNode* preTail = newlist;
+    
+    while (1)
+    {
+        // 先判断是否够k个
+        ListNode* check = preTail->next;
+        for(int i = 0; i < k; i++)
+        {
+            if(check == nullptr) return newlist->next;
+            check = check->next;
+        }
+        
+        // 反转前k个节点,k-1次翻转，头插法
+        ListNode* curr = preTail->next;
+        ListNode* next = nullptr;
+        for(int i = 0; i < k-1; i++)
+        {
+            next = curr->next;
+            curr->next = next->next; // 先把cur和后面拼起来 pretail -> 1 -> 3
+            next->next = preTail->next; // 再把next放到前面 pretail 的后面
+            preTail->next = next;   // pretail -> 2 -> 1 -> 3
+        }
+
+        // 连接下一组
+        preTail = curr;  // cur是这一组的尾节点，下一组的
+    }
+
+    return newlist->next;
+}

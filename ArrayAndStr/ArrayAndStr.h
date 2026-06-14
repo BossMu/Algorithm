@@ -391,6 +391,8 @@ class RandomNode {
 
     Node* copyRandomList(Node* head);
 };
+// k个一组翻转链表
+ListNode* reverseKGroup(ListNode* head, int k);
 // ------------------------- 链表 end ------------------------- 
 
 // ------------------------- 二叉树 begin ------------------------- 
