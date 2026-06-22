@@ -1051,3 +1051,6 @@ string intToRoman(int num)
 
 130、k个一组翻转链表
 ListNode* reverseKGroup(ListNode* head, int k)
+
+131、蛇形棋
+int snakesAndLadders(vector<vector<int>>& board) 

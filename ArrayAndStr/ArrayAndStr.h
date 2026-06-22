@@ -480,6 +480,11 @@ bool canFinish(int numCourses, vector<vector<int>>& prerequisites);
 vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites);
 // ------------------------- 图 end ------------------------- 
 
+// ------------------------- 广度优先遍历 begin ------------------------- 
+// 蛇形棋
+int snakesAndLadders(vector<vector<int>>& board) ;
+// ------------------------- 广度优先遍历 end ------------------------- 
+
 // ------------------------- 分治 begin ------------------------- 
 // [分治]二叉搜索树
 TreeNode* sortedArrayToBST(vector<int>& nums);

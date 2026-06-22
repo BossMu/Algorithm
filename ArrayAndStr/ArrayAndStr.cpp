@@ -3812,3 +3812,70 @@ ListNode* reverseKGroup(ListNode* head, int k)
 
     return newlist->next;
 }
+
+int snakesAndLadders(vector<vector<int>>& board) 
+{
+    // n：棋盘边长 n*n
+    int n = board.size();
+    // 终点格子编号
+    int target = n * n;
+    // vis[i] 标记编号i的格子是否已经访问过，避免重复入队
+    vector<bool> vis(target + 1, false);
+    // 队列：pair<当前格子编号, 当前投掷骰子次数>
+    queue<pair<int, int>> q;
+    // 起点是编号1，投掷次数0，标记已访问并入队
+    q.push({1, 0});
+    vis[1] = true;
+
+    // BFS 广度优先搜索，逐层遍历，保证首次到达终点是最少步数
+    while (!q.empty()) {
+        // 取出队首元素
+        auto [cur, step] = q.front();
+        q.pop();
+
+        // 骰子点数1~6，遍历六种前进可能
+        for (int d = 1; d <= 6; d++) {
+            // 掷d点后到达的临时格子编号
+            int next = cur + d;
+            // 超出最大格子，直接跳过
+            if (next > target) continue;
+
+            // ========== 数字编号转棋盘行列坐标 ==========
+            // (next-1)/n 得到该数字所在行（从下往上数，0开始）
+            int rowFromBottom = (next - 1) / n;
+            // 真实行号：从顶部往下
+            int r = n - 1 - rowFromBottom;
+            // 该行内偏移
+            int offset = (next - 1) % n;
+            int c;
+            // 奇数层（从下数偶数行）：从右往左排列数字，列反转
+            if (rowFromBottom % 2 == 1) {
+                c = n - 1 - offset;
+            } else {
+                // 偶数层（从下数奇数行）：从左往右排列数字
+                c = offset;
+            }
+
+            // ========== 梯子/蛇跳转逻辑：最多跳一次 ==========
+            int dest;
+            // -1代表普通格子，不跳转；否则直接跳到对应编号
+            if (board[r][c] == -1) {
+                dest = next;
+            } else {
+                dest = board[r][c];
+            }
+
+            // 到达终点，直接返回当前步数+1（本次投掷算一步）
+            if (dest == target) {
+                return step + 1;
+            }
+            // 该终点格子未访问过，标记并加入队列
+            if (!vis[dest]) {
+                vis[dest] = true;
+                q.push({dest, step + 1});
+            }
+        }
+    }
+    // 队列为空仍未找到终点，无法到达，返回-1
+    return -1;
+}
