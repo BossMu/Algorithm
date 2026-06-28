@@ -1054,3 +1054,9 @@ ListNode* reverseKGroup(ListNode* head, int k)
 
 131、蛇形棋
 int snakesAndLadders(vector<vector<int>>& board) 
+
+132、最小基因变化
+int minMutation(string startGene, string endGene, vector<string>& bank);
+
+133、单词接龙
+int ladderLength(string beginWord, string endWord, vector<string>& wordList)

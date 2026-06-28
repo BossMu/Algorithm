@@ -483,6 +483,10 @@ vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites);
 // ------------------------- 广度优先遍历 begin ------------------------- 
 // 蛇形棋
 int snakesAndLadders(vector<vector<int>>& board) ;
+// 最小基因变化
+int minMutation(string startGene, string endGene, vector<string>& bank);
+// 单词接龙
+int ladderLength(string beginWord, string endWord, vector<string>& wordList);
 // ------------------------- 广度优先遍历 end ------------------------- 
 
 // ------------------------- 分治 begin ------------------------- 

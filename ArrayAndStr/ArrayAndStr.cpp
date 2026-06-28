@@ -3879,3 +3879,90 @@ int snakesAndLadders(vector<vector<int>>& board)
     // 队列为空仍未找到终点，无法到达，返回-1
     return -1;
 }
+
+// 最小基因变化
+int minMutation(string startGene, string endGene, vector<string>& bank)
+{
+    unordered_set<string> bankSet(bank.begin(), bank.end());
+    if(bankSet.count(endGene) == 0) return -1; // 终点基因不在银行中，无法到达
+
+    // 遍历过得
+    unordered_set<string> visited;
+    queue<pair<string, int>> q; // pair<当前基因序列, 当前变异次数>
+    q.push({startGene, 0});
+    visited.insert(startGene);  
+
+    vector<char> genes = {'A', 'C', 'G', 'T'};
+
+    while (!q.empty())
+    {
+        auto cur = q.front();
+        q.pop();
+
+        string curGene = cur.first;
+        int curStep = cur.second;
+
+        for(int i = 0; i < curGene.length(); i++)
+        {
+            for(char c : genes)
+            {
+                if(c == curGene[i]) continue; // 跳过相同的基因
+                string nextGene = curGene;
+                nextGene[i] = c; // 变异一个基因
+                
+                // 找到退出
+                if(nextGene == endGene) return curStep + 1;
+
+                if(bankSet.count(nextGene) && !visited.count(nextGene))
+                {
+                    visited.insert(nextGene);
+                    q.push({nextGene, curStep + 1});
+                }
+            }
+        }
+    }
+    
+    return -1; // BFS结束仍未找到终点，无法到达
+}
+
+// 单词接龙
+int ladderLength(string beginWord, string endWord, vector<string>& wordList)
+{
+    // 这次没用visited 用过的删掉wordSet
+    unordered_set<string> wordSet(wordList.begin(), wordList.end());
+    if(wordSet.count(endWord) == 0) return 0; // 终点单词不在列表中，无法到达
+
+    // pair的话不用每次遍历一层 因为知道自己在第几层
+    queue<pair<string, int>> q; // pair<当前单词, 当前转换步数>
+    q.push({beginWord, 1});
+
+    while (!q.empty())
+    {
+        auto cur = q.front();
+        q.pop();
+
+        string curWord = cur.first;
+        int curStep = cur.second;
+
+        for(int i = 0; i < curWord.length(); i++)
+        {
+            for(char c = 'a'; c <= 'z'; c++)
+            {
+                if(c == curWord[i]) continue; // 跳过相同的字母
+                string nextWord = curWord;
+                nextWord[i] = c; // 替换一个字母
+                
+                // 找到退出
+                if(nextWord == endWord) return curStep + 1;
+
+                if(wordSet.count(nextWord))
+                {
+                    wordSet.erase(nextWord); // 标记为已访问
+                    q.push({nextWord, curStep + 1});
+                }
+            }
+        }
+    }
+    
+    return 0; // BFS结束仍未找到终点，无法到达
+}
