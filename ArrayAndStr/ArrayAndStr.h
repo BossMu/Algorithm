@@ -496,6 +496,73 @@ TreeNode* sortedArrayToBST(vector<int>& nums);
 Node* construct(vector<vector<int>>& grid);
 // ------------------------- 分治 end ------------------------- 
 
+// ------------------------- 字典树、前缀树 begin ------------------------- 
+// 字典树其实就是个多叉树，字符串有几位树就有几层
+class Trie {
+private:
+    struct TrieNode
+    {
+        bool isEnd;
+        TrieNode* next[26];
+        TrieNode() : isEnd(false)
+        {
+            for(int i=0; i<26; ++i)
+            {
+                next[i] = nullptr;
+            }
+        }
+    };
+    TrieNode* root;
+
+public:
+    Trie() {
+        root = new TrieNode();
+    }
+    
+    void insert(string word) {
+        TrieNode* node = root;
+        for(char c : word)
+        {
+            int idx = c - 'a';
+            if(node->next[idx] == nullptr)
+            {
+                node->next[idx] = new TrieNode();   
+            }
+            node = node->next[idx];
+        }
+        node->isEnd = true;
+    }
+    
+    bool search(string word) {
+        TrieNode* node = root;
+        for(char c : word)
+        {
+            int idx = c - 'a';
+            if(node->next[idx] == nullptr)
+            {
+                return false;
+            }
+            node = node->next[idx];
+        }
+        return node->isEnd;
+    }
+    
+    bool startsWith(string prefix) {
+        TrieNode* node = root;
+        for(char c : prefix)
+        {
+            int idx = c - 'a';
+            if(node->next[idx] == nullptr)
+            {
+                return false;
+            }
+            node = node->next[idx];
+        }
+        return true;
+    }
+};
+// ------------------------- 字典树 end ------------------------- 
+
 // ------------------------- 回溯 begin ------------------------- 
 // [回溯]9键排列组合
 vector<string> letterCombinations(string digits);
