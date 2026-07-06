@@ -494,24 +494,26 @@ int ladderLength(string beginWord, string endWord, vector<string>& wordList);
 TreeNode* sortedArrayToBST(vector<int>& nums);
 // [分治]四叉树构建
 Node* construct(vector<vector<int>>& grid);
+// 合并k个升序链表
+ListNode* mergeKLists(vector<ListNode*>& lists);
 // ------------------------- 分治 end ------------------------- 
 
 // ------------------------- 字典树、前缀树 begin ------------------------- 
+struct TrieNode
+{
+    bool isEnd;
+    TrieNode* next[26];
+    TrieNode() : isEnd(false)
+    {
+        for(int i=0; i<26; ++i)
+        {
+            next[i] = nullptr;
+        }
+    }
+};
 // 字典树其实就是个多叉树，字符串有几位树就有几层
 class Trie {
 private:
-    struct TrieNode
-    {
-        bool isEnd;
-        TrieNode* next[26];
-        TrieNode() : isEnd(false)
-        {
-            for(int i=0; i<26; ++i)
-            {
-                next[i] = nullptr;
-            }
-        }
-    };
     TrieNode* root;
 
 public:
@@ -559,6 +561,147 @@ public:
             node = node->next[idx];
         }
         return true;
+    }
+};
+// 单词搜索
+class WordDictionary {
+public:
+    // 匹配word的第idx个字符
+    bool dfs(TrieNode* node, string& word, int idx) 
+    {
+        if(idx == word.size())
+        {
+            return node->isEnd;
+        }
+
+        char c = word[idx];
+        if(c == '.')
+        {
+            // .表示匹配任意字符，直接遍历所有可能的子节点
+            for(int i=0; i<26; ++i)
+            {
+                if(node->next[i] && dfs(node->next[i], word, idx+1))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        else
+        {
+            int i = c - 'a';
+            if(node->next[i] == nullptr)
+            {
+                return false;
+            }
+            return dfs(node->next[i], word, idx+1);
+        }
+    } 
+public:
+    WordDictionary() {
+        root = new TrieNode();
+    }
+    
+    void addWord(string word) {
+        TrieNode* node = root;
+        for(char c : word)
+        {
+            int idx = c - 'a';
+            if(node->next[idx] == nullptr)
+            {
+                node->next[idx] = new TrieNode();   
+            }
+            node = node->next[idx];
+        }
+        node->isEnd = true;
+    }
+    
+    bool search(string word) {
+        return dfs(root, word, 0);
+    }
+private:
+    TrieNode* root;
+};
+// 单词搜索2
+// 思路：把要查找的单词们维护成一个字典树，然后在二维数组中进行深度优先搜索，查找所有的单词
+
+class WordSearch2 
+{
+private:
+    struct TrieNode2 
+    {
+        TrieNode2* children[26];
+        string word; 
+        TrieNode2() {
+            for (int i = 0; i < 26; ++i) children[i] = nullptr;
+            word = "";
+        }
+    };
+    vector<string> result;
+    int dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}}; // 上下左右移动方向
+
+    void insertWord(TrieNode2* root, const string& word) 
+    {
+        TrieNode2* node = root;
+        for (char c : word) 
+        {
+            int index = c - 'a';
+            if (!node->children[index]) 
+            {
+                node->children[index] = new TrieNode2();
+            }
+            node = node->children[index];
+        }
+        node->word = word; // 标记单词结束
+    }
+
+    void dfs(vector<vector<char>>& board, int i, int j, TrieNode2* node) 
+    {
+        int m = board.size();
+        int n = board[0].size();
+        
+        // 越界 已访问 无子节点
+        if (i < 0 || i >= m || j < 0 || j >= n || board[i][j] == '#' || node->children[board[i][j] - 'a'] == nullptr) return;
+        node = node->children[board[i][j] - 'a'];
+        if (!node->word.empty())
+        {
+            result.push_back(node->word);
+            node->word = ""; // 避免重复添加
+        }
+        char c = board[i][j];   // 当前字符是c，去看有没有子树c对应的要查找的单词
+
+        board[i][j] = '#'; // 标记为已访问
+        for (int d = 0; d < 4; ++d)
+        {
+            int new_i = i + dirs[d][0];
+            int new_j = j + dirs[d][1];
+            dfs(board, new_i, new_j, node);
+        }
+        // 回溯
+        board[i][j] = c;
+    }
+
+public:
+    vector<string> findWords(vector<vector<char>>& board, vector<string>& words)
+    {
+        // 把所有字典构建字典树
+        TrieNode2* root = new TrieNode2();
+        for (const string& word : words) 
+        {
+            insertWord(root, word);
+        }
+
+        // dfs+回溯 每个节点开始找一次
+        int m = board.size();
+        int n = board[0].size();
+        for (int i = 0; i < m; ++i) 
+        {
+            for (int j = 0; j < n; ++j) 
+            {
+                dfs(board, i, j, root);
+            }
+        }
+        return result;
     }
 };
 // ------------------------- 字典树 end ------------------------- 

@@ -3966,3 +3966,65 @@ int ladderLength(string beginWord, string endWord, vector<string>& wordList)
     
     return 0; // BFS结束仍未找到终点，无法到达
 }
+
+
+ListNode* mergeKLists(vector<ListNode*>& lists)
+{
+    // 思路1：最小堆，依次把每个链表的头节点放进最小堆，每次出掉堆头节点即可
+    // 记忆：a在下面，打的值下沉就是小根堆
+    /*
+    auto cmp = [](ListNode* a, ListNode* b) { return a->val > b->val; };
+    priority_queue<ListNode*, vector<ListNode*>, decltype(cmp)> minHeap(cmp);
+
+    for (auto list : lists) {
+        if (list) {
+            minHeap.push(list);
+        }
+    }
+
+    ListNode* dummy = new ListNode(0);
+    ListNode* tmp = dummy;
+    while (!minHeap.empty())
+    {
+        ListNode* node = minHeap.top();
+        minHeap.pop();
+        tmp->next = node;
+        tmp = tmp->next;
+        if (node->next) {
+            minHeap.push(node->next);
+        }
+    }
+    
+    return dummy->next;
+    */
+
+    // 思路2：分治法，合并两个链表，递归合并
+    auto mergeTwoLists = [](ListNode* l1, ListNode* l2) -> ListNode* {
+        ListNode* dummy = new ListNode(0);
+        ListNode* cur = dummy;
+        while (l1 && l2) {
+            if (l1->val < l2->val) {
+                cur->next = l1;
+                l1 = l1->next;
+            } else {
+                cur->next = l2;
+                l2 = l2->next;
+            }
+            cur = cur->next;
+        }
+        cur->next = l1 ? l1 : l2;
+        return dummy->next;
+    };
+    
+    // 合并i到j链表
+    auto mergeKListsHelper = [&](auto&& self, vector<ListNode*>& lists, int i, int j) -> ListNode* {
+        if (i > j) return nullptr;
+        if (i == j) return lists[i];
+        int mid = i + (j - i) / 2;
+        ListNode* l1 = self(self, lists, i, mid);
+        ListNode* l2 = self(self, lists, mid + 1, j);
+        return mergeTwoLists(l1, l2);
+    };
+    
+    return mergeKListsHelper(mergeKListsHelper, lists, 0, lists.size() - 1);
+}

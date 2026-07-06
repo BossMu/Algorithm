@@ -1060,3 +1060,9 @@ int minMutation(string startGene, string endGene, vector<string>& bank);
 
 133、单词接龙
 int ladderLength(string beginWord, string endWord, vector<string>& wordList)
+
+134、单词搜索2
+vector<string> findWords(vector<vector<char>>& board, vector<string>& words) 
+
+135、合并k个升序链表
+ListNode* mergeKLists(vector<ListNode*>& lists);
