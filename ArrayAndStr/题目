@@ -1066,3 +1066,9 @@ vector<string> findWords(vector<vector<char>>& board, vector<string>& words)
 
 135、合并k个升序链表
 ListNode* mergeKLists(vector<ListNode*>& lists);
+
+136、排序数组中找元素的开始结束位置
+vector<int> searchRange(vector<int>& nums, int target)
+
+137、寻找旋转数组中的最小值
+int findMin(vector<int>& nums) 

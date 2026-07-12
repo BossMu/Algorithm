@@ -726,6 +726,10 @@ bool searchMatrix(vector<vector<int>>& matrix, int target);
 int findPeakElement(vector<int>& nums);
 // 旋转数组后查找
 int search(vector<int>& nums, int target);
+// 排序数组中找元素的开始结束位置
+vector<int> searchRange(vector<int>& nums, int target);
+// 寻找旋转数组中的最小值
+int findMin(vector<int>& nums) ;
 // ------------------------- 二分查找 end ------------------------- 
 
 // ------------------------- 位运算 begin -----------------------

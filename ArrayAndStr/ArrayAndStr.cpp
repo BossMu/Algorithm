@@ -4028,3 +4028,59 @@ ListNode* mergeKLists(vector<ListNode*>& lists)
     
     return mergeKListsHelper(mergeKListsHelper, lists, 0, lists.size() - 1);
 }
+
+// 排序数组中找元素的开始结束位置
+vector<int> searchRange(vector<int>& nums, int target)
+{
+    // 返回的l一定是大于等于target的第一个位置，r一定是小于等于target的最后一个位置
+    auto findFirst = [&](vector<int>& nums, int target) -> int {
+        int l = 0, r = nums.size() - 1;
+        
+        while (l <= r)
+        {
+            int m = l + (r - l) / 2;
+            if (nums[m] >= target) {
+                r = m-1;
+            } else {
+                l = m + 1;
+            }
+        }
+        
+        return l;
+    };
+
+    int l = findFirst(nums, target);
+    if (l >= nums.size() || nums[l] != target) {
+        return {-1, -1};
+    }
+    
+    // 找到最后一个位置
+    int r = l;
+    while (r < nums.size() && nums[r] == target) {
+        r++;
+    }
+    
+    return {l, r - 1};
+}
+
+// 寻找旋转数组中的最小值
+int findMin(vector<int>& nums) 
+{
+    int l = 0, r = nums.size()-1;
+    while (l < r)
+    {
+        int mid = l + (r-l)/2;
+        // 中间的更大 说明最小的在右边
+        if(nums[mid] > nums[r])
+        {
+            l = mid + 1;
+        }
+        // 否则最小的在当前或者左边
+        else
+        {
+            r = mid;
+        }
+    }
+
+    return nums[l];
+}
