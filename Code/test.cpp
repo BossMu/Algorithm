@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "ArrayAndStr.h"
+#include "code.h"
 
 void removeElementTest()
 {

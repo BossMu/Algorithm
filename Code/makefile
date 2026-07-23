@@ -2,13 +2,13 @@
 CXX = g++
 
 # 编译选项
-CXXFLAGS = -g -Wall -std=c++11
+CXXFLAGS = -g -Wall -std=c++17
 
 # 目标可执行文件
 TARGET = test
 
 # 源文件
-SRCS = test.cpp ArrayAndStr.cpp
+SRCS = test.cpp code.cpp
 
 # 目标文件路径
 OBJDIR = build
@@ -23,11 +23,9 @@ UNAME_S := $(shell uname -s)
 # 规则：生成可执行文件
 $(TARGET): $(OBJS)
 	$(CXX) $(OBJS) -o $(TARGET)
-
-# mac签名，防止权限问题 
 ifeq ($(UNAME_S), Darwin)
 	@echo "正在对 $(TARGET) 进行代码签名..."
-	codesign -s "$(CODESIGN_CERT)" $(TARGET)
+	-codesign -s "$(CODESIGN_CERT)" $(TARGET) 2>/dev/null || true
 	@echo "代码签名完成"
 endif
 
